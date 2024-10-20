@@ -1,30 +1,36 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
-import style from "./Header.module.css";
-import mockDataNav from "../../../utils/mockDataNav";
+import mockDataNav from "../../../utils/MockData/mockDataNav";
+import NavSlide from "./components/NavSlide";
+import clsx from "clsx";
 
 export default function Header() {
+    const [openSlide, setOpenSlide] = useState(false);
+    const handleClick = () => {
+        setOpenSlide(!openSlide);
+    };
     return (
         <header>
-            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] flex py-2  items-center gap-x-2 justify-between px-8">
+            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 md:gap-x-0">
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
                     <Link
                         to="/"
-                        className=" text-lg font-bold mr-5 leading-none bg-[#fff8ed] text-center text-black rounded-lg px-1 pb-[3px] hover:text-amber-500 hover:bg-[#fff8edf0] transition-all duration-200 "
+                        className=" text-lg font-bold mr-5 leading-none bg-[#fff8ed] text-center text-black rounded-lg px-1 pb-[3px] hover:text-amber-500 hover:bg-[#fff8edf0] transition-all duration-200 xs:text-xs "
                     >
                         <img
                             className=" h-12 bg-white/80 rounded-xl mx-auto"
                             src={logo}
                             alt="mocmacshop"
                         />
-                        MOCMACSHOP
+                        <h1>MOCMACSHOP</h1>
                     </Link>
-                    <div className="nav-location flex items-center border border-white/0 hover:border-amber-500 ">
+                    <div className="nav-location flex items-center border border-white/0 hover:border-amber-500 sm:hidden ">
                         <Link to="/">
                             <i className="fa-solid fa-location-dot mr-2 text-xl"></i>
                         </Link>
-                        <Link className="flex flex-col ">
+                        <Link className="flex flex-col  ">
                             <span className="text-xs">Deliver to</span>
                             <span className="font-bold">Hanoi</span>
                         </Link>
@@ -33,11 +39,11 @@ export default function Header() {
 
                 <form
                     action=""
-                    className="nav-search-bar flex  rounded-md overflow-hidden w-1/2  "
+                    className="nav-search-bar flex  rounded-md overflow-hidden w-1/2 xl:w-5/12 sm:w-8/12  "
                 >
                     <div className="nav-left  ">
                         <button
-                            className="btn-filter py-2 px-3 bg-gray-300 h-full text-sm text-black"
+                            className="btn-filter py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black"
                             onClick={(e) => {
                                 e.preventDefault();
                             }}
@@ -47,19 +53,19 @@ export default function Header() {
                         </button>
                     </div>
                     <input
-                        className=" text-black text-sm font-medium nav-search grow p-2 outline-none border-2  border-white/0 focus:border-amber-700"
+                        className=" text-black text-sm font-medium nav-search grow px-2 outline-none border-2  border-white/0 focus:border-amber-700"
                         type="text"
                         placeholder="Search"
                     />
-                    <button className="nav-search-btn px-4 py-2 text-xl bg-amber-500">
+                    <button className="nav-search-btn px-3 py-1 text-xl bg-amber-500">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
 
                 {/* nav-right */}
-                <div className="nav-right flex  gap-x-7 items-center ">
+                <div className="nav-right flex  gap-x-7 lg:gap-x-4 items-center ">
                     <div className="nav-right-item language border border-white/0 hover:border-amber-500 ">
-                        <button className="font-medium">
+                        <button className="font-medium md:hidden">
                             <span className="fi fi-us"></span>
                             EN
                             <i className="fa-solid fa-caret-down text-xs"></i>
@@ -67,28 +73,28 @@ export default function Header() {
                     </div>
                     <Link
                         to=""
-                        className="user flex flex-col border border-white/0 hover:border-amber-500 "
+                        className="user flex flex-col border border-white/0 hover:border-amber-500 sm:hidden "
                     >
                         <span className="text-xs">Hello</span>
-                        <span className="font-bold text-sm">Sign in</span>
+                        <span className="font-semibold text-sm">Sign in</span>
                     </Link>
-                    <Link className="order flex flex-col border border-white/0 hover:border-amber-500 ">
+                    <Link className="order flex flex-col border border-white/0 hover:border-amber-500 md:hidden ">
                         <span className="text-xs">Returns</span>
-                        <span className="font-bold text-sm">& Orders</span>
+                        <span className="font-semibold text-sm">& Orders</span>
                     </Link>
                     <div className="cart border border-white/0 hover:border-amber-500 ">
                         <Link to="/cart" className="font-medium text-xl">
                             <i className="fa-solid fa-cart-shopping text-xl mr-2"></i>
-                            Cart
+                            <span className="lg:hidden">Cart</span>
                         </Link>
                     </div>
                 </div>
             </div>
             <div className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm">
-                <button className="nav-toggle mr-4">
+                <button className="nav-toggle mr-4" onClick={handleClick}>
                     <i className="fa-solid fa-bars text-xl"></i>
                 </button>
-                <ul className="flex  gap-x-5 ">
+                <ul className="flex gap-x-5 md:gap-x-3 ">
                     {mockDataNav.map((item) => (
                         <li key={item.id}>
                             <Link
@@ -100,6 +106,21 @@ export default function Header() {
                         </li>
                     ))}
                 </ul>
+                <div
+                    className={clsx(
+                        "nav-slide fixed top-0 left-0 w-1/4 h-screen z-50 bg-white transition-all duration-300 ",
+                        openSlide ? " translate-x-0" : " translate-x-[-100%]"
+                    )}
+                >
+                    <NavSlide />
+                </div>
+                <span
+                    onClick={handleClick}
+                    className={clsx(
+                        "overlay top-0 fixed left-0  h-screen  transition-all duration-200 ",
+                        openSlide ? " z-10 bg-[#000c] w-full" : "  z-[-1]"
+                    )}
+                ></span>
             </div>
         </header>
     );

@@ -1,6 +1,7 @@
 import Footer from "./Footer";
 import Header from "./Header/Header";
 import { Outlet } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
 
 export default function DefaultLayout() {
     return (
@@ -9,6 +10,7 @@ export default function DefaultLayout() {
             <main>
                 <Outlet />
             </main>
+            <ScrollToTop />
             <Footer />
         </>
     );

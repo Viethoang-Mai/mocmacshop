@@ -90,11 +90,11 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <div className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm">
+            <div className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto">
                 <button className="nav-toggle mr-4" onClick={handleClick}>
                     <i className="fa-solid fa-bars text-xl"></i>
                 </button>
-                <ul className="flex gap-x-5 md:gap-x-3 ">
+                <ul className="flex gap-x-5 md:gap-x-3 shrink-0  ">
                     {mockDataNav.map((item) => (
                         <li key={item.id}>
                             <Link
@@ -108,8 +108,8 @@ export default function Header() {
                 </ul>
                 <div
                     className={clsx(
-                        "nav-slide fixed top-0 left-0 w-1/4 h-screen z-50 bg-white transition-all duration-300 ",
-                        openSlide ? " translate-x-0" : " translate-x-[-100%]"
+                        "nav-slide fixed top-0 left-0 w-1/4 md:w-1/3 xs:w-5/12 xxs:w-6/12 h-screen z-50 bg-white transition-all duration-300 ",
+                        openSlide ? " translate-x-0" : " translate-x-[-200%]"
                     )}
                 >
                     <NavSlide />

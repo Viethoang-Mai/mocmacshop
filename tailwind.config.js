@@ -11,7 +11,12 @@ export default {
             xs: { max: "575.98px" },
             xxs: { max: "467.98px" },
         },
-        extend: {},
+        extend: {
+            boxShadow: {
+                trendItem:
+                    " 0px 2px 4px 0px rgba(14, 30, 37, 0.12),  0px 2px 16px 0px rgba(14, 30, 37, 0.32)",
+            },
+        },
     },
     plugins: [],
 };

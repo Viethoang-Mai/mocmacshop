@@ -3,11 +3,11 @@ import dataTrend from "../../../utils/MockData/dataTrend";
 
 export default function TopTrend() {
     return (
-        <div className="text-center px-16 px-8">
+        <div className="text-center px-16 px-8 md:px-0 sm:px-4 ">
             <h2 className="text-2xl font-semibold ">
                 Find your new favorite trend!
             </h2>
-            <div className="grid grid-cols-6 mt-5 ">
+            <div className="grid grid-cols-6 mt-5 sm:grid-cols-3 sm:gap-5 xxs:grid-cols-2  ">
                 {dataTrend.map((item) => {
                     return (
                         <div
@@ -21,7 +21,7 @@ export default function TopTrend() {
                                 alt="trend"
                                 className=" w-11/12 mx-auto rounded-full p-3"
                             />
-                            <h3 className="text-sm font-semibold">
+                            <h3 className="text-sm font-semibold md:text-xs">
                                 {item.title}
                             </h3>
                         </div>

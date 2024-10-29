@@ -1,4 +1,5 @@
-import React, { PropTypes, useEffect } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 // import { useSelector, useDispatch } from "react-redux";
 // import { fetchProducts } from "../../../stores/slices/productSlice";
@@ -10,11 +11,10 @@ export default function FeatureCategories({ data: categories }) {
     // useEffect(() => {
     //     dispatch(fetchProducts());
     // }, []);
-    console.log(categories);
 
     return (
-        <div>
-            <h2>Feature Categories</h2>
+        <div className="feature-categories mt-10">
+            <h2 className="text-2xl font-semibold">Feature Categories</h2>
             <div className="grid grid-cols-6 mt-5 gap-5 sm:grid-cols-3 sm:gap-5 xxs:grid-cols-2">
                 {categories?.map((item) => {
                     return (
@@ -34,6 +34,6 @@ export default function FeatureCategories({ data: categories }) {
         </div>
     );
 }
-// FeatureCategories.propTypes = {
-//     data: PropTypes.array,
-// };
+FeatureCategories.propTypes = {
+    data: PropTypes.array,
+};

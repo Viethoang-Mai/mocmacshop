@@ -8,6 +8,7 @@ export const productSlice = createSlice({
     name: "products",
     initialState: {
         products: {},
+        categories: [],
         status: "idle",
     },
     reducers: {
@@ -24,6 +25,13 @@ export const productSlice = createSlice({
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.status = "success";
                 state.products = action.payload;
+                state.categories = action.payload.data.map(
+                    ({ id, name, image_url }) => ({
+                        id,
+                        name,
+                        image_url,
+                    })
+                );
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = "error";
@@ -41,7 +49,6 @@ export const fetchProducts = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue("Error");
         }
-        console.log(response, data);
         return data;
     }
 );

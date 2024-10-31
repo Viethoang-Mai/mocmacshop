@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../stores/slices/productSlice";
-import TopTrend from "./components/TopTrend";
-import SlideShow from "./components/SlideShow";
-import FeatureCategories from "./components/FeatureCategories";
+
+import FeatureCategories from "./FeatureCategories";
+import SlideShow from "./SlideShow";
+import TopTrend from "./TopTrend";
+import AmzDeal from "./AmzDeal/AmzDeal";
 export default function Home() {
     const data = useSelector((state) => state.product.products);
     const categories = useSelector((state) => state.product.categories);
@@ -18,8 +20,9 @@ export default function Home() {
             <div className="relative z-[0] user-select-none ">
                 <SlideShow />
             </div>
-            <div className="p-8 mt-[-19%] relative z-[1]  ">
+            <div className="py-8  px-20 xs:px-10 lg:px-16 md:px-10 mt-[-15%] xl:mt-[-19%] relative z-[1]  ">
                 <TopTrend />
+                <AmzDeal />
                 <FeatureCategories data={categories} />
             </div>
         </section>

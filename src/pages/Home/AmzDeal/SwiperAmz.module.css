@@ -1,0 +1,13 @@
+.swiper-button-next,
+.swiper-button-prev {
+    position: relative;
+    color: #f59e0b !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 999px !important;
+    &::after {
+        font-size: 25px !important;
+    }
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+}

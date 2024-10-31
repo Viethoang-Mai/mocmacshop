@@ -1,5 +1,5 @@
 import React from "react";
-import dataTrend from "../../../utils/MockData/dataTrend";
+import dataTrend from "../../utils/MockData/dataTrend";
 
 export default function TopTrend() {
     return (

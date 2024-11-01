@@ -68,7 +68,7 @@ export default function AmzDeal() {
                             <SwiperSlide
                                 key={item.id}
                                 className="text-center relative order-2 p-1 hover:cursor-pointer before:absolute before:top-1/2 before:left-1/2
-                            before:-translate-x-1/2 before:-translate-y-1/2 before:w-[50%] before:h-[50%] before:rounded-2xl before:z-[-1] before:bg-white/30 before:transition-all before:duration-300 hover:before:w-[104%] hover:before:h-[102%] hover:before:shadow-trendItem shrink-0 w-[210px] sm:w-[160px] 
+                            before:-translate-x-1/2 before:-translate-y-1/2 before:w-[50%] before:h-[50%] before:rounded-2xl before:z-[-1] before:bg-white/30 before:transition-all before:duration-300 hover:before:w-[104%] hover:before:h-[102%] hover:before:shadow-trendItem shrink-0 w-[210px] sm:w-[160px] group 
                            "
                             >
                                 <img
@@ -102,6 +102,9 @@ export default function AmzDeal() {
                                         <span className=" text-gray-600">{`(${item.reviewer})`}</span>
                                     </div>
                                 </div>
+                                <button className="favorite absolute z-[-1] top-3 right-5 py-1 px-2  bg-white rounded-full border border-gray-200 hover:bg-red-400 hover:shadow transition-all duration-150 group-hover:z-[0] transition-all duration-300">
+                                    <i className="fa-regular fa-heart relative top-[1.2px] "></i>
+                                </button>
                             </SwiperSlide>
                         );
                     })}

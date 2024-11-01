@@ -7,6 +7,7 @@ import SlideShow from "./SlideShow";
 import TopTrend from "./TopTrend";
 import AmzDeal from "./AmzDeal/AmzDeal";
 import HolidayDeal from "./HolidayDeal";
+import About from "./About";
 export default function Home() {
     const data = useSelector((state) => state.product.products);
     const categories = useSelector((state) => state.product.categories);
@@ -27,6 +28,7 @@ export default function Home() {
                 <FeatureCategories data={categories} />
                 <HolidayDeal />
             </div>
+            <About />
         </section>
     );
 }

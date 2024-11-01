@@ -10,7 +10,7 @@ export default function About() {
                 </span>
             </div>
             <div>
-                <ul className="grid grid-cols-3 mt-6 gap-5 lg:grid-cols-1">
+                <ul className="grid grid-cols-3 mt-6 gap-6 lg:grid-cols-1">
                     <li>
                         <h3 className="font-semibold text-2xl mb-2">
                             A community doing good{" "}
@@ -27,10 +27,10 @@ export default function About() {
                             Support independent creators
                         </h3>
                         <p>
-                            There’s no Etsy warehouse – just millions of people
-                            selling the things they love. We make the whole
-                            process easy, helping you connect directly with
-                            makers to find something extraordinary.
+                            There’s no Mocmac warehouse – just millions of
+                            people selling the things they love. We make the
+                            whole process easy, helping you connect directly
+                            with makers to find something extraordinary.
                         </p>
                     </li>
                     <li>

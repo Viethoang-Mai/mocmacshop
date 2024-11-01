@@ -3,7 +3,7 @@ import dataTrend from "../../utils/MockData/dataTrend";
 
 export default function TopTrend() {
     return (
-        <div className="text-center px-16 px-8 md:px-0 sm:px-4 ">
+        <div className="text-center px-16 px-8 md:px-0  ">
             <h2 className="text-2xl font-semibold ">
                 Find your new favorite trend!
             </h2>

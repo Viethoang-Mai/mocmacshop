@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BtnFavorite from "../../components/BtnFavorite";
 
 const images = [
     "https://res.cloudinary.com/dszxqzf9t/image/upload/v1730387519/hld-5_rennql.jpg",
@@ -22,27 +23,26 @@ export default function HolidayDeal() {
                 </button>
             </div>
             {images.map((image, index) => (
-                <Link
-                    to={""}
+                <div
                     className="image relative group overflow-hidden rounded-2xl w-full h-full"
                     key={index}
                 >
-                    <img
-                        src={image}
-                        alt="holiday-deal"
-                        className="  w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-300"
-                    />
-                    <span className="price z-[-1] absolute  bottom-3 left-5 text-black py-1 px-3 bg-white rounded-full font-semibold group-hover:z-[0] transition-all duration-300">
-                        {" "}
-                        $40.00{" "}
-                        <span className="text-xs line-through ml-1 font-medium text-gray-500">
-                            $50.18
+                    <Link to="/demo">
+                        <img
+                            src={image}
+                            alt="holiday-deal"
+                            className="  w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-300"
+                        />
+                        <span className="price z-[-1] absolute  bottom-3 left-5 text-black py-1 px-3 bg-white rounded-full font-semibold group-hover:z-[0] transition-all duration-300">
+                            {" "}
+                            $40.00{" "}
+                            <span className="text-xs line-through ml-1 font-medium text-gray-500">
+                                $50.18
+                            </span>
                         </span>
-                    </span>
-                    <button className="favorite absolute z-[-1] top-3 right-5 py-1 px-2  bg-white rounded-full border border-gray-200 hover:bg-red-400 hover:shadow transition-all duration-150 group-hover:z-[0] transition-all duration-300">
-                        <i className="fa-regular fa-heart relative top-[1.2px] "></i>
-                    </button>
-                </Link>
+                    </Link>
+                    <BtnFavorite />
+                </div>
             ))}
         </div>
     );

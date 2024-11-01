@@ -1,5 +1,6 @@
 import React from "react";
 import dataTrend from "../../utils/MockData/dataTrend";
+import { Link } from "react-router-dom";
 
 export default function TopTrend() {
     return (
@@ -10,7 +11,8 @@ export default function TopTrend() {
             <div className="grid grid-cols-6 mt-5 sm:grid-cols-3 sm:gap-5 xxs:grid-cols-2  ">
                 {dataTrend.map((item) => {
                     return (
-                        <div
+                        <Link
+                            to={"/demo"}
                             key={item.id}
                             className="text-center relative p-1 hover:cursor-pointer before:absolute before:top-1/2 before:left-1/2
                             before:-translate-x-1/2 before:-translate-y-1/2 before:w-[50%] before:h-[50%] before:rounded-2xl before:z-[-1] before:bg-white/30 before:transition-all before:duration-300 hover:before:w-[95%] hover:before:h-[100%] hover:before:shadow-trendItem 
@@ -24,7 +26,7 @@ export default function TopTrend() {
                             <h3 className="text-sm font-semibold md:text-xs">
                                 {item.title}
                             </h3>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>

@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../stores/slices/productSlice";
-
+import { Helmet } from "react-helmet";
 import FeatureCategories from "./FeatureCategories";
+
 import SlideShow from "./SlideShow";
 import TopTrend from "./TopTrend";
 import AmzDeal from "./AmzDeal/AmzDeal";
@@ -19,6 +20,10 @@ export default function Home() {
 
     return (
         <section>
+            <Helmet>
+                <title>mocmacshop || Home</title>
+            </Helmet>
+
             <div className="relative z-[0] user-select-none ">
                 <SlideShow />
             </div>

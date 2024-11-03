@@ -2,10 +2,12 @@ import { toast } from "react-toastify";
 
 export default function BtnFavorite() {
     const handleClick = () => {
-        toast.info("Dự án mới chỉ áp dụng cho Feature Category", {
-            position: "top-right",
-            autoClose: 2000,
-        });
+        toast.info(
+            "This feature is currently available for Categories only. Stay tuned for updates!",
+            {
+                autoClose: 2000,
+            }
+        );
     };
     return (
         <button

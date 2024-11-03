@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
 import mockDataNav from "../../../utils/MockData/mockDataNav";
 import NavSlide from "./components/NavSlide";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../../stores/slices/categorySlice";
 
 export default function Header() {
     const [openSlide, setOpenSlide] = useState(false);
+    const [searchText, setSearchText] = useState("All");
+
+    const categories = JSON.parse(localStorage.getItem("categories"));
+
     const handleClick = () => {
         setOpenSlide(!openSlide);
     };
@@ -39,20 +45,37 @@ export default function Header() {
 
                 <form
                     action=""
-                    className="nav-search-bar flex  rounded-md overflow-hidden w-1/2 xl:w-5/12 sm:hidden  "
+                    className="nav-search-bar flex  w-1/2 xl:w-5/12 sm:hidden relative  "
                 >
-                    <div className="nav-left  ">
-                        <button className="btn-filter py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black ">
-                            All
+                    <div className="nav-left relative  ">
+                        <div className="btn-filter py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black flex items-center cursor-pointer rounded-s-md">
+                            {searchText}
                             <i className="fa-solid fa-caret-down ml-2"></i>
-                        </button>
+                        </div>
+                        <select
+                            onChange={(e) => setSearchText(e.target.value)}
+                            className="categories-select mt-1 z-100 absolute text-black outline-none border-0 top-0 left-0 h-full w-full rounded-md opacity-0 font-medium  "
+                            name="categories"
+                            id="categories"
+                            defaultValue={searchText}
+                        >
+                            {categories?.map((item, index) => (
+                                <option
+                                    value={item.name}
+                                    key={index}
+                                    className="bg-gray-50 text-[#68c4cf] font-medium "
+                                >
+                                    {item.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <input
-                        className=" text-black text-sm font-medium nav-search grow px-2 outline-none border-2  border-white/0 focus:border-amber-700"
+                        className=" text-black text-sm font-medium nav-search grow px-2 outline-none border-2  border-white/0 focus:border-amber-700 "
                         type="text"
                         placeholder="Search"
                     />
-                    <button className="nav-search-btn px-3 py-1 text-xl bg-amber-500">
+                    <button className="nav-search-btn px-3 py-1 text-xl bg-amber-500 rounded-e-md">
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>

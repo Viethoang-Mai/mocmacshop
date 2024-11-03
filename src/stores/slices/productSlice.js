@@ -32,6 +32,10 @@ export const productSlice = createSlice({
                         image_url,
                     })
                 );
+                localStorage.setItem(
+                    "categories",
+                    JSON.stringify(state.categories)
+                );
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = "error";

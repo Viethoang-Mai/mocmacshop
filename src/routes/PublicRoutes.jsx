@@ -4,7 +4,7 @@ import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../layouts/AuthLayout/Login";
 import Demo from "../pages/Demo/Demo";
-import CategoryItem from "../components/CategoryItem";
+import CategoryItem from "../pages/CategoryItem/CategoryItem";
 const publicRoutes = (
     <>
         <Route element={<DefaultLayout />}>

@@ -36,6 +36,10 @@ export const productSlice = createSlice({
                     "categories",
                     JSON.stringify(state.categories)
                 );
+                sessionStorage.setItem(
+                    "products",
+                    JSON.stringify(state.products)
+                );
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = "error";

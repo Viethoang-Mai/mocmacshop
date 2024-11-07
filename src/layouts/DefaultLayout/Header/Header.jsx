@@ -8,14 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../../stores/slices/categorySlice";
 
 export default function Header() {
-    const [openSlide, setOpenSlide] = useState(false);
     const [searchText, setSearchText] = useState("All");
 
     const categories = JSON.parse(localStorage.getItem("categories"));
 
-    const handleClick = () => {
-        setOpenSlide(!openSlide);
-    };
     return (
         <header>
             <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 md:gap-x-0">
@@ -129,9 +125,6 @@ export default function Header() {
                 </form>
             </div>
             <div className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto">
-                <button className="nav-toggle mr-4" onClick={handleClick}>
-                    <i className="fa-solid fa-bars text-xl"></i>
-                </button>
                 <ul className="flex gap-x-5 md:gap-x-3 shrink-0  ">
                     {mockDataNav.map((item) => (
                         <li key={item.id}>
@@ -144,21 +137,6 @@ export default function Header() {
                         </li>
                     ))}
                 </ul>
-                <div
-                    className={clsx(
-                        "nav-slide fixed top-0 left-0 w-1/4 md:w-1/3 xs:w-5/12 xxs:w-6/12 h-screen z-50 bg-white transition-all duration-300 ",
-                        openSlide ? " translate-x-0" : " translate-x-[-200%]"
-                    )}
-                >
-                    <NavSlide />
-                </div>
-                <span
-                    onClick={handleClick}
-                    className={clsx(
-                        "overlay top-0 fixed left-0  h-screen  transition-all duration-200 ",
-                        openSlide ? " z-10 bg-[#000c] w-full" : "  z-[-1]"
-                    )}
-                ></span>
             </div>
         </header>
     );

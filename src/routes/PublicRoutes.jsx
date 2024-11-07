@@ -5,6 +5,8 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Login from "../layouts/AuthLayout/Login";
 import Demo from "../pages/Demo/Demo";
 import CategoryItem from "../pages/CategoryItem/CategoryItem";
+import Product from "../pages/Products/Product";
+import Filter from "../components/Filter";
 const publicRoutes = (
     <>
         <Route element={<DefaultLayout />}>
@@ -12,6 +14,9 @@ const publicRoutes = (
             <Route path="/demo" element={<Demo />} />
             <Route path="/category">
                 <Route path=":id" element={<CategoryItem />} />
+            </Route>
+            <Route path="/product" element={<Filter />}>
+                <Route path="search" element={<Filter />} />
             </Route>
         </Route>
         <Route element={<AuthLayout />}>

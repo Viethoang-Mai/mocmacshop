@@ -4,32 +4,29 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import StarRating from "../../components/RatingStart";
+import Filter from "../../components/Filter";
 export default function CategoryItem() {
     const { id } = useParams();
 
     const productData = JSON.parse(sessionStorage.getItem("products"));
 
     return (
-        <section className="category-item px-10">
+        <section className="category-item p-10 ">
             <div>
-                <h1>
-                    Mocmac's Picks:{" "}
+                <h1 className="text-3xl font-bold text-amber-700">
+                    {" "}
                     {
                         productData.data[
                             productData.data.findIndex((item) => item.id == id)
                         ].name
                     }
                 </h1>
+                <p className=" font-medium mt-3">Mocmac's Picks: </p>
 
                 <Swiper
                     slidesPerView={"auto"}
                     spaceBetween={30}
                     scrollbar={{ draggable: true }}
-                    // onSwiper={(swiper) => {
-                    //     Object.assign(swiper.wrapperEl.style, {
-                    //         width: "100%",
-                    //     });
-                    // }}
                     style={{
                         padding: "16px 0",
                     }}
@@ -45,7 +42,7 @@ export default function CategoryItem() {
                                 <img
                                     src={item.image_url}
                                     alt={item.name}
-                                    className="object-cover object-center rounded-2xl  transition-all h-[200px] w-full "
+                                    className="object-cover object-center rounded  transition-all h-[200px] w-full "
                                 />
                                 <div className="info">
                                     <h3 className=" truncate mt-3 font-medium md:text-xs">
@@ -75,7 +72,9 @@ export default function CategoryItem() {
                     ))}
                 </Swiper>
             </div>
-            <Product data={productData} />
+            <div className="mt-10">
+                <Filter />
+            </div>
         </section>
     );
 }

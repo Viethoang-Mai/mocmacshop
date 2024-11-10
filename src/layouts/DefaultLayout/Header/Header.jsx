@@ -43,8 +43,8 @@ export default function Header() {
                     action=""
                     className="nav-search-bar flex  w-1/2 xl:w-5/12 sm:hidden relative  "
                 >
-                    <div className="nav-left relative  ">
-                        <div className="btn-filter py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black flex items-center cursor-pointer rounded-s-md">
+                    <div className="nav-left relative w-fit  ">
+                        <div className="btn-filter  text-xs py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black flex items-center cursor-pointer rounded-s-md">
                             {searchText}
                             <i className="fa-solid fa-caret-down ml-2"></i>
                         </div>
@@ -124,7 +124,13 @@ export default function Header() {
                     </button>
                 </form>
             </div>
-            <div className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto">
+            <div
+                className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto [&::-webkit-scrollbar]:h-2 
+                    [&::-webkit-scrollbar-track]:rounded-full 
+                    [&::-webkit-scrollbar-track]:bg-gray-200
+                    [&::-webkit-scrollbar-thumb]:rounded-full
+                    [&::-webkit-scrollbar-thumb]:bg-gray-500"
+            >
                 <ul className="flex gap-x-5 md:gap-x-3 shrink-0  ">
                     {mockDataNav.map((item) => (
                         <li key={item.id}>

@@ -110,7 +110,7 @@ export default function Filter() {
                     <i className="fa-solid fa-bars-staggered mr-2"></i>
                 </button>
                 <div
-                    className="w-[65%] xs:hidden p-1 overflow-x-auto action-btn flex gap-2 items-center [&::-webkit-scrollbar]:h-2 
+                    className="w-[65%] xs:hidden p-1 md:overflow-x-auto  action-btn flex gap-2 items-center [&::-webkit-scrollbar]:h-2 
                     [&::-webkit-scrollbar-track]:rounded-full 
                     [&::-webkit-scrollbar-track]:bg-gray-200
                     [&::-webkit-scrollbar-thumb]:rounded-full
@@ -123,7 +123,7 @@ export default function Filter() {
                         <i className="fa-solid fa-bars-staggered mr-2"></i>
                         All Filters
                     </button>
-                    <div className="relative shrink-0">
+                    <div className="relative shrink-0 md:hidden">
                         <button
                             onClick={() => setActiveToggle(!activeToggle)}
                             className="relative text-sm font-semibold py-1  px-3 bg-gray-200 border-2 border-gray-200 rounded-full"
@@ -174,7 +174,7 @@ export default function Filter() {
                             </ul>
                         </div>
                     </div>
-                    <button className=" shrink-0 text-sm font-semibold py-1  px-3 bg-gray-200 border-2 border-gray-200 rounded-full">
+                    <button className="md:hidden shrink-0 text-sm font-semibold py-1  px-3 bg-gray-200 border-2 border-gray-200 rounded-full">
                         Materials{" "}
                         <i className="fa-solid fa-chevron-down text-[10px] ml-2"></i>
                     </button>

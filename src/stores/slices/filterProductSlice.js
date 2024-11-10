@@ -24,9 +24,20 @@ export const filterProductSlice = createSlice({
     reducers: {
         setFilters: (state, action) => {
             state.filters = action.payload;
-            console.log(state.filters);
-
             sessionStorage.setItem("filters", JSON.stringify(state.filters));
+        },
+        resetFilters: (state) => {
+            state.filters = {
+                _category: null,
+                _minP: null,
+                _maxP: null,
+                _sort: null,
+                _order: null,
+                _minRating: null,
+                q: null,
+                _page: null,
+                _limit: 12,
+            };
         },
     },
     extraReducers: (builder) => {
@@ -61,5 +72,5 @@ export const fetchFilterProducts = createAsyncThunk(
         return data;
     }
 );
-export const { setFilters } = filterProductSlice.actions;
+export const { setFilters, resetFilters } = filterProductSlice.actions;
 export default filterProductSlice.reducer;

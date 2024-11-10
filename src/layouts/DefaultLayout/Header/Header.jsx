@@ -17,8 +17,8 @@ export default function Header() {
             <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 md:gap-x-0">
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
-                    <Link
-                        to="/"
+                    <a
+                        href="/"
                         className=" text-lg font-bold mr-5 leading-none bg-[#fff8ed] text-center text-black rounded-lg px-1 pb-[3px] hover:text-amber-500 hover:bg-[#fff8edf0] transition-all duration-200 md:text-xs "
                     >
                         <img
@@ -27,7 +27,7 @@ export default function Header() {
                             alt="mocmacshop"
                         />
                         <h1>MOCMACSHOP</h1>
-                    </Link>
+                    </a>
                     <div className="nav-location flex items-center border border-white/0 hover:border-amber-500 xxs:hidden  ">
                         <Link to="/">
                             <i className="fa-solid fa-location-dot mr-2 text-xl"></i>
@@ -79,7 +79,7 @@ export default function Header() {
                 {/* nav-right */}
                 <div className="nav-right flex  gap-x-7 lg:gap-x-4 items-center ">
                     <div className="nav-right-item language border border-white/0 hover:border-amber-500 ">
-                        <button className="font-medium md:hidden">
+                        <button className="font-medium text-sm md:hidden flex items-center gap-x-1">
                             <span className="fi fi-us"></span>
                             EN
                             <i className="fa-solid fa-caret-down text-xs"></i>

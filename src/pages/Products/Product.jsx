@@ -6,8 +6,8 @@ export default function Product({ data }) {
     // const dataProduct = useSelector((state) => state.filters.filterProducts);
 
     return (
-        <section className="product p-10">
-            <ul className="list grid grid-cols-4 gap-8">
+        <section className="product py-10">
+            <ul className="list grid grid-cols-4 gap-8 xl:gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-3 ">
                 {data?.map((item) => (
                     <div key={item.id}>
                         <Link
@@ -17,7 +17,7 @@ export default function Product({ data }) {
                             <img
                                 src={item.image_url}
                                 alt=""
-                                className="h-[300px] w-full object-cover oject-fit rounded shadow-lg hover:scale-110 transition-all duration-200"
+                                className="h-[300px] lg:h-[250px]  xs:h-[150px]  w-full object-cover oject-fit rounded shadow-lg hover:scale-110 transition-all duration-200"
                             />
                         </Link>
                         <div className="info my-3">
@@ -41,7 +41,7 @@ export default function Product({ data }) {
                                 ${item.price}
                             </p>
                         </div>
-                        <div className="action px-3 flex items-center justify-between ">
+                        <div className="action px-3 flex items-center justify-between flex-wrap gap-3 ">
                             <Link
                                 to={""}
                                 className="btn py-1 text-xs px-3 border-2 rounded-full border-gray-800 font-medium hover:bg-gray-800 hover:text-white transition-all duration-150"

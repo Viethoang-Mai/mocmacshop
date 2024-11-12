@@ -27,7 +27,7 @@ export default function Home() {
             <div className="relative z-[0] user-select-none ">
                 <SlideShow />
             </div>
-            <div className="py-7 px-20 xl:px-10 lg:px-16 md:px-8 mt-[-15%] xl:mt-[-19%] relative z-[1]  ">
+            <div className="py-7 px-20 xl:px-10 lg:px-16 md:px-7 xxs:px-5 mt-[-15%] xl:mt-[-19%] relative z-[1]  ">
                 <TopTrend />
                 <AmzDeal />
                 <FeatureCategories data={categories} />

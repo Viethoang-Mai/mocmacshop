@@ -7,7 +7,7 @@ import SearchHeader from "./components/SearchHeader";
 function Header() {
     return (
         <header>
-            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 md:gap-x-0">
+            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 xxs:px-5 md:gap-x-0">
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
                     <a
@@ -32,7 +32,7 @@ function Header() {
                     </div>
                 </div>
 
-                <div className="nav-search-bar   w-1/2 xl:w-5/12 sm:hidden">
+                <div className="nav-search-bar w-1/2 xl:w-5/12 sm:hidden ">
                     <SearchHeader />
                 </div>
 
@@ -50,7 +50,9 @@ function Header() {
                         className="user flex flex-col border border-white/0 hover:border-amber-500  "
                     >
                         <span className="text-xs">Hello</span>
-                        <span className="font-semibold text-sm">Sign in</span>
+                        <span className="font-semibold text-sm xxs:text-xs">
+                            Sign in
+                        </span>
                     </Link>
                     <Link className="favorites flex flex-col border border-white/0 hover:border-amber-500  ">
                         <i className="fa-regular fa-heart text-2xl"></i>
@@ -63,7 +65,7 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#549ba3] px-8 hidden sm:block pb-2">
+            <div className="bg-[#549ba3] px-8 xxs:px-5 hidden sm:block pb-2">
                 <SearchHeader />
             </div>
             <div

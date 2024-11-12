@@ -4,7 +4,7 @@ import dataFooter from "../../utils/MockData/dataFooter";
 export default function Footer() {
     return (
         <footer>
-            <div className="container w-full px-10 py-10 bg-[#085558] text-white">
+            <div className="container w-full py-10 px-20 xl:px-10 lg:px-16 md:px-7  bg-[#085558] text-white">
                 <div className=" grid  grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xxs:grid-cols-1  gap-10 border-b border-[#fff8ed42] pb-10">
                     <ul>
                         <li className=" flex ">

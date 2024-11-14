@@ -31,106 +31,57 @@ export default function ProductDetail() {
 
     return (
         <section className="product-detail p-10 px-16 xl:px-10 xxs:px-5 ">
-            <div className="content flex gap-x-5 p-5  ">
-                <div className="content-left p-5 w-8/12 ">
-                    <div className="img ">
-                        <div className="shadow-xl">
-                            <img
-                                loading="lazy"
-                                src={images[image]}
-                                alt=""
-                                className="h-[450px] w-full text-center object-cover"
-                            />
-                        </div>
-
-                        <div className="thumb">
-                            <Swiper
-                                modules={[Navigation]}
-                                spaceBetween={10}
-                                slidesPerView={"auto"}
-                                navigation={{
-                                    nextEl: ".swiper-button-next",
-                                    prevEl: ".swiper-button-prev",
-                                }}
-                                scrollbar={{
-                                    draggable: true,
-                                }}
-                                style={{
-                                    padding: " 10px",
-                                }}
-                            >
-                                {images?.map((img, index) => {
-                                    return (
-                                        <SwiperSlide
-                                            key={index}
-                                            className={`w-[150px] h-[80px] ${
-                                                index === image
-                                                    ? "border-4 border-amber-500"
-                                                    : ""
-                                            }`}
-                                        >
-                                            <img
-                                                onClick={() => setImage(index)}
-                                                loading="lazy"
-                                                src={img}
-                                                alt="img"
-                                                className={`w-full h-full object-cover object-center cursor-pointer `}
-                                            />
-                                        </SwiperSlide>
-                                    );
-                                })}
-                            </Swiper>
-                        </div>
+            <div className="content flex gap-x-5 flex-wrap  ">
+                <div className="img p-5 w-8/12 md:w-full md:px-0">
+                    <div className="shadow-xl">
+                        <img
+                            loading="lazy"
+                            src={images[image]}
+                            alt=""
+                            className="h-[450px] xs:h-[350px] w-full text-center object-cover rounded "
+                        />
                     </div>
-                    {data.reviews && (
-                        <div className="review mt-10">
-                            <p className="leading-[0]  flex items-center gap-x-3 pb-5 border-b-2 border-gray-300 ">
-                                <span className="text-2xl">
-                                    {data.totalReviews}{" "}
-                                    <span className="text-lg">reviews</span>
-                                </span>{" "}
-                                <StarRating
-                                    rating={Number(
-                                        parseFloat(data.avgRating).toFixed(2)
-                                    )}
-                                    color="#222222"
-                                    dimension="17px"
-                                />
-                            </p>
-                            <ul className="list-reviewer">
-                                {data?.reviews?.map((item) => (
-                                    <li
-                                        key={item.id}
-                                        className="py-4 border-b border-gray-300"
+
+                    <div className="thumb">
+                        <Swiper
+                            modules={[Navigation]}
+                            spaceBetween={10}
+                            slidesPerView={"auto"}
+                            navigation={{
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            }}
+                            scrollbar={{
+                                draggable: true,
+                            }}
+                            style={{
+                                padding: " 10px",
+                            }}
+                        >
+                            {images?.map((img, index) => {
+                                return (
+                                    <SwiperSlide
+                                        key={index}
+                                        className={`w-[150px] h-[80px] ${
+                                            index === image
+                                                ? "border-4 border-amber-500"
+                                                : ""
+                                        }`}
                                     >
-                                        <StarRating
-                                            rating={item.rating}
-                                            color="#222222"
-                                            dimension="16px"
+                                        <img
+                                            onClick={() => setImage(index)}
+                                            loading="lazy"
+                                            src={img}
+                                            alt="img"
+                                            className={`w-full h-full object-cover object-center cursor-pointer `}
                                         />
-                                        <p className="my-2">{item.content}</p>
-                                        <div className="flex items-center gap-x-2">
-                                            <i className="fa-regular fa-user py-2 px-2 rounded-full bg-gray-200 "></i>{" "}
-                                            <span className="text-sm italic underline">
-                                                {item.user.name}
-                                            </span>{" "}
-                                            <span className="text-xs">
-                                                {new Date(
-                                                    item.user.updated_at
-                                                ).toLocaleString("en-US", {
-                                                    year: "numeric",
-                                                    month: "long",
-                                                    day: "numeric",
-                                                })}{" "}
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+                                    </SwiperSlide>
+                                );
+                            })}
+                        </Swiper>
+                    </div>
                 </div>
-                <div className="content-right w-5/12 ">
+                <div className="content-right w-[30%] pt-10 md:w-full   ">
                     <p className="text-sm text-red-600 font-semibold">
                         In demand. 9 people bought this in the last 24 hours.
                     </p>
@@ -144,6 +95,56 @@ export default function ProductDetail() {
                         Returns & exchanges accepted
                     </span>
                     <FormAction />
+                </div>
+                {data.reviews && (
+                    <div className="review mt-10 w-8/12 md:w-full md:order-4">
+                        <p className="leading-[0]  flex items-center gap-x-3 pb-5 border-b-2 border-gray-300 ">
+                            <span className="text-2xl">
+                                {data.totalReviews}{" "}
+                                <span className="text-lg">reviews</span>
+                            </span>{" "}
+                            <StarRating
+                                rating={Number(
+                                    parseFloat(data.avgRating).toFixed(2)
+                                )}
+                                color="#222222"
+                                dimension="17px"
+                            />
+                        </p>
+                        <ul className="list-reviewer">
+                            {data?.reviews?.map((item) => (
+                                <li
+                                    key={item.id}
+                                    className="py-4 border-b border-gray-300"
+                                >
+                                    <StarRating
+                                        rating={item.rating}
+                                        color="#222222"
+                                        dimension="16px"
+                                    />
+                                    <p className="my-2">{item.content}</p>
+                                    <div className="flex items-center gap-x-2">
+                                        <i className="fa-regular fa-user py-2 px-2 rounded-full bg-gray-200 "></i>{" "}
+                                        <span className="text-sm italic underline">
+                                            {item.user.name}
+                                        </span>{" "}
+                                        <span className="text-xs">
+                                            {new Date(
+                                                item.user.updated_at
+                                            ).toLocaleString("en-US", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            })}{" "}
+                                        </span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                <div className="w-[30%] md:w-full md:order-3">
                     <ItemDetail />
                     <Shipping />
                 </div>

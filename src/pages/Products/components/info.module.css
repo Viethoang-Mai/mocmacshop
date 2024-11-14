@@ -45,7 +45,7 @@
 .list.active {
     padding: 15px 0;
     position: relative;
-    max-height: 300px;
+    max-height: 500px;
     opacity: 1;
 }
 .item {

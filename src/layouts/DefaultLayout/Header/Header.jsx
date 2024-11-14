@@ -54,7 +54,10 @@ function Header() {
                             Sign in
                         </span>
                     </Link>
-                    <Link className="favorites flex flex-col border border-white/0 hover:border-amber-500  ">
+                    <Link
+                        to={"/favorite"}
+                        className="favorites flex flex-col border border-white/0 hover:border-amber-500  "
+                    >
                         <i className="fa-regular fa-heart text-2xl"></i>
                     </Link>
                     <div className="cart border border-white/0 hover:border-amber-500 ">

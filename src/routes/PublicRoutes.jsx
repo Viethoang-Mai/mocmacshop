@@ -8,6 +8,8 @@ import CategoryItem from "../pages/CategoryItem/CategoryItem";
 import Product from "../pages/Products/Product";
 import Filter from "../components/Filter";
 import ProductDetail from "../pages/Products/ProductDetail";
+import Cart from "../pages/Cart/Cart";
+import Favorite from "../pages/Favorite/Favorite";
 const publicRoutes = (
     <>
         <Route element={<DefaultLayout />}>
@@ -20,6 +22,8 @@ const publicRoutes = (
                 <Route path="search" element={<Filter />} />
             </Route>
             <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/favorite" element={<Favorite />}></Route>
         </Route>
         <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />

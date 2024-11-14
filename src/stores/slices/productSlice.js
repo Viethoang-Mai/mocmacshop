@@ -8,8 +8,10 @@ export const productSlice = createSlice({
     name: "products",
     initialState: {
         products: {},
+        ProductDetail: {},
         categories: [],
         status: "idle",
+        statusDetail: "idle",
     },
     reducers: {
         loadedProducts(state, action) {
@@ -44,6 +46,17 @@ export const productSlice = createSlice({
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = "error";
             });
+        builder
+            .addCase(fetchProductDetail.pending, (state, action) => {
+                state.statusDetail = "loading";
+            })
+            .addCase(fetchProductDetail.fulfilled, (state, action) => {
+                state.statusDetail = "success";
+                state.ProductDetail = action.payload;
+            })
+            .addCase(fetchProductDetail.rejected, (state, action) => {
+                state.statusDetail = "error";
+            });
     },
 });
 
@@ -58,6 +71,17 @@ export const fetchProducts = createAsyncThunk(
             return rejectWithValue("Error");
         }
         return data;
+    }
+);
+export const fetchProductDetail = createAsyncThunk(
+    "fetchProductDetail",
+    async (id, { rejectWithValue }) => {
+        const response = await fetch(`${SERVER_URL}/products/${id}`);
+        const data = await response.json();
+        if (!response.ok) {
+            return rejectWithValue("Error");
+        }
+        return data.data;
     }
 );
 

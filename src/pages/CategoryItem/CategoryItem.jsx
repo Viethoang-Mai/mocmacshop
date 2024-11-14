@@ -11,7 +11,7 @@ export default function CategoryItem() {
     const productData = JSON.parse(sessionStorage.getItem("products"));
 
     return (
-        <section className="category-item p-10 ">
+        <section className="category-item p-10 px-16 xl:px-10  xxs:px-5 ">
             <div>
                 <h1 className="text-3xl font-bold text-amber-700">
                     {" "}

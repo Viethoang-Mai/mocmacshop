@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 export default function SearchResult({ data }) {
     return (
         <div className="text-black overflow-hidden overflow-y-auto h-full">
@@ -12,12 +13,12 @@ export default function SearchResult({ data }) {
                             src={item.image_url}
                             alt={item.name}
                         />
-                        <a
+                        <Link
                             className="h-full text-sm text-gray-700 hover:bg-gray-300 grow flex items-center p-2 "
-                            href="#"
+                            to={`/product/${item.id}`}
                         >
                             {item.name}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>

@@ -7,7 +7,7 @@ import SearchHeader from "./components/SearchHeader";
 function Header() {
     return (
         <header>
-            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-8 xxs:px-5 md:gap-x-0">
+            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-16 xl:px-10 xxs:px-5 md:gap-x-0">
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
                     <a
@@ -37,7 +37,7 @@ function Header() {
                 </div>
 
                 {/* nav-right */}
-                <div className="nav-right flex  gap-x-7 lg:gap-x-4 items-center ">
+                <div className="nav-right flex  gap-x-6 lg:gap-x-4  items-center ">
                     <div className="nav-right-item language border border-white/0 hover:border-amber-500 ">
                         <button className="font-medium text-sm md:hidden flex items-center gap-x-1">
                             <span className="fi fi-us"></span>
@@ -65,11 +65,11 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className="bg-[#549ba3] px-8 xxs:px-5 hidden sm:block pb-2">
+            <div className="bg-[#549ba3] xl:px-10 xxs:px-5 hidden sm:block pb-2">
                 <SearchHeader />
             </div>
             <div
-                className="container nav-main flex items-center px-8 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto [&::-webkit-scrollbar]:h-2 
+                className="container nav-main flex items-center px-16 xl:px-10 py-2 bg-[#085558] text-[#fff8ed] font-medium text-sm  overflow-x-auto [&::-webkit-scrollbar]:h-2 
                     [&::-webkit-scrollbar-track]:rounded-full 
                     [&::-webkit-scrollbar-track]:bg-gray-200
                     [&::-webkit-scrollbar-thumb]:rounded-full

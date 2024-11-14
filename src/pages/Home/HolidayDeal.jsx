@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import BtnFavorite from "../../components/BtnFavorite";
 
-const images = [
+export const images = [
     "https://res.cloudinary.com/dszxqzf9t/image/upload/v1730387519/hld-5_rennql.jpg",
     "https://res.cloudinary.com/dszxqzf9t/image/upload/v1730387520/hld-4_jtwgfj.jpg",
     "https://res.cloudinary.com/dszxqzf9t/image/upload/v1730387519/hld-2_ailxeu.webp",

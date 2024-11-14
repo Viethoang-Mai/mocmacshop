@@ -7,6 +7,7 @@ import Demo from "../pages/Demo/Demo";
 import CategoryItem from "../pages/CategoryItem/CategoryItem";
 import Product from "../pages/Products/Product";
 import Filter from "../components/Filter";
+import ProductDetail from "../pages/Products/ProductDetail";
 const publicRoutes = (
     <>
         <Route element={<DefaultLayout />}>
@@ -18,6 +19,7 @@ const publicRoutes = (
             <Route path="/product" element={<Filter />}>
                 <Route path="search" element={<Filter />} />
             </Route>
+            <Route path="/product/:id" element={<ProductDetail />} />
         </Route>
         <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />

@@ -8,15 +8,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import styles from "./SwiperAmz.module.css";
 import BtnFavorite from "../../../components/BtnFavorite";
+import formatPrice from "../../../utils/formatPrice";
 import { Link } from "react-router-dom";
 export default function AmzDeal() {
     const handlePrice = (oldPrice, discount) => {
         const newPrice = oldPrice - (oldPrice * discount) / 100;
-        const formatPrice = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-        }).format(newPrice);
-        return formatPrice;
+
+        return formatPrice(newPrice);
     };
 
     return (

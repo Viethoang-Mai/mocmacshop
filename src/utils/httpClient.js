@@ -14,7 +14,6 @@ export const httpClient = {
     send: async function (path, method = "GET", body = null, headers = {}) {
         let response = null;
         try {
-            // overLoad.style.display = "block";
             if (!this.baseUrl) {
                 throw new Error("Vui lòng cập nhật baseUrl");
             }
@@ -33,9 +32,7 @@ export const httpClient = {
                 options.body = JSON.stringify(body);
             }
             response = await fetch(url, options);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
+
             const data = await response.json();
 
             return { response, data };

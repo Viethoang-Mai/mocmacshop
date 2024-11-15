@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import styles from "./form.module.css";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowForm } from "../../stores/slices/authSlice";
 
 export default function Login() {
+    const showForm = useSelector((state) => state.auth.showForm);
+    const dispatch = useDispatch();
+    const [isVisible, setIsVisible] = useState(false);
+
     const [isLogin, setIsLogin] = useState(true);
+
+    useEffect(() => {
+        if (showForm) {
+            setTimeout(() => {
+                setIsVisible(true);
+            }, 10);
+        } else {
+            setIsVisible(false);
+        }
+    }, [showForm]);
+    if (!showForm) return null;
+
     return (
         <>
             <section
@@ -15,8 +33,28 @@ export default function Login() {
                     [&::-webkit-scrollbar-thumb]:rounded-full
                     [&::-webkit-scrollbar-thumb]:bg-gray-500"
             >
-                <div className="form-wrapper w-[27%] xl:w-[32%] lg:w-[35%] md:w-[43%] sm:w-[60%] xs:w-[90%] bg-gray-50 rounded-3xl m-auto ">
-                    <div className="form-inner p-6 ">
+                <span
+                    onClick={() => dispatch(setShowForm(false))}
+                    className={clsx(
+                        styles["overlay"],
+                        isVisible ? styles["ov-visible"] : ""
+                    )}
+                >
+                    {" "}
+                </span>
+                <div
+                    className={clsx(
+                        styles["form-wrapper"],
+                        "relative z-[1001] w-[27%] xl:w-[32%] lg:w-[35%] md:w-[43%] sm:w-[60%] xs:w-[90%] bg-gray-50 rounded-3xl m-auto",
+                        isVisible ? styles["visible"] : ""
+                    )}
+                >
+                    <i
+                        onClick={() => dispatch(setShowForm(false))}
+                        className="fa-solid fa-xmark text-white w-8 h-8 flex items-center justify-center  absolute rounded-full top-0 -right-10 text-lg cursor-pointer hover:bg-gray-400/50 transition-all duration-200 xs:right-5 xs:-top-10 xs:text-2xl"
+                    ></i>
+
+                    <div className="form-inner p-6 py-5 ">
                         <header className="flex justify-between">
                             <h1 className="font-semibold">
                                 {isLogin ? "Login" : "Register"}
@@ -64,9 +102,6 @@ export default function Login() {
                     </div>
                 </div>
             </section>
-            <span className="overlay fixed bg-black/40 top-0 left-0  w-screen h-screen z-[999]">
-                {" "}
-            </span>
         </>
     );
 }

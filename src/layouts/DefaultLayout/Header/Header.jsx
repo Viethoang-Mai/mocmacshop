@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
 import mockDataNav from "../../../utils/MockData/mockDataNav";
 import SearchHeader from "./components/SearchHeader";
+import { useSelector, useDispatch } from "react-redux";
+import { object } from "prop-types";
+import { setShowForm } from "../../../stores/slices/authSlice";
 
 function Header() {
+    const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
+
     return (
         <header>
             <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-16 xl:px-10 xxs:px-5 md:gap-x-0">
@@ -45,15 +51,24 @@ function Header() {
                             <i className="fa-solid fa-caret-down text-xs"></i>
                         </button>
                     </div>
-                    <Link
-                        to=""
-                        className="user flex flex-col border border-white/0 hover:border-amber-500  "
-                    >
+                    <button className="user flex flex-col border border-white/0 hover:border-amber-500  ">
                         <span className="text-xs">Hello</span>
-                        <span className="font-semibold text-sm xxs:text-xs">
-                            Sign in
-                        </span>
-                    </Link>
+                        {!Object.keys(user).length ? (
+                            <span
+                                onClick={() => dispatch(setShowForm(true))}
+                                className="font-semibold text-sm xxs:text-xs"
+                            >
+                                Sign in
+                            </span>
+                        ) : (
+                            <Link
+                                to="profile"
+                                className="font-semibold text-sm xxs:text-xs"
+                            >
+                                {user.name}
+                            </Link>
+                        )}
+                    </button>
                     <Link
                         to={"/favorite"}
                         className="favorites flex flex-col border border-white/0 hover:border-amber-500  "

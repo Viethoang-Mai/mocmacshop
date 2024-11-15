@@ -4,8 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styles from "./form.module.css";
 import clsx from "clsx";
+import { postRegister } from "../../stores/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 export default function RegisterForm() {
+    const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
+    const { messageRegister, status } = useSelector((state) => state.auth);
+
     const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const registerSchema = Yup.object().shape({
@@ -26,17 +31,30 @@ export default function RegisterForm() {
         register,
         handleSubmit,
         formState: { errors },
-        watch,
     } = useForm({
         resolver: yupResolver(registerSchema),
     });
-    const password = watch("password");
-    const onSubmit = async ({ email, password }) => {
-        console.log(email, password);
+    const onSubmit = async ({
+        email,
+        name,
+        password,
+        confirmPassword: repeat_password,
+    }) => {
+        dispatch(postRegister({ email, name, password, repeat_password }));
     };
 
     return (
         <form action="" onSubmit={handleSubmit(onSubmit)}>
+            {messageRegister && (
+                <p
+                    className={clsx(
+                        styles["message"],
+                        status === "success" ? "" : styles["error-m"]
+                    )}
+                >
+                    {messageRegister}
+                </p>
+            )}
             <div className={clsx(styles["form-content"])}>
                 <div className={clsx(styles["group-input"])}>
                     <label>

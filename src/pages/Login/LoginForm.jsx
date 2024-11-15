@@ -4,7 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styles from "./form.module.css";
 import clsx from "clsx";
+import { login } from "../../stores/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 export default function LoginForm() {
+    const dispatch = useDispatch();
+    const { message, status } = useSelector((state) => state.auth);
+
     const [showPassword, setShowPassword] = useState(false);
     const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -23,16 +28,28 @@ export default function LoginForm() {
     } = useForm({
         resolver: yupResolver(LoginSchema),
         defaultValues: {
-            email: "viethoangmai@gmail.com",
-            password: "123456abcd",
+            email: "vhm@gmail.com",
+            password: "123321",
         },
     });
     const onSubmit = async ({ email, password }) => {
         console.log(email, password);
+        dispatch(login({ email, password }));
     };
 
     return (
-        <form action="" onSubmit={handleSubmit(onSubmit)} className="mb-3">
+        <form action="" onSubmit={handleSubmit(onSubmit)} className="mb-1">
+            {message && (
+                <p
+                    className={clsx(
+                        styles["message"],
+                        status === "success" ? "" : styles["error-m"]
+                    )}
+                >
+                    {message}
+                </p>
+            )}
+
             <div className={clsx(styles["form-content"])}>
                 <div className={clsx(styles["group-input"])}>
                     <label>
@@ -81,7 +98,7 @@ export default function LoginForm() {
                 </a>
             </div>
             <button className={clsx(styles["btn-form"])}>Login</button>
-            <div className="text-center mt-3">
+            <div className="text-center mt-2">
                 <a
                     href="#!"
                     className="text-gray-700 underline text-xs hover:text-amber-500"

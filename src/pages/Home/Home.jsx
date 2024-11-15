@@ -21,7 +21,6 @@ export default function Home() {
 
     return (
         <section>
-            <Login />
             <Helmet>
                 <title>mocmacshop || Home</title>
             </Helmet>

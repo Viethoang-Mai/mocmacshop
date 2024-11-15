@@ -79,3 +79,42 @@
     color: red;
     font-weight: 500;
 }
+
+.form-wrapper {
+    transform: translateY(30px);
+    transition: transform 0.3s ease;
+}
+
+.form-wrapper.visible {
+    transform: translateY(0);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.overlay.ov-visible {
+    opacity: 1;
+}
+
+.message {
+    margin-top: 5px;
+    text-align: center;
+    color: green;
+    background: rgba(0, 128, 0, 0.128);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+.error-m {
+    color: red;
+    background: rgba(255, 0, 0, 0.155);
+}

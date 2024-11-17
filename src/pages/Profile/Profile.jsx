@@ -1,13 +1,23 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../stores/slices/authSlice";
+import { getProfile, logout } from "../../stores/slices/authSlice";
 export default function Profile() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
+    const nav = useNavigate();
 
     useEffect(() => {
-        dispatch(login(user));
+        dispatch(getProfile());
     }, []);
+    const handleLogout = () => {
+        dispatch(logout());
+        nav("/");
+    };
 
-    return <div>Profile</div>;
+    return (
+        <div>
+            Profile
+            <button onClick={handleLogout}>Logout</button>
+        </div>
+    );
 }

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
+    const [loading, setLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
     const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -32,9 +33,14 @@ export default function LoginForm() {
             password: "123321",
         },
     });
+
     const onSubmit = async ({ email, password }) => {
-        console.log(email, password);
-        dispatch(login({ email, password }));
+        setLoading(true);
+        setTimeout(() => {
+            dispatch(login({ email, password }));
+            setLoading(false);
+            // navigate(param.redirect);
+        }, 1000);
     };
 
     return (
@@ -97,7 +103,19 @@ export default function LoginForm() {
                     Forgot your password?
                 </a>
             </div>
-            <button className={clsx(styles["btn-form"])}>Login</button>
+            <button
+                disabled={loading}
+                className={clsx(
+                    styles["btn-form"],
+                    loading ? "bg-gray-400" : ""
+                )}
+            >
+                {loading ? (
+                    <i className="fa-solid fa-spinner animate-spin"></i>
+                ) : (
+                    "Login"
+                )}
+            </button>
             <div className="text-center mt-2">
                 <a
                     href="#!"

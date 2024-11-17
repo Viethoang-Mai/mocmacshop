@@ -10,6 +10,7 @@ export default function RegisterForm() {
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const { messageRegister, status } = useSelector((state) => state.auth);
+    const [loading, setLoading] = useState(false);
 
     const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -40,7 +41,11 @@ export default function RegisterForm() {
         password,
         confirmPassword: repeat_password,
     }) => {
-        dispatch(postRegister({ email, name, password, repeat_password }));
+        setLoading(true);
+        setTimeout(() => {
+            dispatch(postRegister({ email, name, password, repeat_password }));
+            setLoading(false);
+        }, 1000);
     };
 
     return (
@@ -120,7 +125,19 @@ export default function RegisterForm() {
                     )}
                 </div>
             </div>
-            <button className={clsx(styles["btn-form"])}>Register</button>
+            <button
+                disabled={loading}
+                className={clsx(
+                    styles["btn-form"],
+                    loading ? "bg-gray-400" : ""
+                )}
+            >
+                {loading ? (
+                    <i className="fa-solid fa-spinner animate-spin"></i>
+                ) : (
+                    "Register"
+                )}
+            </button>
         </form>
     );
 }

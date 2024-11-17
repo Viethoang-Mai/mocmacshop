@@ -1,8 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
-const isAuthenticated = localStorage.getItem("authenticated");
+const accessToken = localStorage.getItem("access_token");
+import { setShowForm } from "../stores/slices/authSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const AuthMiddleware = () => {
-    return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+    const dispatch = useDispatch();
+    if (accessToken) {
+        return <Outlet />;
+    } else {
+        setTimeout(() => {
+            dispatch(setShowForm(true));
+        });
+    }
 };
 
 export default AuthMiddleware;

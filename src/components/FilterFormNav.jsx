@@ -2,10 +2,11 @@ import React, { useState, memo } from "react";
 import PropTypes from "prop-types";
 import validMinMax from "../utils/validInputMinMax";
 import { resetFilters } from "../stores/slices/filterProductSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
+    const user = useSelector((state) => state.auth.user);
     const categories = JSON.parse(localStorage.getItem("categories"));
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,7 +25,9 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
             <div className="nav-slide pb-4 text-[#fff8ed]  ">
                 <div className="header px-6 py-3 flex gap-x-2 bg-[#1c4c51]">
                     <i className="fa-regular fa-user text-2xl"></i>
-                    <span className="text-2xl ">Hi, </span>
+                    <span className="text-2xl ">
+                        Hi, <span className="font-bold ml-1">{user?.name}</span>{" "}
+                    </span>
                 </div>
                 <div
                     className=" overflow-y-auto h-[calc(100vh-130px)] [&::-webkit-scrollbar]:w-2

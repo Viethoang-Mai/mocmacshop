@@ -1,14 +1,15 @@
 // const overLoad = document.querySelector(".over-loading");
-const getTokenStorage = () => {
-    const tokens = JSON.parse(localStorage.getItem("login_token"));
+import { toast } from "react-toastify";
+const getTokenStorage = (name) => {
+    const tokens = JSON.parse(localStorage.getItem(name));
     return tokens;
 };
 const setTokenStorage = (tokens) => {
-    localStorage.setItem("login_token", JSON.stringify(tokens));
+    localStorage.setItem("access_token", JSON.stringify(tokens));
 };
 
 export const httpClient = {
-    token: null,
+    token: getTokenStorage("access_token") || null,
     baseUrl: null,
     refreshTokenPromise: null,
     send: async function (path, method = "GET", body = null, headers = {}) {
@@ -17,6 +18,7 @@ export const httpClient = {
             if (!this.baseUrl) {
                 throw new Error("Vui lòng cập nhật baseUrl");
             }
+
             const url = this.baseUrl + path;
             const initialHeaders = { "Content-Type": "application/json" };
             Object.assign(initialHeaders, headers);
@@ -27,6 +29,7 @@ export const httpClient = {
             const options = {
                 method,
                 headers: initialHeaders,
+                credentials: "include",
             };
             if (body) {
                 options.body = JSON.stringify(body);
@@ -35,22 +38,26 @@ export const httpClient = {
 
             const data = await response.json();
 
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
             return { response, data };
         } catch (e) {
-            // console.log(e);
-            //Xử lý cấp lại accessToken khi hết hạn
+            // Xử lý cấp lại accessToken khi hết hạn
             if (!this.refreshTokenPromise) {
                 this.refreshTokenPromise = this.getRefreshToken();
             }
             const newToken = await this.refreshTokenPromise;
 
             if (!newToken) {
+                localStorage.removeItem("access_token");
                 return { response };
             } else {
                 //Lưu vào Storage
                 setTokenStorage(newToken);
                 //Gọi lại request bị failed
-                this.token = newToken.accessToken;
+                this.token = newToken;
                 return await this.send(path, method, body, headers);
             }
         } finally {
@@ -59,22 +66,22 @@ export const httpClient = {
     },
     getRefreshToken: async function () {
         try {
-            const { refreshToken } = getTokenStorage();
-            const response = await fetch(`${this.baseUrl}/auth/refresh-token`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-
-                body: JSON.stringify({ refreshToken }),
-            });
-            console.log(response);
+            const response = await fetch(
+                `${this.baseUrl}/api/auth/refresh-token`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                }
+            );
             if (!response.ok) {
-                throw new Error("Refresh Token không hợp lệ");
+                return false;
             }
-            const dataObj = await response.json();
-            const tokens = dataObj["data"].token;
-            console.log(tokens);
+            const { data: dataObj } = await response.json();
+
+            const tokens = dataObj.accessToken;
             return tokens;
         } catch (e) {
             return false;

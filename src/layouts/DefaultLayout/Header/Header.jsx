@@ -4,11 +4,11 @@ import logo from "../../../assets/img/logo.png";
 import mockDataNav from "../../../utils/MockData/mockDataNav";
 import SearchHeader from "./components/SearchHeader";
 import { useSelector, useDispatch } from "react-redux";
-import { object } from "prop-types";
 import { setShowForm } from "../../../stores/slices/authSlice";
 
 function Header() {
     const user = useSelector((state) => state.auth.user);
+
     const dispatch = useDispatch();
 
     return (

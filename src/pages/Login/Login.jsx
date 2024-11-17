@@ -5,9 +5,12 @@ import styles from "./form.module.css";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowForm } from "../../stores/slices/authSlice";
+import Loading from "../../components/Loading/Loading";
+import { set } from "react-hook-form";
 
 export default function Login() {
-    const showForm = useSelector((state) => state.auth.showForm);
+    const { showForm, status } = useSelector((state) => state.auth);
+
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false);
 
@@ -22,6 +25,7 @@ export default function Login() {
             setIsVisible(false);
         }
     }, [showForm]);
+
     if (!showForm) return null;
 
     return (

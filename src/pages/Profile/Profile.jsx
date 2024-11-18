@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, logout } from "../../stores/slices/authSlice";
+import { getProfile } from "../../stores/slices/authSlice";
 import Loading from "../../components/Loading/Loading";
-import { set } from "react-hook-form";
 export default function Profile() {
     const { profile } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -14,20 +13,6 @@ export default function Profile() {
     if (loading) {
         return <Loading />;
     }
-    const handleLogout = async () => {
-        try {
-            setLoading(true);
-            const result = await dispatch(logout()).unwrap();
-            if (result) {
-                setTimeout(() => {
-                    setLoading(false);
-                    window.location.href = "/";
-                }, 500);
-            }
-        } catch (error) {
-            setLoading(false);
-        }
-    };
 
     return (
         <div>
@@ -38,7 +23,6 @@ export default function Profile() {
                     <p>{profile.email}</p>
                 </div>
             )}
-            <button onClick={handleLogout}>Logout</button>
         </div>
     );
 }

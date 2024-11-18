@@ -1,0 +1,42 @@
+.item {
+    margin-top: 5px;
+
+    > a,
+    > button {
+        width: 100%;
+        transition: all 0.15s ease;
+        &:hover {
+            background: rgba(128, 128, 128, 0.303);
+        }
+        padding: 3px 10px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        > i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.DropdownUser {
+    position: absolute;
+    width: 220px;
+    right: 0;
+    top: 40px;
+    z-index: 1000;
+    text-align: left;
+    cursor: default;
+    transform-origin: top right;
+    transform: scale(0);
+    transition: all 0.15s ease;
+}
+.DropdownUser.active {
+    transform: scale(1);
+}
+/* absolute w-[220px] right-0 top-[40px] z-10 text-gray-700 font-normal text-left cursor-default */

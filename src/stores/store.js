@@ -3,6 +3,7 @@ import { productSlice } from "./slices/productSlice";
 import { categorySlice } from "./slices/categorySlice";
 import { filterProductSlice } from "./slices/filterProductSlice";
 import { authSlice } from "./slices/authSlice";
+import effectSlice from "./slices/effectSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         filters: filterProductSlice.reducer,
         category: categorySlice.reducer,
         auth: authSlice.reducer,
+        effect: effectSlice.reducer,
     },
 });

@@ -1,19 +1,31 @@
-import { memo } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/img/logo.png";
 import mockDataNav from "../../../utils/MockData/mockDataNav";
 import SearchHeader from "./components/SearchHeader";
 import { useSelector, useDispatch } from "react-redux";
 import { setShowForm } from "../../../stores/slices/authSlice";
+import MenuUser from "./components/MenuUser/MenuUser";
+import { setHeightHeader } from "../../../stores/slices/effectSlice";
 
 function Header() {
+    const dispatch = useDispatch();
+    const refHeader = useRef(null);
+    const refSearch = useRef(null);
     const user = useSelector((state) => state.auth.user);
 
-    const dispatch = useDispatch();
+    useEffect(() => {
+        const height =
+            refHeader?.current?.offsetHeight + refSearch?.current?.offsetHeight;
+        dispatch(setHeightHeader(height));
+    }, []);
 
     return (
         <header>
-            <div className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-16 xl:px-10 xxs:px-5 md:gap-x-0">
+            <div
+                ref={refHeader}
+                className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-16 xl:px-10 xxs:px-5 md:gap-x-0"
+            >
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
                     <a
@@ -67,16 +79,7 @@ function Header() {
                                 Sign in
                             </span>
                         ) : (
-                            <Link
-                                to="profile"
-                                className="font-semibold text-sm xxs:text-xs"
-                            >
-                                <div className="flex items-center gap-x-1">
-                                    <i className="fa-regular text-xs fa-user w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 bg-gray-500 "></i>
-                                    {user.name}
-                                    <i className="fa-solid fa-caret-down text-xs"></i>
-                                </div>
-                            </Link>
+                            <MenuUser />
                         )}
                     </button>
                     <Link
@@ -88,12 +91,14 @@ function Header() {
                     <div className="cart border border-white/0 hover:border-amber-500 ">
                         <Link to="/cart" className="font-medium text-xl">
                             <i className="fa-solid fa-cart-shopping text-xl mr-2"></i>
-                            <span className="lg:hidden">Cart</span>
                         </Link>
                     </div>
                 </div>
             </div>
-            <div className="bg-[#549ba3] xl:px-10 xxs:px-5 hidden sm:block pb-2">
+            <div
+                ref={refSearch}
+                className="bg-[#549ba3] xl:px-10 xxs:px-5 hidden sm:block pb-2"
+            >
                 <SearchHeader />
             </div>
             <div

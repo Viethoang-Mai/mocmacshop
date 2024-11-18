@@ -35,12 +35,18 @@ export default function LoginForm() {
     });
 
     const onSubmit = async ({ email, password }) => {
-        setLoading(true);
-        setTimeout(() => {
-            dispatch(login({ email, password }));
+        try {
+            setLoading(true);
+            const res = await dispatch(login({ email, password })).unwrap();
+            if (res) {
+                setTimeout(() => {
+                    setLoading(false);
+                    window.location.reload();
+                }, 1000);
+            }
+        } catch (error) {
             setLoading(false);
-            // navigate(param.redirect);
-        }, 1000);
+        }
     };
 
     return (

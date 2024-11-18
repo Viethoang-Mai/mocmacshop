@@ -33,7 +33,7 @@ function Header() {
                         </Link>
                         <Link className="flex flex-col  ">
                             <span className="text-xs">Deliver to</span>
-                            <span className="font-bold">Hanoi</span>
+                            <span className="font-bold text-sm">Hanoi</span>
                         </Link>
                     </div>
                 </div>
@@ -51,8 +51,14 @@ function Header() {
                             <i className="fa-solid fa-caret-down text-xs"></i>
                         </button>
                     </div>
-                    <button className="user flex flex-col border border-white/0 hover:border-amber-500  ">
-                        <span className="text-xs">Hello</span>
+                    <button className="user flex flex-col items-center border border-white/0 hover:border-amber-500  ">
+                        <span
+                            className={`text-xs ${
+                                Object.keys(user).length ? "hidden" : ""
+                            }`}
+                        >
+                            Hello
+                        </span>
                         {!Object.keys(user).length ? (
                             <span
                                 onClick={() => dispatch(setShowForm(true))}
@@ -65,7 +71,11 @@ function Header() {
                                 to="profile"
                                 className="font-semibold text-sm xxs:text-xs"
                             >
-                                {user.name}
+                                <div className="flex items-center gap-x-1">
+                                    <i className="fa-regular text-xs fa-user w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 bg-gray-500 "></i>
+                                    {user.name}
+                                    <i className="fa-solid fa-caret-down text-xs"></i>
+                                </div>
                             </Link>
                         )}
                     </button>

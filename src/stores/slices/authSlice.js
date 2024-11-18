@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 import { httpClient } from "../../utils/httpClient";
 import { set } from "react-hook-form";
+import { toast } from "react-toastify";
 // httpClient.baseUrl = SERVER_URL;
 
 export const authSlice = createSlice({
@@ -40,7 +41,7 @@ export const authSlice = createSlice({
                     JSON.stringify(action.payload.data.user)
                 );
                 state.showForm = false;
-                window.location.reload();
+                toast.success(action.payload.message);
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = "failed";
@@ -82,7 +83,7 @@ export const authSlice = createSlice({
                 state.user = {};
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
-                window.location.href = "/";
+                toast.success("Logout successfully");
             })
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";

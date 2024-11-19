@@ -7,7 +7,7 @@ import clsx from "clsx";
 import "swiper/css";
 import "swiper/css/navigation";
 import styles from "./SwiperAmz.module.css";
-import BtnFavorite from "../../../components/BtnFavorite";
+import BtnFavoriteDemo from "../../../components/BtnFavoriteDemo";
 import formatPrice from "../../../utils/formatPrice";
 import { Link } from "react-router-dom";
 export default function AmzDeal() {
@@ -104,7 +104,7 @@ export default function AmzDeal() {
                                         </div>
                                     </div>
                                 </Link>
-                                <BtnFavorite />
+                                <BtnFavoriteDemo />
                             </SwiperSlide>
                         );
                     })}

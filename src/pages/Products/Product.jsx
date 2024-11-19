@@ -1,15 +1,18 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import StarRating from "../../components/RatingStart";
+import FavoriteBtn from "../../components/FavoriteBtn";
+import { useSelector } from "react-redux";
 
-export default function Product({ data }) {
-    // const dataProduct = useSelector((state) => state.filters.filterProducts);
+export default function Product() {
+    const { data } = useSelector((state) => state.filters.filterProducts);
+    console.log(data);
 
     return (
         <section className="product py-10">
             <ul className="list grid grid-cols-4 gap-8 xl:gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-3 ">
                 {data?.map((item) => (
-                    <div key={item.id}>
+                    <div key={item.id} className="relative group">
                         <Link
                             to={`/product/${item.id}`}
                             className="overflow-hidden block"
@@ -54,6 +57,10 @@ export default function Product({ data }) {
                                 <i className="fa-solid fa-arrow-right"></i>
                             </span>
                         </div>
+                        <FavoriteBtn
+                            isFavorite={item.isFavorite}
+                            product_id={item.id}
+                        />
                     </div>
                 ))}
             </ul>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import BtnFavorite from "../../components/BtnFavorite";
+import BtnFavoriteDemo from "../../components/BtnFavoriteDemo";
 
 export const images = [
     "https://res.cloudinary.com/dszxqzf9t/image/upload/v1730387519/hld-5_rennql.jpg",
@@ -41,7 +41,7 @@ export default function HolidayDeal() {
                             </span>
                         </span>
                     </Link>
-                    <BtnFavorite />
+                    <BtnFavoriteDemo />
                 </div>
             ))}
         </div>

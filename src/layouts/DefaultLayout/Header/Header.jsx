@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setShowForm } from "../../../stores/slices/authSlice";
 import MenuUser from "./components/MenuUser/MenuUser";
 import { setHeightHeader } from "../../../stores/slices/effectSlice";
-
+import Overlay from "./components/Overlay";
+import clsx from "clsx";
+import styles from "./Header.module.css";
 function Header() {
     const dispatch = useDispatch();
     const refHeader = useRef(null);
@@ -26,6 +28,7 @@ function Header() {
                 ref={refHeader}
                 className="container mx-auto bg-[#549ba3] text-[#fff8ed] relative flex py-2  items-center justify-between px-16 xl:px-10 xxs:px-5 md:gap-x-0"
             >
+                <Overlay />
                 {/* nav-left */}
                 <div className="nav-left flex h-full flex">
                     <a
@@ -37,9 +40,9 @@ function Header() {
                             src={logo}
                             alt="mocmacshop"
                         />
-                        <h1>MOCMACSHOP</h1>
+                        <p>MOCMACSHOP</p>
                     </a>
-                    <div className="nav-location flex items-center border border-white/0 hover:border-amber-500 xxs:hidden  ">
+                    <div className="nav-location flex items-center  xxs:hidden  ">
                         <Link to="/">
                             <i className="fa-solid fa-location-dot mr-2 text-xl"></i>
                         </Link>
@@ -56,21 +59,14 @@ function Header() {
 
                 {/* nav-right */}
                 <div className="nav-right flex  gap-x-6 lg:gap-x-4  items-center ">
-                    <div className="nav-right-item language border border-white/0 hover:border-amber-500 ">
+                    <div className="nav-right-item language  ">
                         <button className="font-medium text-sm md:hidden flex items-center gap-x-1">
                             <span className="fi fi-us"></span>
                             EN
                             <i className="fa-solid fa-caret-down text-xs"></i>
                         </button>
                     </div>
-                    <button className="user flex flex-col items-center border border-white/0 hover:border-amber-500  ">
-                        <span
-                            className={`text-xs ${
-                                Object.keys(user).length ? "hidden" : ""
-                            }`}
-                        >
-                            Hello
-                        </span>
+                    <button className="user flex flex-col items-center border-2 border-transparent hover:border-[#f9d08a] transition-all duration-150">
                         {!Object.keys(user).length ? (
                             <span
                                 onClick={() => dispatch(setShowForm(true))}
@@ -84,13 +80,25 @@ function Header() {
                     </button>
                     <Link
                         to={"/favorite"}
-                        className="favorites flex flex-col border border-white/0 hover:border-amber-500  "
+                        className={clsx("favorites ", styles["link"])}
                     >
-                        <i className="fa-regular fa-heart text-2xl"></i>
+                        <i className=" fa-regular fa-heart text-xl"></i>
+                        <span className={clsx(styles["hover-action_btn"])}>
+                            Favorites
+                        </span>
                     </Link>
-                    <div className="cart border border-white/0 hover:border-amber-500 ">
-                        <Link to="/cart" className="font-medium text-xl">
-                            <i className="fa-solid fa-cart-shopping text-xl mr-2"></i>
+                    <div className="cart  ">
+                        <Link
+                            to="/cart"
+                            className={clsx(
+                                "font-medium text-xl",
+                                styles["link"]
+                            )}
+                        >
+                            <i className="fa-solid fa-cart-shopping text-lg "></i>
+                            <span className={clsx(styles["hover-action_btn"])}>
+                                Cart
+                            </span>
                         </Link>
                     </div>
                 </div>

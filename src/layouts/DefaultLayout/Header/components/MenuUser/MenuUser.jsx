@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./MenuUser.module.css";
+import slyleHeader from "../../Header.module.css";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import LogoutBtn from "../../../../../components/LogoutBtn";
-import Overlay from "../Overlay";
 import { setDropUser } from "../../../../../stores/slices/effectSlice";
 
 export default function MenuUser() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const { dropUser } = useSelector((state) => state.effect);
-    const [isOpen, setIsOpen] = React.useState(false);
     const handleDropdown = (e) => {
         console.log(123);
 
@@ -21,14 +20,16 @@ export default function MenuUser() {
 
     return (
         <div className="font-semibold text-sm xxs:text-xs">
-            <Overlay />
             <div className="relative ">
                 <button
                     onClick={handleDropdown}
-                    className="flex items-center gap-x-1"
+                    className={clsx("gap-x-1", slyleHeader["link"])}
                 >
                     <i className="fa-regular text-xs fa-user w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 bg-gray-500 "></i>
-                    {user.name}
+                    {/* <span className="relative z-10">{user.name}</span> */}
+                    <span className={slyleHeader["hover-action_btn"]}>
+                        Your account
+                    </span>
                     <i className="fa-solid fa-caret-down text-xs"></i>
                 </button>
                 {/* Dropdown user */}

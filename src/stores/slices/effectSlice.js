@@ -13,7 +13,7 @@ const effectSlice = createSlice({
             state.heightHeader = action.payload;
         },
         setOverlay: (state, action) => {
-            state.overlay = action.payload;
+            state.overlay = true;
         },
 
         setDropUser: (state, action) => {

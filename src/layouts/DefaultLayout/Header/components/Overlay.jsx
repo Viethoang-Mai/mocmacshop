@@ -1,20 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { closeDrop, setOverlay } from "../../../../stores/slices/effectSlice";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import clsx from "clsx";
 export default function Overlay() {
     const { heightHeader, overlay } = useSelector((state) => state.effect);
     const dispatch = useDispatch();
+    console.log(overlay);
+    const handleClose = (e) => {
+        console.log(123);
 
+        if (e.key === "Escape" || e.type === "click") {
+            dispatch(closeDrop());
+        }
+    };
     useEffect(() => {
-        const handleClose = (e) => {
-            console.log(123);
-
-            if (e.key === "Escape" || e.type === "click") {
-                dispatch(closeDrop());
-            }
-        };
-
         if (overlay === true) {
             console.log(overlay);
 

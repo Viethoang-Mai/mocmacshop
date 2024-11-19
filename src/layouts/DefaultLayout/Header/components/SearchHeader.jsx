@@ -3,21 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import debounce from "../../../../utils/debounce";
 import TopSearch from "./TopSearch";
 import {
-    fetchFilterProducts,
     fetchSuggestionProducts,
-    setFilters,
     setFiltersSuggestion,
 } from "../../../../stores/slices/filterProductSlice";
 import SearchResult from "./SearchResult";
 import { useNavigate } from "react-router-dom";
-import validFilters from "../../../../utils/validFilters";
-import { object } from "prop-types";
 
 function SearchHeader() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const sugFilters = useSelector((state) => state.filters.suggestFilters);
-    const filters = useSelector((state) => state.filters.filters);
     const dataSearch = useSelector((state) => state.filters.suggestProducts);
 
     const [searchText, setSearchText] = useState("All");
@@ -123,7 +118,7 @@ function SearchHeader() {
                 <i className="fa-solid fa-magnifying-glass"></i>
             </button>
             <div
-                className={`result-search absolute  top-12 rounded-md left-0 w-full bg-gray-100 shadow-xl p-5  ${
+                className={`result-search absolute  top-12 rounded-md left-0 w-full bg-gray-100 shadow-trendItem p-5  ${
                     openResult ? "h-[300px] z-10" : "h-0 z-[-1]"
                 }`}
             >

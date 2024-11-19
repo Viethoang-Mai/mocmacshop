@@ -11,8 +11,9 @@ import HolidayDeal from "./HolidayDeal";
 import About from "./About";
 import Login from "../Login/Login";
 export default function Home() {
-    const data = useSelector((state) => state.product.products);
+    // const data = useSelector((state) => state.product.products);
     const categories = useSelector((state) => state.product.categories);
+    const { user } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -24,7 +25,12 @@ export default function Home() {
             <Helmet>
                 <title>mocmacshop || Home</title>
             </Helmet>
-
+            {Object.keys(user).length !== 0 && (
+                <div className="text-2xl text-center py-4 flex items-center justify-center flex-wrap gap-2 bg-[#f59e0b78] text-gray-700">
+                    Welcome back,{" "}
+                    <span className="font-semibold ">{user.name}</span>
+                </div>
+            )}
             <div className="relative z-[0] user-select-none ">
                 <SlideShow />
             </div>

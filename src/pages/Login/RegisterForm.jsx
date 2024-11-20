@@ -6,13 +6,12 @@ import styles from "./form.module.css";
 import clsx from "clsx";
 import { postRegister } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import emailRegEx from "../../utils/regexEmail";
 export default function RegisterForm() {
     const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const { messageRegister, status } = useSelector((state) => state.auth);
     const [loading, setLoading] = useState(false);
-
-    const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const registerSchema = Yup.object().shape({
         email: Yup.string()

@@ -8,7 +8,9 @@ const privateRoutes = (
     <>
         <Route element={<DefaultLayout />}>
             <Route element={<AuthMiddleware />}>
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile />}>
+                    <Route></Route>
+                </Route>
             </Route>
         </Route>
     </>

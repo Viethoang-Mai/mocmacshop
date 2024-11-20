@@ -7,7 +7,7 @@ import { login } from "../../stores/slices/authSlice";
 export default function ListFavorites({ listProduct: data }) {
     return (
         <section className="product py-10">
-            <div className="flex flex-wrap items-center justify-between py-5">
+            <div className="flex flex-wrap gap-3 items-center justify-between pb-5">
                 <h4 className="text-lg font-semibold mb-5">All Items</h4>
                 <div className="filter ">
                     <form action="" className=" flex items-center ">

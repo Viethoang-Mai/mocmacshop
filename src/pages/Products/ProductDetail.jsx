@@ -13,11 +13,9 @@ import { Navigation } from "swiper/modules";
 import { images } from "../Home/HolidayDeal";
 
 import "swiper/css";
-// import "swiper/css/free-mode";
 import "swiper/css/navigation";
-// import "swiper/css/thumbs";
-// import "./style.css";
-// import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import FavoriteBtn from "../../components/FavoriteBtn";
+
 export default function ProductDetail() {
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const dispatch = useDispatch();
@@ -28,11 +26,16 @@ export default function ProductDetail() {
     useEffect(() => {
         dispatch(fetchProductDetail(id));
     }, []);
+    console.log(data);
 
     return (
         <section className="product-detail p-10 px-16 xl:px-10 xxs:px-5 ">
             <div className="content flex gap-x-5 flex-wrap  ">
-                <div className="img p-5 w-8/12 md:w-full md:px-0">
+                <div className="img group relative p-5 w-8/12 md:w-full md:px-0">
+                    <FavoriteBtn
+                        product_id={data.id}
+                        isFavorite={data.isFavorite}
+                    />
                     <div className="shadow-xl">
                         <img
                             loading="lazy"

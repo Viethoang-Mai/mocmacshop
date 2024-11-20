@@ -17,7 +17,6 @@ export const favoriteSlice = createSlice({
             })
             .addCase(addFavorite.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.favorite = action.payload;
             })
             .addCase(addFavorite.rejected, (state) => {
                 state.status = "failed";
@@ -29,7 +28,6 @@ export const favoriteSlice = createSlice({
             })
             .addCase(removeFavorite.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.favorite = action.payload;
             })
             .addCase(removeFavorite.rejected, (state) => {
                 state.status = "failed";
@@ -42,7 +40,7 @@ export const favoriteSlice = createSlice({
             })
             .addCase(getFavorite.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.favorite = action.payload;
+                state.favorite = action.payload.data;
             })
             .addCase(getFavorite.rejected, (state) => {
                 state.status = "failed";
@@ -51,7 +49,7 @@ export const favoriteSlice = createSlice({
     },
 });
 export const addFavorite = createAsyncThunk(
-    "favorite",
+    "addFavorite",
     async (productId, { rejectWithValue }) => {
         const { response, data } = await httpClient.post(
             "/api/auth/add-favorite",
@@ -68,7 +66,7 @@ export const addFavorite = createAsyncThunk(
     }
 );
 export const removeFavorite = createAsyncThunk(
-    "favorite",
+    "removeFavorite",
     async (productId, { rejectWithValue }) => {
         const { response, data } = await httpClient.post(
             "/api/auth/remove-favorite",
@@ -87,7 +85,7 @@ export const removeFavorite = createAsyncThunk(
 export const getFavorite = createAsyncThunk(
     "favorite",
     async (_, { rejectWithValue }) => {
-        const { response, data } = await httpClient.post(
+        const { response, data } = await httpClient.get(
             "/api/auth/favorites-list"
         );
 

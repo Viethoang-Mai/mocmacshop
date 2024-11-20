@@ -1,46 +1,46 @@
-import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "react-router-dom";
 import StarRating from "../../components/RatingStart";
+import PropTypes from "prop-types";
 import FavoriteBtn from "../../components/FavoriteBtn";
-import { useSelector } from "react-redux";
-
-export default function Product() {
-    const { data } = useSelector((state) => state.filters.filterProducts);
+import { login } from "../../stores/slices/authSlice";
+export default function ListFavorites({ listProduct: data }) {
+    console.log(data);
 
     return (
         <section className="product py-10">
             <ul className="list grid grid-cols-4 gap-8 xl:gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-3 ">
-                {data?.map((item) => (
-                    <div key={item.id} className="relative group  ">
+                {data?.map(({ product }) => (
+                    <div key={product.id} className="relative group  ">
                         <Link
-                            to={`/product/${item.id}`}
+                            to={`/product/${product.id}`}
                             className="overflow-hidden block"
                         >
                             <img
-                                src={item.image_url}
+                                src={product.image_url}
                                 alt=""
                                 className="h-[300px] lg:h-[250px]  xs:h-[150px]  w-full object-cover oject-fit rounded shadow-lg hover:scale-110 transition-all duration-300"
                             />
                         </Link>
                         <div className="info my-3">
                             <h3 className=" truncate  font-medium md:text-xs">
-                                {item.name}
+                                {product.name}
                             </h3>
                             <p className="desc text-xs truncate line-clamp-2 text-wrap">
-                                {item.description}
+                                {product.description}
                             </p>
                             <div className="vote">
                                 <StarRating
                                     rating={Number(
-                                        parseFloat(item.avgRating).toFixed(2)
+                                        parseFloat(product.avgRating).toFixed(2)
                                     )}
                                 />
                                 <span className="text-xs ml-1">
-                                    {`(${item.totalReviews})`}
+                                    {`(${product.totalReviews})`}
                                 </span>
                             </div>
                             <p className="text-green-500 font-semibold">
-                                ${item.price}
+                                ${product.price}
                             </p>
                         </div>
                         <div className="action px-3 flex items-center justify-between flex-wrap gap-3 ">
@@ -57,8 +57,8 @@ export default function Product() {
                             </span>
                         </div>
                         <FavoriteBtn
-                            isFavorite={item.isFavorite}
-                            product_id={item.id}
+                            isFavorite={product.isFavorite}
+                            product_id={product.id}
                         />
                     </div>
                 ))}
@@ -67,6 +67,6 @@ export default function Product() {
     );
 }
 
-Product.propTypes = {
-    data: PropTypes.array,
+ListFavorites.propTypes = {
+    listProduct: PropTypes.array,
 };

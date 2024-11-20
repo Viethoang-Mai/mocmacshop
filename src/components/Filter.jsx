@@ -21,9 +21,7 @@ export default function Filter() {
     const filters = useSelector((state) => state.filters.filters);
     const [activeToggle, setActiveToggle] = useState(false);
     const [openSlide, setOpenSlide] = useState(false);
-    const [optionView, setOptionView] = useState({
-        filters,
-    });
+
     // const [filterProducts, setFilterProducts] = useState(filters);
     const [currentPage, setCurrentPage] = useState(0);
     const handleClick = useCallback(() => {
@@ -201,7 +199,7 @@ export default function Filter() {
                         <button className=" group text-gray-700 text-xs font-medium py-1  px-3 hover:bg-gray-200  rounded-full hover:gr">
                             sort
                             <i className="fa-solid fa-chevron-down text-[10px] ml-2"></i>
-                            <div className="menu-drop absolute  z-[-1] opacity-0 right-0  bottom-0 translate-y-full translate-x-[-10%]  transition-all duration-200 w-[160px] transform ease-in-out origin-top-left shadow-xl border   bg-gray-200 group-hover:z-[0] group-hover:opacity-100 ">
+                            <div className="menu-drop absolute  z-[-1] opacity-0 right-0  bottom-0 translate-y-full translate-x-[-10%]  transition-all duration-200 w-[160px] transform ease-in-out origin-top-left shadow-xl border   bg-gray-200 group-hover:z-[1] group-hover:opacity-100 ">
                                 <ul className="flex flex-col  px-2 py-3 items-start rounded">
                                     <label className="p-1 hover:bg-gray-300 rounded">
                                         <input
@@ -261,7 +259,7 @@ export default function Filter() {
                 )}
             ></span>
             <div>
-                <Product data={dataProduct.data} />
+                <Product />
             </div>
             <ReactPaginate
                 previousLabel={"prev"}

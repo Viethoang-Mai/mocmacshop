@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../stores/slices/authSlice";
 import Loading from "../components/Loading/Loading";
+import { toast } from "react-toastify";
 
 export default function LogoutBtn() {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function LogoutBtn() {
             setLoading(true);
             const result = await dispatch(logout()).unwrap();
             if (result) {
+                toast.success("Logout successfully");
                 setTimeout(() => {
                     setLoading(false);
                     window.location.href = "/";

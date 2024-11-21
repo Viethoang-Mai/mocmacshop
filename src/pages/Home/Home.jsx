@@ -13,7 +13,7 @@ import Login from "../Login/Login";
 export default function Home() {
     // const data = useSelector((state) => state.product.products);
     const categories = useSelector((state) => state.product.categories);
-    const { user } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
     useEffect(() => {

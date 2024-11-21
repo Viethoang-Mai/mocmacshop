@@ -9,7 +9,7 @@ import { setDropUser } from "../../../../../stores/slices/effectSlice";
 
 export default function MenuUser() {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
+    const user = useSelector((state) => state.user.user);
     const { dropUser } = useSelector((state) => state.effect);
     const handleDropdown = (e) => {
         console.log(123);
@@ -43,7 +43,7 @@ export default function MenuUser() {
                     <ul className="account text-xs pb-2 text-gray-700 bg-white border border-gray-300 rounded-lg overflow-hidden">
                         <li className="header  text-sm  border-b border-gray-300 bg-blue-200 py-3 ">
                             <Link
-                                to={"/profile"}
+                                to={"/profile/account"}
                                 className="flex items-center gap-x-4 py-1 px-4 hover:bg-gray-100 transition-all duration-150 "
                             >
                                 <div className="icon-user ">

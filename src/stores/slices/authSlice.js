@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 import { httpClient } from "../../utils/httpClient";
-import { set } from "react-hook-form";
-import { toast } from "react-toastify";
-// httpClient.baseUrl = SERVER_URL;
+
+httpClient.baseUrl = SERVER_URL;
 
 export const authSlice = createSlice({
     name: "auth",
@@ -11,7 +10,7 @@ export const authSlice = createSlice({
         showForm: false,
         accessToken: JSON.parse(localStorage.getItem("access_token")) || null,
         isAuthenticated: false,
-        user: JSON.parse(localStorage.getItem("user")) || {},
+        // user: JSON.parse(localStorage.getItem("user")) || {},
         status: "idle",
         message: "",
         messageRegister: "",
@@ -41,7 +40,6 @@ export const authSlice = createSlice({
                     JSON.stringify(action.payload.data.user)
                 );
                 state.showForm = false;
-                toast.success(action.payload.message);
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = "failed";
@@ -83,7 +81,6 @@ export const authSlice = createSlice({
                 state.user = {};
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
-                toast.success("Logout successfully");
             })
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";
@@ -126,9 +123,15 @@ export const getProfile = createAsyncThunk(
 export const postRegister = createAsyncThunk(
     "register",
     async (formData, { rejectWithValue }) => {
-        const { response, data } = await httpClient.post("/register", {
-            ...formData,
+        const response = await fetch(`${SERVER_URL}/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
         });
+        const data = await response.json();
 
         if (!response.ok) {
             return rejectWithValue(data.errors);

@@ -119,7 +119,9 @@ function SearchHeader() {
             </button>
             <div
                 className={`result-search absolute  top-12 rounded-md left-0 w-full bg-gray-100 shadow-trendItem p-5  ${
-                    openResult ? "h-[300px] z-10" : "h-0 z-[-1]"
+                    openResult
+                        ? "h-[300px] z-10 opacity-100"
+                        : "h-0 z-[-1] opacity-0"
                 }`}
             >
                 {showTopSearch ? (

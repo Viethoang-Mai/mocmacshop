@@ -9,6 +9,7 @@ html {
 body {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
+    background: white;
 }
 @tailwind base;
 @tailwind components;

@@ -14,7 +14,7 @@ function Header() {
     const dispatch = useDispatch();
     const refHeader = useRef(null);
     const refSearch = useRef(null);
-    const user = useSelector((state) => state.auth.user);
+    const { user } = useSelector((state) => state.user);
 
     useEffect(() => {
         const height =

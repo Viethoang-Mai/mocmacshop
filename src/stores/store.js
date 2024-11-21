@@ -5,6 +5,7 @@ import { filterProductSlice } from "./slices/filterProductSlice";
 import { authSlice } from "./slices/authSlice";
 import effectSlice from "./slices/effectSlice";
 import { favoriteSlice } from "./slices/favoriteSlice";
+import { userSlice } from "./slices/userSlice";
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         auth: authSlice.reducer,
         effect: effectSlice.reducer,
         favorite: favoriteSlice.reducer,
+        user: userSlice.reducer,
     },
 });

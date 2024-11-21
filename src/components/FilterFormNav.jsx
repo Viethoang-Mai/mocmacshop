@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
-    const user = useSelector((state) => state.auth.user);
+    const user = useSelector((state) => state.user.user);
     const categories = JSON.parse(localStorage.getItem("categories"));
     const dispatch = useDispatch();
     const navigate = useNavigate();

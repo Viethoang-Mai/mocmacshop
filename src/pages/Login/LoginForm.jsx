@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { login } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
+import { toast } from "react-toastify";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
@@ -39,6 +40,7 @@ export default function LoginForm() {
             setLoading(true);
             const res = await dispatch(login({ email, password })).unwrap();
             if (res) {
+                toast.success(res.message);
                 setTimeout(() => {
                     setLoading(false);
                     window.location.reload();

@@ -38,7 +38,10 @@ export const httpClient = {
 
             const data = await response.json();
 
-            if (!response.ok) {
+            if (
+                response.status === 401 &&
+                data.message === "Unauthorized or session expired"
+            ) {
                 throw new Error(data.message);
             }
 
@@ -52,6 +55,7 @@ export const httpClient = {
 
             if (!newToken) {
                 localStorage.removeItem("access_token");
+                localStorage.removeItem("user");
                 return { response };
             } else {
                 //Lưu vào Storage

@@ -1,8 +1,14 @@
 import { Outlet } from "react-router-dom";
 import StepMap from "./components/Step";
 import HorizontalLinearStepper from "./components/Step";
+import { useLocation } from "react-router-dom";
 
 export default function Checkout() {
+    const location = useLocation();
+    const pathStep = location.pathname.slice(
+        location.pathname.lastIndexOf("/") + 1
+    );
+
     return (
         <section className="py-7 px-20 xl:px-10 lg:px-16 md:px-7 xxs:px-5  ">
             <header className="flex items-center gap-x-3 border-b border-gray-200 pb-3">
@@ -11,7 +17,7 @@ export default function Checkout() {
                     <h2 className="font-medium">Security checkout</h2>
                 </div>
                 <div className="step grow">
-                    <HorizontalLinearStepper />
+                    <HorizontalLinearStepper step={pathStep} />
                 </div>
             </header>
             <div>

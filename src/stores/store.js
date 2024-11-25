@@ -8,6 +8,7 @@ import { favoriteSlice } from "./slices/favoriteSlice";
 import { userSlice } from "./slices/userSlice";
 import reviewSlice from "./slices/reviewSlice";
 import cartSlice from "./slices/cartSlice";
+import orderSlice from "./slices/orderSlice";
 
 export const store = configureStore({
     reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
         user: userSlice.reducer,
         reviews: reviewSlice.reducer,
         cart: cartSlice.reducer,
+        order: orderSlice.reducer,
     },
 });

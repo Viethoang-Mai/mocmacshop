@@ -7,6 +7,7 @@ import Account from "../pages/Profile/Acount/Account";
 import Checkout from "../pages/Checkout/Checkout";
 import Shipping from "../pages/Checkout/Shipping/Shipping";
 import Payment from "../pages/Checkout/Payment/Payment";
+import Review from "../pages/Checkout/Review/Review";
 
 const privateRoutes = (
     <>
@@ -23,6 +24,7 @@ const privateRoutes = (
                 <Route path="/checkout" element={<Checkout />}>
                     <Route path="shipping" element={<Shipping />}></Route>
                     <Route path="payment" element={<Payment />}></Route>
+                    <Route path="review" element={<Review />}></Route>
                 </Route>
             </Route>
         </Route>

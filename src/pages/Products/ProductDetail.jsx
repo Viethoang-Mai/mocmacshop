@@ -97,7 +97,7 @@ export default function ProductDetail() {
                         {"  "}
                         Returns & exchanges accepted
                     </span>
-                    <FormAction />
+                    <FormAction product_id={data.id} price={data.price} />
                 </div>
                 {data.reviews && (
                     <div className="review mt-10 w-8/12 md:w-full md:order-4">

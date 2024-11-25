@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./info.module.css";
 import clsx from "clsx";
 export default function Shipping() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     return (
         <div onClick={() => setOpen(!open)} className={style.container}>

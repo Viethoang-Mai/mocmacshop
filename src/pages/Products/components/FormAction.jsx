@@ -1,11 +1,30 @@
 import { useForm } from "react-hook-form";
-export default function FormAction() {
+import { useDispatch, useSelector } from "react-redux";
+import { setShowForm } from "../../../stores/slices/authSlice";
+import { addToCart } from "../../../stores/slices/cartSlice";
+import { toast } from "react-toastify";
+export default function FormAction({ product_id, price }) {
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.user);
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        data.product_id = product_id;
+        data.price = price;
+
+        delete data.color;
+
+        if (user) {
+            dispatch(addToCart(data));
+        } else {
+            dispatch(setShowForm(true));
+        }
+        reset();
+    };
     return (
         <div>
             <form
@@ -48,7 +67,7 @@ export default function FormAction() {
                 <select
                     id="amount"
                     className="text-sm font-medium color-options px-2 py-3 outline-none border rounded border-black hover:shadow-lg transition-all duration-200 focus:outline-blue-500"
-                    {...register("amount", {
+                    {...register("quantity", {
                         required: true,
                     })}
                 >

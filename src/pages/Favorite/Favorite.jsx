@@ -9,7 +9,7 @@ export default function Favorite() {
     const dispatch = useDispatch();
     const { accessToken } = useSelector((state) => state.auth);
     const { favorite } = useSelector((state) => state.favorite);
-    const { user } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (accessToken) {
@@ -19,7 +19,7 @@ export default function Favorite() {
 
     return (
         <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 ">
-            <div className="header flex items-center gap-x-4">
+            <div className="header flex items-center gap-x-4 xs:justify-center">
                 {" "}
                 {!accessToken ? (
                     <>
@@ -32,7 +32,7 @@ export default function Favorite() {
                         </button>
                     </>
                 ) : (
-                    <div className="flex items-center gap-x-4">
+                    <div className="flex items-center gap-x-4 xs:flex-col ">
                         <div className="avt w-[60px] h-[60px] rounded-full overflow-hidden rounded-full bg-[#ffe0c3] flex items-center justify-center">
                             <i className="fa-solid fa-shield-cat text-3xl text-green-600"></i>
                         </div>

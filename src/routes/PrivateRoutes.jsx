@@ -4,6 +4,9 @@ import DefaultLayout from "../layouts/DefaultLayout/DefaultLayout";
 import Profile from "../pages/Profile/Profile";
 import AuthMiddleware from "../middlewares/AuthMiddleware";
 import Account from "../pages/Profile/Acount/Account";
+import Checkout from "../pages/Checkout/Checkout";
+import Shipping from "../pages/Checkout/Shipping/Shipping";
+import Payment from "../pages/Checkout/Payment/Payment";
 
 const privateRoutes = (
     <>
@@ -16,6 +19,10 @@ const privateRoutes = (
                     <Route path="address"></Route>
                     <Route path="privacy"></Route>
                     <Route path="credit-card"></Route>
+                </Route>
+                <Route path="/checkout" element={<Checkout />}>
+                    <Route path="shipping" element={<Shipping />}></Route>
+                    <Route path="payment" element={<Payment />}></Route>
                 </Route>
             </Route>
         </Route>

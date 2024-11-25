@@ -1,0 +1,35 @@
+.group-item {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 15px;
+    > div.list-icon {
+        display: flex;
+        column-gap: 10px;
+        row-gap: 10px;
+        > i {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.option-fee {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn {
+    cursor: pointer;
+    display: block;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    transition: all 0.2s ease;
+    &:hover {
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+            rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        transform: scale(1.03);
+    }
+}

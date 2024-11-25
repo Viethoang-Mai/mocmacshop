@@ -5,10 +5,7 @@ import clsx from "clsx";
 export default function Overlay() {
     const { heightHeader, overlay } = useSelector((state) => state.effect);
     const dispatch = useDispatch();
-    console.log(overlay);
     const handleClose = (e) => {
-        console.log(123);
-
         if (e.key === "Escape" || e.type === "click") {
             dispatch(closeDrop());
         }

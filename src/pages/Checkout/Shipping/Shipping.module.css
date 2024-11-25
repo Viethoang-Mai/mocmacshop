@@ -1,0 +1,44 @@
+.shipping-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    .group-input {
+        font-size: 0.9rem;
+        > label {
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        > div:first-of-type {
+            select,
+            input,
+            textarea {
+                font-weight: 500;
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                &:focus {
+                    outline: 1px solid blue;
+                    outline-offset: 2px;
+                }
+            }
+        }
+    }
+    & :not(.group-input:last-of-type) {
+        > label {
+            &::after {
+                content: "*";
+                color: rgb(182, 3, 3);
+            }
+        }
+    }
+    .error {
+        margin-top: 5px;
+        font-size: 0.8rem;
+        color: red;
+        font-weight: 500;
+    }
+}

@@ -3,13 +3,13 @@ const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 import { httpClient } from "../../utils/httpClient";
 
 httpClient.baseUrl = SERVER_URL;
+import { getListCart } from "./cartSlice";
 
 export const authSlice = createSlice({
     name: "auth",
     initialState: {
         showForm: false,
         accessToken: JSON.parse(localStorage.getItem("access_token")) || null,
-        isAuthenticated: false,
         // user: JSON.parse(localStorage.getItem("user")) || {},
         status: "idle",
         message: "",
@@ -27,8 +27,6 @@ export const authSlice = createSlice({
                 state.status = "loading";
             })
             .addCase(login.fulfilled, (state, action) => {
-                console.log("action", action);
-
                 state.status = "success";
                 state.message = action.payload.message;
                 localStorage.setItem(
@@ -81,6 +79,7 @@ export const authSlice = createSlice({
                 state.user = {};
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
+                localStorage.removeItem("cart");
             })
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";
@@ -90,20 +89,15 @@ export const authSlice = createSlice({
 
 export const login = createAsyncThunk(
     "login",
-    async (formData, { rejectWithValue }) => {
-        const response = await fetch(`${SERVER_URL}/api/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-            credentials: "include",
+    async (formData, { rejectWithValue, dispatch }) => {
+        const { response, data } = await httpClient.post("/api/auth/login", {
+            ...formData,
         });
-        const data = await response.json();
-
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
+        httpClient.token = data.data.accessToken;
+        await dispatch(getListCart());
 
         return data;
     }

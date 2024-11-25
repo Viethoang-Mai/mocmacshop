@@ -8,9 +8,11 @@ import { login } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
 import { toast } from "react-toastify";
+import { getListCart } from "../../stores/slices/cartSlice";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
+
     const [loading, setLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -44,7 +46,7 @@ export default function LoginForm() {
                 setTimeout(() => {
                     setLoading(false);
                     window.location.reload();
-                }, 1000);
+                }, 1500);
             }
         } catch (error) {
             setLoading(false);

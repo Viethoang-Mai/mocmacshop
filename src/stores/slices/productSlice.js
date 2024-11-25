@@ -64,9 +64,7 @@ export const productSlice = createSlice({
 export const fetchProducts = createAsyncThunk(
     "fetchProducts",
     async (_, { rejectWithValue }) => {
-        // const { response, data } = await httpClient.get("/products");
-        const response = await fetch(`${SERVER_URL}/products`);
-        const data = await response.json();
+        const { response, data } = await httpClient.get("/products");
         if (!response.ok) {
             return rejectWithValue("Error");
         }

@@ -5,13 +5,16 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./stores/store.js";
 import { Provider } from "react-redux";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </BrowserRouter>
+        <StyledEngineProvider injectFirst>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </BrowserRouter>
+        </StyledEngineProvider>
     </StrictMode>
 );

@@ -1,9 +1,18 @@
 import React from "react";
 import FeatureCategories from "../Home/FeatureCategories";
+import { useSelector } from "react-redux";
+import ListCart from "./ListCart";
 
 export default function Cart() {
+    const {
+        cart: { listCart: cart },
+    } = useSelector((state) => state.cart);
+
     return (
         <section className="py-10 px-16 xl:px-10 xxs:px-5 ">
+            {cart.length > 0 && (
+                <h1 className="text-2xl font-medium mb-5">Your cart</h1>
+            )}
             <div className="flex items-center gap-x-3">
                 <i className="fa-regular fa-handshake text-3xl"></i>
                 <h4 className="text-sm">
@@ -16,7 +25,13 @@ export default function Cart() {
                     </a>
                 </h4>
             </div>
-            <h1 className="text-2xl text-center my-10">Your cart is empty</h1>
+            {cart.length === 0 ? (
+                <h1 className="text-2xl text-center my-10">
+                    Your cart is empty
+                </h1>
+            ) : (
+                <ListCart />
+            )}
             <p className="text-xs font-medium">
                 <i className="text-xl fa-solid fa-leaf mr-2 "></i>MocMac offsets
                 carbon emissions from every delivery

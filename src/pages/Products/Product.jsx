@@ -2,10 +2,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import StarRating from "../../components/RatingStart";
 import FavoriteBtn from "../../components/FavoriteBtn";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../stores/slices/cartSlice";
+import { toast } from "react-toastify";
 
 export default function Product() {
+    const dispatch = useDispatch();
     const { data } = useSelector((state) => state.filters.filterProducts);
+    const handleAddToCart = ({ product_id, quantity, price }) => {
+        dispatch(addToCart({ product_id, quantity, price }));
+    };
 
     return (
         <section className="product py-10">
@@ -44,13 +50,19 @@ export default function Product() {
                             </p>
                         </div>
                         <div className="action px-3 flex items-center justify-between flex-wrap gap-3 ">
-                            <Link
-                                to={""}
+                            <button
+                                onClick={() =>
+                                    handleAddToCart({
+                                        product_id: item.id,
+                                        quantity: 1,
+                                        price: item.price,
+                                    })
+                                }
                                 className="btn py-1 text-xs px-3 border-2 rounded-full border-gray-800 font-medium hover:bg-gray-800 hover:text-white transition-all duration-150"
                             >
                                 <i className="fa-solid fa-plus text-xs"></i> Add
                                 to cart
-                            </Link>
+                            </button>
                             <span className="text-xs font-medium">
                                 More like this{" "}
                                 <i className="fa-solid fa-arrow-right"></i>

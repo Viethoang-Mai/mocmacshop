@@ -15,6 +15,9 @@ function Header() {
     const refHeader = useRef(null);
     const refSearch = useRef(null);
     const { user } = useSelector((state) => state.user);
+    const {
+        cart: { listCart: cart },
+    } = useSelector((state) => state.cart);
 
     useEffect(() => {
         const height =
@@ -87,7 +90,12 @@ function Header() {
                             Favorites
                         </span>
                     </Link>
-                    <div className="cart  ">
+                    <div className="cart relative ">
+                        {cart?.length > 0 && (
+                            <span className="absolute -top-2 w-4 h-4 font-semibold bg-red-500 text-[11px] text-[#fff] -right-3  rounded-full flex items-center justify-center z-10">
+                                {cart.length}
+                            </span>
+                        )}
                         <Link
                             to="/cart"
                             className={clsx(

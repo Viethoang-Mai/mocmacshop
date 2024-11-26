@@ -7,7 +7,7 @@ httpClient.baseUrl = SERVER_URL;
 export const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        cart: JSON.parse(localStorage.getItem("cart")) || [],
+        cart: JSON.parse(localStorage.getItem("cart")) || {},
         status: "idle",
     },
     reducers: {},
@@ -77,6 +77,18 @@ export const cartSlice = createSlice({
             .addCase(updateCart.rejected, (state) => {
                 state.status = "failed";
             });
+        builder
+            .addCase(removeAllCart.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(removeAllCart.fulfilled, (state, action) => {
+                state.status = "success";
+                state.cart = {};
+                localStorage.removeItem("cart");
+            })
+            .addCase(removeAllCart.rejected, (state) => {
+                state.status = "failed";
+            });
     },
 });
 export const getListCart = createAsyncThunk(
@@ -112,6 +124,18 @@ export const removeFromCart = createAsyncThunk(
             {
                 ...dataRemove,
             }
+        );
+        if (!response.ok) {
+            return rejectWithValue(data.errors);
+        }
+        return data;
+    }
+);
+export const removeAllCart = createAsyncThunk(
+    "removeAllCart",
+    async (_, { rejectWithValue }) => {
+        const { response, data } = await httpClient.delete(
+            `/api/auth/carts/remove-all`
         );
         if (!response.ok) {
             return rejectWithValue(data.errors);

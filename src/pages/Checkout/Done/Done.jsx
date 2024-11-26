@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 export default function Done() {
     return (
         <section className="w-2/3 mx-auto sm:w-full py-5 text-center">

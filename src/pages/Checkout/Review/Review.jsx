@@ -3,6 +3,8 @@ import styles from "../../Cart/Cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../../stores/slices/orderSlice";
 import { useNavigate } from "react-router-dom";
+import { removeAllCart } from "../../../stores/slices/cartSlice";
+
 export default function Review() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,9 +26,10 @@ export default function Review() {
             })
         ).unwrap();
         if (res) {
+            dispatch(removeAllCart());
             setTimeout(() => {
                 setLoading(false);
-                window.location.href("/checkout/done");
+                navigate("/checkout/done");
             }, 1000);
         }
     };
@@ -42,7 +45,7 @@ export default function Review() {
                     [&::-webkit-scrollbar-thumb]:bg-gray-500"
                 >
                     <div className="flex flex-col gap-5 pb-5 border-b border-gray-300 xs:gap-y-8 ">
-                        {listCart.map((item) => (
+                        {listCart?.map((item) => (
                             <div
                                 className="cart-item  flex gap-5"
                                 key={item.id}

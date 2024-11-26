@@ -2,10 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import SelectQuantityItem from "./SelectQuantityItem";
 import { removeFromCart } from "../../stores/slices/cartSlice";
-import styles from "./Cart.module.css";
-import clsx from "clsx";
 import Checkout from "./Checkout";
-import OptionFee from "./OptionFee";
 export default function ListCart() {
     const [fee, setFee] = useState(0);
     const {

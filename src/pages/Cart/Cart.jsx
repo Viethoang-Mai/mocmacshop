@@ -47,7 +47,6 @@ export default function Cart() {
                 <i className="text-xl fa-solid fa-leaf mr-2 "></i>MocMac offsets
                 carbon emissions from every delivery
             </p>
-            {/* <FeatureCategories /> */}
         </section>
     );
 }

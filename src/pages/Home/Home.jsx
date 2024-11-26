@@ -12,7 +12,7 @@ import About from "./About";
 import Login from "../Login/Login";
 export default function Home() {
     // const data = useSelector((state) => state.product.products);
-    const categories = useSelector((state) => state.product.categories);
+    // const categories = useSelector((state) => state.product.categories);
     const { user } = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="py-7 px-20 xl:px-10 lg:px-16 md:px-7 xxs:px-5 mt-[-15%] xl:mt-[-19%] relative z-[1]  ">
                 <TopTrend />
                 <AmzDeal />
-                <FeatureCategories data={categories} />
+                <FeatureCategories />
                 <HolidayDeal />
             </div>
             <About />

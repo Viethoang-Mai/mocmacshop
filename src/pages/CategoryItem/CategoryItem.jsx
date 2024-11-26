@@ -1,14 +1,21 @@
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Product from "../Products/Product";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import StarRating from "../../components/RatingStart";
 import Filter from "../../components/Filter";
+import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
 export default function CategoryItem() {
     const { id } = useParams();
+    const [loading, setLoading] = useState(true);
 
     const productData = JSON.parse(sessionStorage.getItem("products"));
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
 
     return (
         <section className="category-item p-10 px-16 xl:px-10  xxs:px-5 ">
@@ -35,39 +42,43 @@ export default function CategoryItem() {
                         productData.data.findIndex((item) => item.id == id)
                     ].products.map((item) => (
                         <SwiperSlide key={item.id} className="w-[200px]">
-                            <Link
-                                to={`/product/${item.id}`}
-                                className="block h-full "
-                            >
-                                <img
-                                    src={item.image_url}
-                                    alt={item.name}
-                                    className="object-cover object-center rounded  transition-all h-[200px] w-full "
-                                />
-                                <div className="info">
-                                    <h3 className=" truncate mt-3 font-medium md:text-xs">
-                                        {item.name}
-                                    </h3>
-                                    <p className="desc text-xs truncate line-clamp-2 text-wrap">
-                                        {item.description}
-                                    </p>
-                                    <div className="vote">
-                                        <StarRating
-                                            rating={Number(
-                                                parseFloat(
-                                                    item.avgRating
-                                                ).toFixed(2)
-                                            )}
-                                        />
-                                        <span className="text-xs ml-1">
-                                            {`(${item.totalReviews})`}
-                                        </span>
+                            {loading ? (
+                                <ImgSkeleton count={3} />
+                            ) : (
+                                <Link
+                                    to={`/product/${item.id}`}
+                                    className="block h-full "
+                                >
+                                    <img
+                                        src={item.image_url}
+                                        alt={item.name}
+                                        className="object-cover object-center rounded  transition-all h-[200px] w-full "
+                                    />
+                                    <div className="info">
+                                        <h3 className=" truncate mt-3 font-medium md:text-xs">
+                                            {item.name}
+                                        </h3>
+                                        <p className="desc text-xs truncate line-clamp-2 text-wrap">
+                                            {item.description}
+                                        </p>
+                                        <div className="vote">
+                                            <StarRating
+                                                rating={Number(
+                                                    parseFloat(
+                                                        item.avgRating
+                                                    ).toFixed(2)
+                                                )}
+                                            />
+                                            <span className="text-xs ml-1">
+                                                {`(${item.totalReviews})`}
+                                            </span>
+                                        </div>
+                                        <p className="text-green-500 font-semibold">
+                                            ${item.price}
+                                        </p>
                                     </div>
-                                    <p className="text-green-500 font-semibold">
-                                        ${item.price}
-                                    </p>
-                                </div>
-                            </Link>
+                                </Link>
+                            )}
                         </SwiperSlide>
                     ))}
                 </Swiper>

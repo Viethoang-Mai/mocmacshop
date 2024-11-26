@@ -4,11 +4,12 @@ import { setShowForm } from "../../stores/slices/authSlice";
 import ListFavorites from "./ListFavorites";
 import { useEffect } from "react";
 import { getFavorite } from "../../stores/slices/favoriteSlice";
+import Loading from "../../components/Loading/Loading";
 
 export default function Favorite() {
     const dispatch = useDispatch();
     const { accessToken } = useSelector((state) => state.auth);
-    const { favorite } = useSelector((state) => state.favorite);
+    const { favorite, status } = useSelector((state) => state.favorite);
     const { user } = useSelector((state) => state.user);
 
     useEffect(() => {
@@ -18,7 +19,8 @@ export default function Favorite() {
     }, [accessToken]);
 
     return (
-        <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 ">
+        <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 relative ">
+            {/* <Loading /> */}
             <div className="header flex items-center gap-x-4 xs:justify-center">
                 {" "}
                 {!accessToken ? (
@@ -49,7 +51,7 @@ export default function Favorite() {
                 )}{" "}
             </div>
 
-            {!favorite.length ? (
+            {!favorite.length && status === "succeeded" ? (
                 <div className="text-center py-10">
                     <div className="icon w-[150px] h-[150px] mx-auto bg-gray-100 rounded-full flex items-center justify-center">
                         <i className="text-[90px] text-gray-600 fa-solid fa-cat"></i>
@@ -61,7 +63,7 @@ export default function Favorite() {
                     </p>
                 </div>
             ) : (
-                <ListFavorites listProduct={favorite} />
+                <ListFavorites listProduct={favorite} status={status} />
             )}
         </section>
     );

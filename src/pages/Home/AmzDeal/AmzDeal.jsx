@@ -10,12 +10,20 @@ import styles from "./SwiperAmz.module.css";
 import BtnFavoriteDemo from "../../../components/BtnFavoriteDemo";
 import formatPrice from "../../../utils/formatPrice";
 import { Link } from "react-router-dom";
+import ImgSkeleton from "../../../components/Skeleton/ImgSkeleton";
 export default function AmzDeal() {
+    const [loading, setLoading] = useState(true);
     const handlePrice = (oldPrice, discount) => {
         const newPrice = oldPrice - (oldPrice * discount) / 100;
 
         return formatPrice(newPrice);
     };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
 
     return (
         <div className="mt-12  py-8 select-none">
@@ -71,40 +79,47 @@ export default function AmzDeal() {
                             before:-translate-x-1/2 before:-translate-y-1/2 before:w-[50%] before:h-[50%] before:rounded-2xl before:z-[-1] before:bg-white/30 before:transition-all before:duration-300 hover:before:w-[104%] hover:before:h-[102%] hover:before:shadow-trendItem shrink-0 w-[210px] sm:w-[160px] group 
                            "
                             >
-                                <Link to="/demo">
-                                    <img
-                                        src={item.img_url}
-                                        alt="trend"
-                                        className="rounded-2xl object-cover object-center "
-                                    />
-                                    <div className="info mt-3 px-1">
-                                        <h3 className="text-sm font-medium md:text-xs truncate  ">
-                                            {item.title}
-                                        </h3>
-                                        <div className="price flex gap-2 justify-start items-center  ">
-                                            <span className="price-current text-green-500 font-bold">
-                                                {handlePrice(
-                                                    item.price,
-                                                    item.vouchers
-                                                )}
-                                            </span>
-                                            <span className="price-old line-through text-gray-500 font-semibold">
-                                                {`$${item.price}`}
-                                            </span>
-                                            <span className="price-discount text-sm text-gray-500 font-medium">
-                                                {`(${item.vouchers}% off)`}
-                                            </span>
-                                        </div>
-                                        <div className="vote flex gap-1 justify-start text-xs items-center">
-                                            <span className=" font-medium ">
-                                                {item.rating}
-                                            </span>
-                                            <i className="fa-solid fa-star"></i>
-                                            <span className=" text-gray-600">{`(${item.reviewer})`}</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                                <BtnFavoriteDemo />
+                                {" "}
+                                {loading ? (
+                                    <ImgSkeleton count={2} />
+                                ) : (
+                                    <>
+                                        <Link to="/demo">
+                                            <img
+                                                src={item.img_url}
+                                                alt="trend"
+                                                className="rounded-2xl object-cover object-center "
+                                            />
+                                            <div className="info mt-3 px-1">
+                                                <h3 className="text-sm font-medium md:text-xs truncate  ">
+                                                    {item.title}
+                                                </h3>
+                                                <div className="price flex gap-2 justify-start items-center  ">
+                                                    <span className="price-current text-green-500 font-bold">
+                                                        {handlePrice(
+                                                            item.price,
+                                                            item.vouchers
+                                                        )}
+                                                    </span>
+                                                    <span className="price-old line-through text-gray-500 font-semibold">
+                                                        {`$${item.price}`}
+                                                    </span>
+                                                    <span className="price-discount text-sm text-gray-500 font-medium">
+                                                        {`(${item.vouchers}% off)`}
+                                                    </span>
+                                                </div>
+                                                <div className="vote flex gap-1 justify-start text-xs items-center">
+                                                    <span className=" font-medium ">
+                                                        {item.rating}
+                                                    </span>
+                                                    <i className="fa-solid fa-star"></i>
+                                                    <span className=" text-gray-600">{`(${item.reviewer})`}</span>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        <BtnFavoriteDemo />
+                                    </>
+                                )}
                             </SwiperSlide>
                         );
                     })}

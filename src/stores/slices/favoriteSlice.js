@@ -8,30 +8,31 @@ export const favoriteSlice = createSlice({
     initialState: {
         favorite: [],
         status: "idle",
+        statusFavorite: "idle",
+        statusRemove: "idle",
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(addFavorite.pending, (state) => {
-                state.status = "loading";
+                state.statusFavorite = "loading";
             })
             .addCase(addFavorite.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.statusFavorite = "succeeded";
             })
             .addCase(addFavorite.rejected, (state) => {
-                state.status = "failed";
+                state.statusFavorite = "failed";
             });
 
         builder
             .addCase(removeFavorite.pending, (state) => {
-                state.status = "loading";
+                state.statusRemove = "loading";
             })
             .addCase(removeFavorite.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.statusRemove = "succeeded";
             })
             .addCase(removeFavorite.rejected, (state) => {
-                state.status = "failed";
-                state.favorite = [];
+                state.statusRemove = "failed";
             });
 
         builder
@@ -44,7 +45,6 @@ export const favoriteSlice = createSlice({
             })
             .addCase(getFavorite.rejected, (state) => {
                 state.status = "failed";
-                state.favorite = [];
             });
     },
 });

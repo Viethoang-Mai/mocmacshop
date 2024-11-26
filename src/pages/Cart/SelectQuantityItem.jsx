@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { updateCart } from "../../stores/slices/cartSlice";
 import { removeFromCart } from "../../stores/slices/cartSlice";
 import debounce from "../../utils/debounce";
+import { toast } from "react-toastify";
 export default function SelectQuantityItem({ item }) {
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(null);
@@ -19,6 +20,20 @@ export default function SelectQuantityItem({ item }) {
                 })
             );
     };
+    const onBlur = (e) => {
+        setQuantityIp(e.target.value);
+        const stock = item.products.stock;
+        if (e.target.value > stock) {
+            return toast.error("Some thing went wrong");
+        }
+        dispatch(
+            updateCart({
+                product_id: item.product_id,
+                quantity: e.target.value,
+            })
+        );
+    };
+
     return (
         <>
             <select
@@ -69,6 +84,7 @@ export default function SelectQuantityItem({ item }) {
                     onChange={(e) => {
                         setQuantityIp(e.target.value);
                     }}
+                    onBlur={debounce(onBlur, 1000)}
                 />
                 <span className="px-2 py-0.5 border-l-2 border-gray-300">
                     <i

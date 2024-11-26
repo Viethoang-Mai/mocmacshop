@@ -7,7 +7,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Header />
-            <main>
+            <main className="relative min-h-fit">
                 <Outlet />
             </main>
             <ScrollToTop />

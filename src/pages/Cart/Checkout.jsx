@@ -100,7 +100,9 @@ export default function Checkout() {
                 </div>
                 <p className="text-sm my-3 flex justify-between font-medium">
                     Total ({cart.length} item{cart.length > 1 ? "s" : ""}){" "}
-                    <span>${(totalPrice + 30).toFixed(2)}</span>
+                    <span>
+                        ${(totalPrice + (cart.length >= 2 ? 0 : 30)).toFixed(2)}
+                    </span>
                 </p>
                 <button disabled={loading} className={clsx(styles["btn"])}>
                     {loading ? (

@@ -2,6 +2,7 @@ import React from "react";
 import FeatureCategories from "../Home/FeatureCategories";
 import { useSelector } from "react-redux";
 import ListCart from "./ListCart";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
     const {
@@ -10,7 +11,7 @@ export default function Cart() {
 
     return (
         <section className="py-10 px-16 xl:px-10 xxs:px-5 ">
-            {cart.length > 0 && (
+            {cart?.length > 0 && (
                 <h1 className="text-2xl font-medium mb-5">Your cart</h1>
             )}
             <div className="flex items-center gap-x-3">
@@ -25,10 +26,20 @@ export default function Cart() {
                     </a>
                 </h4>
             </div>
-            {cart.length === 0 ? (
-                <h1 className="text-2xl text-center my-10">
-                    Your cart is empty
-                </h1>
+            {!cart?.length ? (
+                <>
+                    <h1 className="text-2xl text-center my-10">
+                        Your cart is empty
+                    </h1>
+                    <div className="text-center">
+                        <Link
+                            className="text-sm font-medium px-3 py-1.5 border-2 border-[#f59e0b] rounded-full font-medium hover:bg-[#f59e0b] hover:text-white transition-all duration-150 mt-4 inline-block "
+                            to={"/product/search"}
+                        >
+                            Shopping now
+                        </Link>
+                    </div>
+                </>
             ) : (
                 <ListCart />
             )}

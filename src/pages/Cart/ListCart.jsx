@@ -26,7 +26,7 @@ export default function ListCart() {
                     [&::-webkit-scrollbar-thumb]:bg-gray-500"
                 >
                     <div className="flex flex-col gap-5 pb-5 border-b border-gray-300 xs:gap-y-8 ">
-                        {cart.map((item) => (
+                        {cart?.map((item) => (
                             <div
                                 className="cart-item  flex gap-5"
                                 key={item.id}

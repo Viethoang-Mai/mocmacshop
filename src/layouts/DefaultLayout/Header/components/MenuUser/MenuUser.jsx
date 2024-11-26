@@ -102,6 +102,11 @@ export default function MenuUser() {
                             </Link>
                         </li>
                         <li className={clsx(styles["item"])}>
+                            <Link to={"/orders"}>
+                                <i className="fa-solid fa-cubes"></i>Your Orders
+                            </Link>
+                        </li>
+                        <li className={clsx(styles["item"])}>
                             <LogoutBtn />
                         </li>
                     </ul>

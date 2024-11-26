@@ -7,6 +7,7 @@ import formStyles from "../../Login/form.module.css";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 export default function Shipping() {
+    const shipping = JSON.parse(sessionStorage.getItem("shipping"));
     const navigate = useNavigate();
     const [city, setCity] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -59,7 +60,7 @@ export default function Shipping() {
         }, 1000);
     };
     return (
-        <section className="shipping py-10 w-1/2 mx-auto ">
+        <section className="shipping py-10 w-1/2 md:w-7/12 sm:w-full mx-auto ">
             <h1 className="text-3xl font-medium">
                 Enter your shipping address
             </h1>
@@ -74,6 +75,7 @@ export default function Shipping() {
                         <select
                             id=""
                             {...register("country")}
+                            defaultChecked={shipping?.country}
                             onChange={(e) => setSelectedCountry(e.target.value)}
                         >
                             <option value="">Select country</option>
@@ -90,7 +92,11 @@ export default function Shipping() {
                 <div className={clsx(styles["group-input"])}>
                     <label>Street address</label>
                     <div>
-                        <input type="text" {...register("address")} />
+                        <input
+                            type="text"
+                            defaultValue={shipping?.address}
+                            {...register("address")}
+                        />
                     </div>
                     {errors.address && (
                         <span className={formStyles["error"]}>
@@ -101,7 +107,11 @@ export default function Shipping() {
                 <div className={clsx(styles["group-input"])}>
                     <label>City</label>
                     <div>
-                        <input type="text" {...register("city")} />
+                        <input
+                            type="text"
+                            defaultValue={shipping?.city}
+                            {...register("city")}
+                        />
                     </div>
                     {errors.city && (
                         <span className={formStyles["error"]}>
@@ -109,11 +119,15 @@ export default function Shipping() {
                         </span>
                     )}
                 </div>
-                <div className="flex gap-x-5 ">
+                <div className="flex gap-4 xxs:flex-col ">
                     <div className={clsx(styles["group-input"], "grow")}>
                         <label>Postal code</label>
                         <div>
-                            <input type="text" {...register("postalCode")} />
+                            <input
+                                type="text"
+                                defaultValue={shipping?.postalCode}
+                                {...register("postalCode")}
+                            />
                         </div>
                         {errors.postalCode && (
                             <span className={formStyles["error"]}>
@@ -129,7 +143,11 @@ export default function Shipping() {
                             </span>
                         </label>
                         <div>
-                            <select {...register("city_selected")}>
+                            <select
+                                id=""
+                                defaultValue={shipping?.city_selected}
+                                {...register("city_selected")}
+                            >
                                 <option value="">Select province</option>
                                 {city.map((item, index) => (
                                     <option key={index}>{item}</option>
@@ -141,7 +159,11 @@ export default function Shipping() {
                 <div className={clsx(styles["group-input"], "grow")}>
                     <label>Phone</label>
                     <div>
-                        <input type="text" {...register("phone_number")} />
+                        <input
+                            type="text"
+                            defaultValue={shipping?.phone_number}
+                            {...register("phone_number")}
+                        />
                     </div>
                     {errors.phone_number && (
                         <span className={formStyles["error"]}>
@@ -152,7 +174,10 @@ export default function Shipping() {
                 <div className={clsx(styles["group-input"], "grow")}>
                     <label>Note</label>
                     <div>
-                        <textarea {...register("note")} />
+                        <textarea
+                            defaultValue={shipping?.note}
+                            {...register("note")}
+                        />
                     </div>
                 </div>
                 <button disabled={loading} className={formStyles["btn-form"]}>

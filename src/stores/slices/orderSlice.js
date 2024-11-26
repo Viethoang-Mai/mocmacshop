@@ -1,11 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { httpClient } from "../../utils/httpClient";
+import { toast } from "react-toastify";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 httpClient.baseUrl = SERVER_URL;
 export const orderSlice = createSlice({
     name: "order",
     initialState: {
-        orders: [],
+        order: [],
+        listOrders: [],
+        isLoading: false,
+        statusList: "idle",
+        statusOrder: "idle",
         status: "idle",
     },
     reducers: {},
@@ -16,32 +21,37 @@ export const orderSlice = createSlice({
             })
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.status = "succeeded";
+                state.order = action.payload;
                 sessionStorage.removeItem("shipping");
                 sessionStorage.removeItem("checkout");
+                localStorage.removeItem("cart");
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
+                toast.error("Create order failed");
             });
         builder
             .addCase(getOrders.pending, (state) => {
-                state.status = "loading";
+                state.statusList = "loading";
             })
             .addCase(getOrders.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.statusList = "succeeded";
+                state.listOrders = action.payload.data;
             })
             .addCase(getOrders.rejected, (state, action) => {
-                state.status = "failed";
+                state.statusList = "failed";
             });
         builder
             .addCase(getOrder.pending, (state) => {
-                state.status = "loading";
+                state.statusOrder = "loading";
             })
             .addCase(getOrder.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.statusOrder = "succeeded";
+                state.order = action.payload.data;
             })
             .addCase(getOrder.rejected, (state, action) => {
-                state.status = "failed";
+                state.statusOrder = "failed";
             });
     },
 });
@@ -57,7 +67,6 @@ export const createOrder = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
-        console.log(data);
 
         return data;
     }
@@ -69,7 +78,6 @@ export const getOrders = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
-        console.log(data);
 
         return data;
     }

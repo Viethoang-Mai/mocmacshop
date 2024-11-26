@@ -19,7 +19,6 @@ export const cartSlice = createSlice({
             .addCase(getListCart.fulfilled, (state, action) => {
                 state.status = "success";
                 state.cart = action.payload.data;
-                console.log(action.payload);
 
                 localStorage.setItem(
                     "cart",

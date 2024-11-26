@@ -15,7 +15,7 @@ export default function Payment() {
     };
 
     return (
-        <section className="py-10 w-2/3 mx-auto">
+        <section className="py-10 w-2/3 sm:w-10/12 xxs:w-full mx-auto">
             <div className="header">
                 <h1 className="text-3xl font-medium">
                     Choose a payment method

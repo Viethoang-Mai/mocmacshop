@@ -6,15 +6,20 @@ import FavoriteBtn from "../../components/FavoriteBtn";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../stores/slices/cartSlice";
 import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
+import { set } from "react-hook-form";
+import Loading from "../../components/Loading/Loading";
 
 export default function Product() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
+    const [loadingAction, setLoadingAction] = useState(false);
     const {
         filterProducts: { data },
         status,
     } = useSelector((state) => state.filters);
+    const { status: statusCart } = useSelector((state) => state.cart);
     const handleAddToCart = ({ product_id, quantity, price }) => {
+        setLoadingAction(true);
         dispatch(addToCart({ product_id, quantity, price }));
     };
     useEffect(() => {
@@ -26,14 +31,23 @@ export default function Product() {
         }
     }, [status]);
 
+    useEffect(() => {
+        if (statusCart === "success") {
+            setTimeout(() => {
+                setLoadingAction(false);
+            }, 1000);
+        }
+    }, [statusCart]);
+
     return (
         <section className="product py-10">
+            {loadingAction && <Loading />}
             <ul className="list grid grid-cols-4 gap-8 xl:gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-3 ">
-                {status === "loading" &&
+                {loading &&
                     Array.from(Array(12)).map((item, index) => (
                         <ImgSkeleton key={index} count={3} />
                     ))}
-                {status === "succeeded" &&
+                {!loading &&
                     data?.map((item) => (
                         <div key={item.id} className="relative group  ">
                             <Link

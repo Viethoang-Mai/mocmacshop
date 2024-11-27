@@ -1,5 +1,4 @@
 import React from "react";
-import FeatureCategories from "../Home/FeatureCategories";
 import { useSelector } from "react-redux";
 import ListCart from "./ListCart";
 import { Link } from "react-router-dom";

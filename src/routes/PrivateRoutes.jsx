@@ -12,6 +12,7 @@ import Done from "../pages/Checkout/Done/Done";
 import Order from "../pages/Order/Order";
 import OrderDetail from "../pages/Order/OrderDetail/OrderDetail";
 import ListOrders from "../pages/Order/ListOrders";
+import CheckoutGuard from "../middlewares/CheckoutGuard";
 
 const privateRoutes = (
     <>
@@ -26,10 +27,12 @@ const privateRoutes = (
                     <Route path="credit-card"></Route>
                 </Route>
                 <Route path="/checkout" element={<Checkout />}>
-                    <Route path="shipping" element={<Shipping />}></Route>
-                    <Route path="payment" element={<Payment />}></Route>
-                    <Route path="review" element={<Review />}></Route>
-                    <Route path="done" element={<Done />}></Route>
+                    <Route element={<CheckoutGuard />}>
+                        <Route path="shipping" element={<Shipping />}></Route>
+                        <Route path="payment" element={<Payment />}></Route>
+                        <Route path="review" element={<Review />}></Route>
+                        <Route path="done" element={<Done />}></Route>
+                    </Route>
                 </Route>
                 <Route path="/orders" element={<Order />}>
                     <Route index element={<ListOrders />}></Route>

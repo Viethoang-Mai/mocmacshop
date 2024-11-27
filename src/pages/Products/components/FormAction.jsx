@@ -2,10 +2,14 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowForm } from "../../../stores/slices/authSlice";
 import { addToCart } from "../../../stores/slices/cartSlice";
-import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import Loading from "../../../components/Loading/Loading";
 export default function FormAction({ product_id, price }) {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
+    const { status } = useSelector((state) => state.cart);
     const {
         register,
         handleSubmit,
@@ -25,8 +29,18 @@ export default function FormAction({ product_id, price }) {
         }
         reset();
     };
+    useEffect(() => {
+        if (status === "loading") {
+            setLoading(true);
+        } else {
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        }
+    }, [status]);
     return (
         <div>
+            {loading && <Loading />}
             <form
                 action=""
                 className="flex flex-col gap-2 my-5"
@@ -78,13 +92,22 @@ export default function FormAction({ product_id, price }) {
                     ))}
                 </select>
                 <button
+                    disabled={loading}
                     type="submit"
                     className=" mt-5 btn p-3 bg-[#222222] text-white font-medium rounded-full hover:bg-black transition-all duration-200 hover:scale-105 "
                 >
                     {" "}
-                    Add to Cart
+                    {loading ? (
+                        <i className="fa-solid fa-spinner animate-spin"></i>
+                    ) : (
+                        "Add to Cart"
+                    )}
                 </button>
             </form>
         </div>
     );
 }
+FormAction.prototype = {
+    product_id: PropTypes.number.isRequired,
+    price: PropTypes.number,
+};

@@ -3,6 +3,7 @@ import styles from "../../Cart/Cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../../stores/slices/orderSlice";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../components/Loading/Loading";
 import { removeAllCart } from "../../../stores/slices/cartSlice";
 
 export default function Review() {
@@ -16,25 +17,32 @@ export default function Review() {
     } = useSelector((state) => state.cart);
     const handleCheckout = async () => {
         setLoading(true);
-
-        const res = await dispatch(
-            createOrder({
-                payment_method,
-                listCart,
-                total,
-                ...shipping,
-            })
-        ).unwrap();
-        if (res) {
-            dispatch(removeAllCart());
-            setTimeout(() => {
-                setLoading(false);
-                navigate("/checkout/done");
-            }, 1000);
+        try {
+            const res = await dispatch(
+                createOrder({
+                    payment_method,
+                    listCart,
+                    total,
+                    ...shipping,
+                })
+            ).unwrap();
+            if (res) {
+                setTimeout(() => {
+                    setLoading(false);
+                    navigate("/checkout/done");
+                    dispatch(removeAllCart());
+                    localStorage.removeItem("cart");
+                }, 1000);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            setLoading(false);
         }
     };
     return (
         <div className="w-10/12 sm:w-11/12 xs:w-full mx-auto">
+            {loading && <Loading />}
             <h1 className="text-3xl py-5 font-medium">Review your order</h1>
             <div className="cart-inner flex gap-10 md:flex-col justify-center">
                 <div

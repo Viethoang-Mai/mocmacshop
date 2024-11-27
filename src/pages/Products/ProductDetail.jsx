@@ -15,8 +15,10 @@ import { images } from "../Home/HolidayDeal";
 import "swiper/css";
 import "swiper/css/navigation";
 import FavoriteBtn from "../../components/FavoriteBtn";
+import Loading from "../../components/Loading/Loading";
 
 export default function ProductDetail() {
+    const [loading, setLoading] = useState(true);
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const dispatch = useDispatch();
     const [image, setImage] = useState(0);
@@ -26,10 +28,18 @@ export default function ProductDetail() {
     useEffect(() => {
         dispatch(fetchProductDetail(id));
     }, []);
-    console.log(data);
+
+    useEffect(() => {
+        if (data) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+        }
+    }, [data]);
 
     return (
         <section className="product-detail p-10 px-16 xl:px-10 xxs:px-5 ">
+            {loading && <Loading />}
             <div className="content flex gap-x-5 flex-wrap  ">
                 <div className="img group relative p-5 w-8/12 md:w-full md:px-0">
                     <FavoriteBtn

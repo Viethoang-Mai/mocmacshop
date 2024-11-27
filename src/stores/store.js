@@ -9,6 +9,7 @@ import { userSlice } from "./slices/userSlice";
 import reviewSlice from "./slices/reviewSlice";
 import cartSlice from "./slices/cartSlice";
 import orderSlice from "./slices/orderSlice";
+import checkoutStepSlice from "./slices/checkoutStepSlice";
 
 export const store = configureStore({
     reducer: {
@@ -22,5 +23,6 @@ export const store = configureStore({
         reviews: reviewSlice.reducer,
         cart: cartSlice.reducer,
         order: orderSlice.reducer,
+        checkoutStep: checkoutStepSlice.reducer,
     },
 });

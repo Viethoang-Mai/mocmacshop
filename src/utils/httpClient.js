@@ -39,8 +39,9 @@ export const httpClient = {
             const data = await response.json();
 
             if (
-                response.status === 401 &&
-                data.message === "Unauthorized or session expired"
+                (response.status === 401 &&
+                    data.message === "Unauthorized or session expired") ||
+                (response.status === 500 && data.errors === "jwt expired")
             ) {
                 throw new Error(data.message);
             }

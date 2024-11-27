@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./Cart.module.css";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { setCurrent } from "../../stores/slices/checkoutStepSlice";
 
 export default function Checkout() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleSubmit = (e) => {
         setLoading(true);
         e.preventDefault();
@@ -20,6 +22,7 @@ export default function Checkout() {
         );
         setTimeout(() => {
             setLoading(false);
+            dispatch(setCurrent("shipping"));
             navigate("/checkout/shipping");
         }, 1000);
     };

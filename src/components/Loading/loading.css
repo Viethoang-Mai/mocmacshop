@@ -1,5 +1,5 @@
 .over-loading {
-    background: #dddddd60;
+    background: rgba(108, 108, 108, 0.574);
     display: flex;
 }
 .loader {

@@ -13,18 +13,6 @@ function ImgSkeleton({ count }) {
         </div>
     );
 }
-export function ImgCircleSkeleton({ count }) {
-    return (
-        <div className="img-skeleton flex flex-col">
-            <div className="img h-full w-full  overflow-hidden">
-                <Skeleton circle height="100%" width="100%" />
-            </div>
-            <p className="text">
-                <Skeleton count={count} height="100%" width="100%" />
-            </p>
-        </div>
-    );
-}
 
 ImgSkeleton.propTypes = {
     count: PropTypes.number,

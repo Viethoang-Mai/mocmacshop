@@ -5,9 +5,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Checkout() {
     const location = useLocation();
-    const pathStep = location.pathname.slice(
-        location.pathname.lastIndexOf("/") + 1
-    );
+    const pathStep = location.pathname.split("/").pop();
 
     return (
         <section className="py-7 px-20 xl:px-10 lg:px-16 md:px-7 xxs:px-5  ">

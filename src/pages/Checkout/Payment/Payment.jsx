@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import styles from "../../Cart/Cart.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
 export default function Payment() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { payment_method } = JSON.parse(sessionStorage.getItem("checkout"));
     const [loading, setLoading] = useState(false);
     const handleSubmit = () => {
         setLoading(true);
         setTimeout(() => {
+            dispatch(setCurrent("review"));
+
             navigate("/checkout/review");
             setLoading(false);
         }, 1000);

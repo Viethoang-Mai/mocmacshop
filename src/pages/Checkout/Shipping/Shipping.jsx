@@ -6,9 +6,12 @@ import styles from "./Shipping.module.css";
 import formStyles from "../../Login/form.module.css";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
+import { useDispatch } from "react-redux";
 export default function Shipping() {
     const shipping = JSON.parse(sessionStorage.getItem("shipping"));
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [city, setCity] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState(null);
@@ -56,6 +59,7 @@ export default function Shipping() {
         sessionStorage.setItem("shipping", JSON.stringify(data));
         setTimeout(() => {
             setLoading(false);
+            dispatch(setCurrent("payment"));
             navigate("/checkout/payment");
         }, 1000);
     };

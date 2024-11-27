@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { getOrders } from "../../stores/slices/orderSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
-import ListOrders from "./ListOrders";
-import Loading from "../../components/Loading/Loading";
 
 export default function Order() {
     const dispatch = useDispatch();
@@ -15,9 +13,7 @@ export default function Order() {
             dispatch(getOrders());
         }
     }, [dispatch, listOrders.length]);
-    if (statusList === "loading") {
-        return <Loading />;
-    }
+
     return (
         <section className="py-10 px-16 xl:px-10 xxs:px-5">
             <div className="flex items-center gap-x-4 xs:flex-col ">

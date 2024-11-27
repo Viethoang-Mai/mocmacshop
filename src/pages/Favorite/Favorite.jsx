@@ -2,12 +2,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setShowForm } from "../../stores/slices/authSlice";
 import ListFavorites from "./ListFavorites";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFavorite } from "../../stores/slices/favoriteSlice";
 import Loading from "../../components/Loading/Loading";
 
 export default function Favorite() {
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+
     const { accessToken } = useSelector((state) => state.auth);
     const { favorite, status } = useSelector((state) => state.favorite);
     const { user } = useSelector((state) => state.user);
@@ -20,7 +22,7 @@ export default function Favorite() {
 
     return (
         <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 relative ">
-            {/* <Loading /> */}
+            {loading && <Loading />}
             <div className="header flex items-center gap-x-4 xs:justify-center">
                 {" "}
                 {!accessToken ? (

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { httpClient } from "../../utils/httpClient";
 import { toast } from "react-toastify";
-import { removeAllCart } from "./cartSlice";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 httpClient.baseUrl = SERVER_URL;
 export const orderSlice = createSlice({
@@ -23,10 +22,9 @@ export const orderSlice = createSlice({
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.order = action.payload;
-
-                // sessionStorage.removeItem("shipping");
-                // sessionStorage.removeItem("checkout");
-                localStorage.removeItem("cart");
+                sessionStorage.removeItem("shipping");
+                sessionStorage.removeItem("checkout");
+                localStorage.removeItem("current");
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.status = "failed";
@@ -59,7 +57,7 @@ export const orderSlice = createSlice({
 });
 export const createOrder = createAsyncThunk(
     "createOrder",
-    async (dataOrder, { rejectWithValue, dispatch }) => {
+    async (dataOrder, { rejectWithValue }) => {
         const { response, data } = await httpClient.post(
             `/api/auth/create-order`,
             {
@@ -69,7 +67,6 @@ export const createOrder = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
-        await dispatch(removeAllCart());
 
         return data;
     }

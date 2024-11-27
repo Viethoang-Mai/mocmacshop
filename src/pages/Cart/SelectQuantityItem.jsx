@@ -41,7 +41,7 @@ export default function SelectQuantityItem({ item }) {
                 id=""
                 value={quantity || item.quantity}
                 onChange={handleUpdateQuantity}
-                className="xs:hidden my-2 px-2 py-1 block border border-gray-500 rounded-md focus:outline focus:outline-offset-2 focus:outline-blue-500 text-sm font-medium cursor-pointer"
+                className="xs:hidden my-2 ml-1 px-2 py-1 block border border-gray-500 rounded-md focus:outline focus:outline-offset-2 focus:outline-blue-500 text-sm font-medium cursor-pointer"
             >
                 {Array.from(
                     Array(

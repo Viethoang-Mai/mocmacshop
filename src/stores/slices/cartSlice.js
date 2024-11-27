@@ -9,15 +9,16 @@ export const cartSlice = createSlice({
     initialState: {
         cart: JSON.parse(localStorage.getItem("cart")) || {},
         status: "idle",
+        statusList: "idle",
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getListCart.pending, (state) => {
-                state.status = "loading";
+                state.statusList = "loading";
             })
             .addCase(getListCart.fulfilled, (state, action) => {
-                state.status = "success";
+                state.statusList = "success";
                 state.cart = action.payload.data;
 
                 localStorage.setItem(
@@ -26,7 +27,7 @@ export const cartSlice = createSlice({
                 );
             })
             .addCase(getListCart.rejected, (state) => {
-                state.status = "failed";
+                state.statusList = "failed";
             });
         builder
             .addCase(addToCart.pending, (state) => {

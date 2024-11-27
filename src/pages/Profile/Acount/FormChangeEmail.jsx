@@ -2,7 +2,6 @@ import clsx from "clsx";
 import styles from "./Account.module.css";
 import formStyle from "../../Login/form.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";

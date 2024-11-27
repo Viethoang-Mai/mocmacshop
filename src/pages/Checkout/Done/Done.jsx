@@ -11,7 +11,7 @@ export default function Done() {
                 </div>
                 <h2 className=" font-medium mt-5 text-gray-700">
                     Order placed successfully! Thank you for shopping with us.
-                    We will process your order as soon as possible.
+                    We appreciate your purchase and will process it shortly.
                 </h2>
             </div>
             <div className="action flex gap-5 mt-5 justify-center items-center text-sm font-medium flex-wrap">

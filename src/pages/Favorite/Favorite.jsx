@@ -8,7 +8,7 @@ import Loading from "../../components/Loading/Loading";
 
 export default function Favorite() {
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const { accessToken } = useSelector((state) => state.auth);
     const { favorite, status } = useSelector((state) => state.favorite);
@@ -18,6 +18,9 @@ export default function Favorite() {
         if (accessToken) {
             dispatch(getFavorite());
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, [accessToken]);
 
     return (
@@ -53,7 +56,7 @@ export default function Favorite() {
                 )}{" "}
             </div>
 
-            {!favorite.length && status === "succeeded" ? (
+            {!favorite.length && !loading ? (
                 <div className="text-center py-10">
                     <div className="icon w-[150px] h-[150px] mx-auto bg-gray-100 rounded-full flex items-center justify-center">
                         <i className="text-[90px] text-gray-600 fa-solid fa-cat"></i>
@@ -63,6 +66,12 @@ export default function Favorite() {
                         These are a few of your favorite things... or they will
                         be, once you favorite something.
                     </p>
+                    <Link
+                        className="text-sm font-medium px-3 py-1.5 border-2 border-[#f59e0b] rounded-full font-medium hover:bg-[#f59e0b] hover:text-white transition-all duration-150 mt-5 inline-block "
+                        to={"/product/search"}
+                    >
+                        Shopping now
+                    </Link>
                 </div>
             ) : (
                 <ListFavorites listProduct={favorite} status={status} />

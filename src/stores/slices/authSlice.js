@@ -84,6 +84,27 @@ export const authSlice = createSlice({
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";
             });
+        builder
+            .addCase(loginGoogle.pending, (state, action) => {
+                state.status = "loading";
+            })
+            .addCase(loginGoogle.fulfilled, (state, action) => {
+                state.status = "success";
+                state.message = action.payload.message;
+                localStorage.setItem(
+                    "access_token",
+                    JSON.stringify(action.payload.data.accessToken)
+                );
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(action.payload.data.user)
+                );
+                state.showForm = false;
+            })
+            .addCase(loginGoogle.rejected, (state, action) => {
+                state.status = "failed";
+                state.message = action.payload;
+            });
     },
 });
 
@@ -142,6 +163,25 @@ export const logout = createAsyncThunk(
             {}
         );
 
+        if (!response.ok) {
+            return rejectWithValue(data.errors);
+        }
+
+        return data;
+    }
+);
+export const loginGoogle = createAsyncThunk(
+    "loginGoogle",
+    async (formData, { rejectWithValue }) => {
+        const response = await fetch(`${SERVER_URL}/api/auth/google-login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...formData }),
+            credentials: "include",
+        });
+        const data = await response.json();
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }

@@ -8,7 +8,7 @@ import { login } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
 import { toast } from "react-toastify";
-import { getListCart } from "../../stores/slices/cartSlice";
+import { GoogleLogin } from "@react-oauth/google";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);

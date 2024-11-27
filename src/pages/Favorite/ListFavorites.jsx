@@ -5,14 +5,23 @@ import StarRating from "../../components/RatingStart";
 import PropTypes from "prop-types";
 import FavoriteBtn from "../../components/FavoriteBtn";
 import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
+
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../stores/slices/cartSlice";
 export default function ListFavorites({ listProduct: data }) {
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
     const { status } = useSelector((state) => state.favorite);
+    const { status: statusCart } = useSelector((state) => state.cart);
+    const handleAddToCart = ({ product_id, quantity, price }) => {
+        dispatch(addToCart({ product_id, quantity, price }));
+    };
+
     useEffect(() => {
         if (status === "succeeded") {
             setTimeout(() => {
                 setLoading(false);
-            }, 800);
+            }, 1000);
         }
     }, [status]);
 
@@ -75,13 +84,19 @@ export default function ListFavorites({ listProduct: data }) {
                                 </p>
                             </div>
                             <div className="action px-3 flex items-center justify-between flex-wrap gap-3 ">
-                                <Link
-                                    to={""}
+                                <button
+                                    onClick={() =>
+                                        handleAddToCart({
+                                            product_id: product.id,
+                                            quantity: 1,
+                                            price: product.price,
+                                        })
+                                    }
                                     className="btn py-1 text-xs px-3 border-2 rounded-full border-gray-800 font-medium hover:bg-gray-800 hover:text-white transition-all duration-150"
                                 >
                                     <i className="fa-solid fa-plus text-xs"></i>{" "}
                                     Add to cart
-                                </Link>
+                                </button>
                                 <span className="text-xs font-medium">
                                     More like this{" "}
                                     <i className="fa-solid fa-arrow-right"></i>

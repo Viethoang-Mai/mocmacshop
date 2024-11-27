@@ -21,8 +21,7 @@ export const userSlice = createSlice({
             .addCase(changeName.fulfilled, (state, action) => {
                 state.status = "success";
                 state.user = action.payload.data;
-                state.message = action.payload;
-
+                toast.success("Change name successfully");
                 localStorage.setItem(
                     "user",
                     JSON.stringify(action.payload.data)
@@ -30,7 +29,7 @@ export const userSlice = createSlice({
             })
             .addCase(changeName.rejected, (state, action) => {
                 state.status = "failed";
-                state.message = action.payload;
+                toast.error("Change name failed");
             });
         builder
             .addCase(changeEmail.pending, (state) => {
@@ -77,6 +76,8 @@ export const changeName = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
+        console.log(data);
+
         return data;
     }
 );
@@ -92,6 +93,7 @@ export const changePassword = createAsyncThunk(
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
+        console.log(response, data);
 
         return data;
     }

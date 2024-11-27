@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import styles from "./Account.module.css";
-import formStyle from "../../Login/form.module.css";
 import clsx from "clsx";
 import FormChangePassword from "./FormChangePassword";
 import FormChangeEmail from "./FormChangeEmail";
@@ -9,7 +8,7 @@ import { changeName } from "../../../stores/slices/userSlice";
 export default function Account() {
     const dispatch = useDispatch();
     const inputNameRef = useRef();
-    const { user, status, message } = useSelector((state) => state.user);
+    const { user, status } = useSelector((state) => state.user);
     const [name, setName] = useState(user.name);
     const [editName, setEditName] = useState(false);
     const [err, setErr] = useState(null);
@@ -30,6 +29,7 @@ export default function Account() {
         } else {
             setErr(null);
             setEditName(false);
+
             dispatch(changeName(value));
         }
     };
@@ -74,8 +74,18 @@ export default function Account() {
                 )}
                 <button disabled={status === "loading"}>Save</button>
             </form>
-            <FormChangePassword />
-            <FormChangeEmail />
+            <div className="relative flex flex-col gap-y-5">
+                {user.bio && (
+                    <p className="text-sm mt-1 font-medium relative z-10 text-red-600">
+                        Sorry, you cannot change your password or email address
+                        when logging in through Google. Please use a different
+                        login method to make these changes
+                    </p>
+                )}
+                <FormChangePassword />
+                <FormChangeEmail />
+                <span className="absolute inset-0 z-1 bg-white/50"></span>
+            </div>
             <button className="w-fit text-red-400 font-semibold text-sm text-left hover:underline hover:text-red-600 transition-all duration-200">
                 Delete Account
             </button>

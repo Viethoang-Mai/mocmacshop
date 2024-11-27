@@ -5,8 +5,8 @@ import styles from "./form.module.css";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowForm } from "../../stores/slices/authSlice";
-import Loading from "../../components/Loading/Loading";
-import { set } from "react-hook-form";
+import { GoogleLogin } from "@react-oauth/google";
+import BtnGGLogin from "./GoogleLogin/BtnGGLogin";
 
 export default function Login() {
     const { showForm, status } = useSelector((state) => state.auth);
@@ -78,10 +78,7 @@ export default function Login() {
                         </span>
                     </div>
                     <div className="form-footer p-6">
-                        <button className={clsx(styles["btn-social"])}>
-                            <i className="fa-brands fa-google"></i>Continue with
-                            Google
-                        </button>
+                        <BtnGGLogin />
                         <button className={clsx(styles["btn-social"])}>
                             <i className="fa-brands fa-facebook"></i>Continue
                             with Facebook

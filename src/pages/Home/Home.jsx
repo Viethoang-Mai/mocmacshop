@@ -9,7 +9,6 @@ import TopTrend from "./TopTrend";
 import AmzDeal from "./AmzDeal/AmzDeal";
 import HolidayDeal from "./HolidayDeal";
 import About from "./About";
-import Login from "../Login/Login";
 export default function Home() {
     // const data = useSelector((state) => state.product.products);
     // const categories = useSelector((state) => state.product.categories);
@@ -23,7 +22,7 @@ export default function Home() {
     return (
         <section>
             <Helmet>
-                <title>mocmacshop || Home</title>
+                <title>Mocmacshop - Shop for handmade, vintage, custom</title>
             </Helmet>
             {Object.keys(user).length !== 0 && (
                 <div className="text-2xl text-center py-4 flex items-center justify-center flex-wrap gap-2 bg-[#f59e0b78] text-gray-700">

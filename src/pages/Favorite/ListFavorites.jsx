@@ -12,7 +12,6 @@ export default function ListFavorites({ listProduct: data }) {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const { status } = useSelector((state) => state.favorite);
-    const { status: statusCart } = useSelector((state) => state.cart);
     const handleAddToCart = ({ product_id, quantity, price }) => {
         dispatch(addToCart({ product_id, quantity, price }));
     };

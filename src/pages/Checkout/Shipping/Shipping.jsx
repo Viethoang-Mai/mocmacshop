@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
 import { useDispatch } from "react-redux";
+import { Helmet } from "react-helmet";
 export default function Shipping() {
     const shipping = JSON.parse(sessionStorage.getItem("shipping"));
     const navigate = useNavigate();
@@ -64,134 +65,144 @@ export default function Shipping() {
         }, 1000);
     };
     return (
-        <section className="shipping py-10 w-1/2 md:w-7/12 sm:w-full mx-auto ">
-            <h1 className="text-3xl font-medium">
-                Enter your shipping address
-            </h1>
-            <form
-                action=""
-                className={styles["shipping-form"]}
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <div className={clsx(styles["group-input"])}>
-                    <label>Country</label>
-                    <div>
-                        <select
-                            id=""
-                            {...register("country")}
-                            defaultChecked={shipping?.country}
-                            onChange={(e) => setSelectedCountry(e.target.value)}
-                        >
-                            <option value="">Select country</option>
-                            <option value="Vietnam">Viet Nam</option>
-                        </select>
+        <>
+            <Helmet>
+                <title>Mocmacshop - Checkout- Shipping</title>
+            </Helmet>
+            <section className="shipping py-10 w-1/2 md:w-7/12 sm:w-full mx-auto ">
+                <h1 className="text-3xl font-medium">
+                    Enter your shipping address
+                </h1>
+                <form
+                    action=""
+                    className={styles["shipping-form"]}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <div className={clsx(styles["group-input"])}>
+                        <label>Country</label>
+                        <div>
+                            <select
+                                id=""
+                                {...register("country")}
+                                defaultChecked={shipping?.country}
+                                onChange={(e) =>
+                                    setSelectedCountry(e.target.value)
+                                }
+                            >
+                                <option value="">Select country</option>
+                                <option value="Vietnam">Viet Nam</option>
+                            </select>
+                        </div>
+                        {errors.country && (
+                            <span className={formStyles["error"]}>
+                                {errors.country.message}
+                            </span>
+                        )}
                     </div>
-                    {errors.country && (
-                        <span className={formStyles["error"]}>
-                            {errors.country.message}
-                        </span>
-                    )}
-                </div>
 
-                <div className={clsx(styles["group-input"])}>
-                    <label>Street address</label>
-                    <div>
-                        <input
-                            type="text"
-                            defaultValue={shipping?.address}
-                            {...register("address")}
-                        />
-                    </div>
-                    {errors.address && (
-                        <span className={formStyles["error"]}>
-                            {errors.address.message}
-                        </span>
-                    )}
-                </div>
-                <div className={clsx(styles["group-input"])}>
-                    <label>City</label>
-                    <div>
-                        <input
-                            type="text"
-                            defaultValue={shipping?.city}
-                            {...register("city")}
-                        />
-                    </div>
-                    {errors.city && (
-                        <span className={formStyles["error"]}>
-                            {errors.city.message}
-                        </span>
-                    )}
-                </div>
-                <div className="flex gap-4 xxs:flex-col ">
-                    <div className={clsx(styles["group-input"], "grow")}>
-                        <label>Postal code</label>
+                    <div className={clsx(styles["group-input"])}>
+                        <label>Street address</label>
                         <div>
                             <input
                                 type="text"
-                                defaultValue={shipping?.postalCode}
-                                {...register("postalCode")}
+                                defaultValue={shipping?.address}
+                                {...register("address")}
                             />
                         </div>
-                        {errors.postalCode && (
+                        {errors.address && (
                             <span className={formStyles["error"]}>
-                                {errors.postalCode.message}
+                                {errors.address.message}
+                            </span>
+                        )}
+                    </div>
+                    <div className={clsx(styles["group-input"])}>
+                        <label>City</label>
+                        <div>
+                            <input
+                                type="text"
+                                defaultValue={shipping?.city}
+                                {...register("city")}
+                            />
+                        </div>
+                        {errors.city && (
+                            <span className={formStyles["error"]}>
+                                {errors.city.message}
+                            </span>
+                        )}
+                    </div>
+                    <div className="flex gap-4 xxs:flex-col ">
+                        <div className={clsx(styles["group-input"], "grow")}>
+                            <label>Postal code</label>
+                            <div>
+                                <input
+                                    type="text"
+                                    defaultValue={shipping?.postalCode}
+                                    {...register("postalCode")}
+                                />
+                            </div>
+                            {errors.postalCode && (
+                                <span className={formStyles["error"]}>
+                                    {errors.postalCode.message}
+                                </span>
+                            )}
+                        </div>
+                        <div className={clsx(styles["group-input"], "grow")}>
+                            <label>
+                                Province{" "}
+                                <span className="text-xs text-gray-600">
+                                    (optional)
+                                </span>
+                            </label>
+                            <div>
+                                <select
+                                    id=""
+                                    defaultValue={shipping?.city_selected}
+                                    {...register("city_selected")}
+                                >
+                                    <option value="">Select province</option>
+                                    {city.map((item, index) => (
+                                        <option key={index}>{item}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={clsx(styles["group-input"], "grow")}>
+                        <label>Phone</label>
+                        <div>
+                            <input
+                                type="text"
+                                defaultValue={shipping?.phone_number}
+                                {...register("phone_number")}
+                            />
+                        </div>
+                        {errors.phone_number && (
+                            <span className={formStyles["error"]}>
+                                {errors.phone_number.message}
                             </span>
                         )}
                     </div>
                     <div className={clsx(styles["group-input"], "grow")}>
-                        <label>
-                            Province{" "}
-                            <span className="text-xs text-gray-600">
-                                (optional)
-                            </span>
-                        </label>
+                        <label>Note</label>
                         <div>
-                            <select
-                                id=""
-                                defaultValue={shipping?.city_selected}
-                                {...register("city_selected")}
-                            >
-                                <option value="">Select province</option>
-                                {city.map((item, index) => (
-                                    <option key={index}>{item}</option>
-                                ))}
-                            </select>
+                            <textarea
+                                defaultValue={shipping?.note}
+                                {...register("note")}
+                            />
                         </div>
                     </div>
-                </div>
-                <div className={clsx(styles["group-input"], "grow")}>
-                    <label>Phone</label>
-                    <div>
-                        <input
-                            type="text"
-                            defaultValue={shipping?.phone_number}
-                            {...register("phone_number")}
-                        />
-                    </div>
-                    {errors.phone_number && (
-                        <span className={formStyles["error"]}>
-                            {errors.phone_number.message}
-                        </span>
-                    )}
-                </div>
-                <div className={clsx(styles["group-input"], "grow")}>
-                    <label>Note</label>
-                    <div>
-                        <textarea
-                            defaultValue={shipping?.note}
-                            {...register("note")}
-                        />
-                    </div>
-                </div>
-                <button disabled={loading} className={formStyles["btn-form"]}>
-                    {loading ? (
-                        <i className="fa fa-spinner fa-spin animate-spin"></i>
-                    ) : (
-                        "Continue to payment"
-                    )}
-                </button>
-            </form>
-        </section>
+                    <button
+                        disabled={loading}
+                        className={formStyles["btn-form"]}
+                    >
+                        {loading ? (
+                            <i className="fa fa-spinner fa-spin animate-spin"></i>
+                        ) : (
+                            "Continue to payment"
+                        )}
+                    </button>
+                </form>
+            </section>
+        </>
     );
 }

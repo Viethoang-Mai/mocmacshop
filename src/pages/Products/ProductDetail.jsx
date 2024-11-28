@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import formatPrice from "../../utils/formatPrice";
 import { fetchProductDetail } from "../../stores/slices/productSlice";
-import FormAction from "./components/formAction";
+import FormAction from "./components/FormAction";
 import Shipping from "./components/Shipping";
 import ItemDetail from "./components/ItemDetail";
 import StarRating from "../../components/RatingStart";

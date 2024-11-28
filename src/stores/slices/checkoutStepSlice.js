@@ -2,8 +2,8 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const checkoutStepSlice = createSlice({
     name: "checkoutStep",
     initialState: {
-        current: localStorage.getItem("current") || "shipping",
-        stepsOrder: ["shipping", "payment", "review"],
+        current: localStorage.getItem("current") || "cart",
+        stepsOrder: ["cart", "shipping", "payment", "review", "done"],
         status: "idle",
     },
     reducers: {

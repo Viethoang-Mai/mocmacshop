@@ -14,11 +14,9 @@ export default function FavoriteBtn({ isFavorite, product_id }) {
         if (active) {
             dispatch(removeFavorite(product_id));
             setActive(false);
-            toast.success("Remove favorite successfully");
         } else {
             dispatch(addFavorite(product_id));
             setActive(true);
-            toast.success("Add favorite successfully");
         }
     };
 

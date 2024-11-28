@@ -46,6 +46,7 @@ export default function Payment() {
                                 <input
                                     name="payment_method"
                                     type="radio"
+                                    readOnly
                                     checked={payment_method === "bank_transfer"}
                                     value="bank_transfer"
                                     className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-slate-400 checked:border-slate-500 transition-all"
@@ -69,6 +70,7 @@ export default function Payment() {
                                     name="payment_method"
                                     type="radio"
                                     value="paypal"
+                                    readOnly
                                     checked={payment_method === "paypal"}
                                     className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-slate-400 checked:border-slate-500 transition-all"
                                 />
@@ -87,6 +89,7 @@ export default function Payment() {
                                 <input
                                     name="payment_method"
                                     type="radio"
+                                    readOnly
                                     value="credit_card"
                                     checked={payment_method === "credit_card"}
                                     className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-slate-400 checked:border-slate-500 transition-all"

@@ -27,9 +27,9 @@ export default function ListCart() {
 
     return (
         <section className="my-10">
-            <div className="cart-inner flex gap-10 md:flex-col justify-center">
+            <div className="cart-inner flex gap-10 md:flex-col justify-center ">
                 <div
-                    className="cart-list border border-gray-300 p-5 rounded-md overflow-y-auto overflow-x-hidden max-h-[450px] xxs:px-2 w-full [&::-webkit-scrollbar]:w-1 
+                    className="cart-list w-8/12 md:w-full border border-gray-300 p-5 rounded-md overflow-y-auto overflow-x-hidden max-h-[450px] xxs:px-2  [&::-webkit-scrollbar]:w-1 
                     [&::-webkit-scrollbar-track]:rounded-full 
                     [&::-webkit-scrollbar-track]:bg-gray-200
                     [&::-webkit-scrollbar-thumb]:rounded-full

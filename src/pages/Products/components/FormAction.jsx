@@ -10,6 +10,7 @@ export default function FormAction({ product_id, price }) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
     const { status } = useSelector((state) => state.cart);
+
     const {
         register,
         handleSubmit,
@@ -22,7 +23,7 @@ export default function FormAction({ product_id, price }) {
 
         delete data.color;
 
-        if (user) {
+        if (Object.keys(user).length !== 0) {
             dispatch(addToCart(data));
         } else {
             dispatch(setShowForm(true));

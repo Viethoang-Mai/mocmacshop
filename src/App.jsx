@@ -10,7 +10,7 @@ function App() {
             <SkeletonTheme baseColor="#e5e7eb" highlightColor="#f59e0b54">
                 <Login />
                 <Layout />
-                <ToastContainer autoClose={2000} position="top-right" />
+                <ToastContainer autoClose={1000} position="top-right" />
             </SkeletonTheme>
         </>
     );

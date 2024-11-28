@@ -42,7 +42,6 @@ export default function LoginForm() {
             setLoading(true);
             const res = await dispatch(login({ email, password })).unwrap();
             if (res) {
-                toast.success(res.message);
                 setTimeout(() => {
                     setLoading(false);
                     window.location.reload();

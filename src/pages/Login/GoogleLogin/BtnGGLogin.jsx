@@ -20,7 +20,6 @@ export default function BtnGGLogin() {
                     })
                 ).unwrap();
                 if (res) {
-                    toast.success(res.message);
                     setTimeout(() => {
                         setLoading(false);
                         window.location.reload();

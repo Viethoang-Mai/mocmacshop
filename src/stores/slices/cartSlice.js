@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { httpClient } from "../../utils/httpClient";
 import { toast } from "react-toastify";
+import { set } from "react-hook-form";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 httpClient.baseUrl = SERVER_URL;
 
@@ -41,7 +42,9 @@ export const cartSlice = createSlice({
                     "cart",
                     JSON.stringify(action.payload.data)
                 );
-                toast.success("Add to cart successfully");
+                setTimeout(() => {
+                    toast.success("Add to cart successfully");
+                }, 1000);
             })
             .addCase(addToCart.rejected, (state) => {
                 state.status = "failed";
@@ -57,7 +60,9 @@ export const cartSlice = createSlice({
                     "cart",
                     JSON.stringify(action.payload.data)
                 );
-                toast.success("Remove from cart successfully");
+                setTimeout(() => {
+                    toast.success("Remove cart successfully");
+                }, 1000);
             })
             .addCase(removeFromCart.rejected, (state) => {
                 state.status = "failed";
@@ -73,7 +78,9 @@ export const cartSlice = createSlice({
                     "cart",
                     JSON.stringify(action.payload.data)
                 );
-                toast.success("Update cart successfully");
+                setTimeout(() => {
+                    toast.success("Update cart successfully");
+                }, 1000);
             })
             .addCase(updateCart.rejected, (state) => {
                 state.status = "failed";

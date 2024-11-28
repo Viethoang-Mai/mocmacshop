@@ -22,9 +22,6 @@ export const orderSlice = createSlice({
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.order = action.payload;
-                sessionStorage.removeItem("shipping");
-                sessionStorage.removeItem("checkout");
-                localStorage.removeItem("current");
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.status = "failed";

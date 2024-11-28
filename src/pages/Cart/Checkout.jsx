@@ -31,7 +31,7 @@ export default function Checkout() {
         cart: { total: totalPrice, listCart: cart },
     } = useSelector((state) => state.cart);
     return (
-        <div className="checkout px-5">
+        <div className="checkout px-5 grow">
             <form action="" onSubmit={handleSubmit}>
                 <h4 className="text-sm font-medium">How you'll pay </h4>
                 <div className="payment">

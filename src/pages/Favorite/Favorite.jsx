@@ -28,10 +28,9 @@ export default function Favorite() {
         <>
             <Helmet>
                 <title>
-                    {user
-                        ? `${user?.name}'s favorites items`
-                        : "Favorite items"}{" "}
-                    - Mocmacshop:
+                    {user?.name
+                        ? `${user.name} - Mocmacshop`
+                        : "Favorite items - Mocmacshop"}
                 </title>
             </Helmet>
 

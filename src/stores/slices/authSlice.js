@@ -4,6 +4,8 @@ import { httpClient } from "../../utils/httpClient";
 
 httpClient.baseUrl = SERVER_URL;
 import { getListCart } from "./cartSlice";
+import { set } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export const authSlice = createSlice({
     name: "auth",
@@ -38,6 +40,9 @@ export const authSlice = createSlice({
                     JSON.stringify(action.payload.data.user)
                 );
                 state.showForm = false;
+                setTimeout(() => {
+                    toast.success("Login successfully");
+                }, 1000);
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = "failed";
@@ -80,6 +85,9 @@ export const authSlice = createSlice({
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
                 localStorage.removeItem("cart");
+                setTimeout(() => {
+                    toast.success("Logout successfully");
+                }, 1000);
             })
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";
@@ -100,6 +108,9 @@ export const authSlice = createSlice({
                     JSON.stringify(action.payload.data.user)
                 );
                 state.showForm = false;
+                setTimeout(() => {
+                    toast.success("Login successfully with google");
+                }, 1000);
             })
             .addCase(loginGoogle.rejected, (state, action) => {
                 state.status = "failed";

@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { httpClient } from "../../utils/httpClient";
+import { set } from "react-hook-form";
+import { toast } from "react-toastify";
 const SERVER_URL = import.meta.env.VITE_PUBLIC_BASE_URL;
 httpClient.baseUrl = SERVER_URL;
 
@@ -19,6 +21,9 @@ export const favoriteSlice = createSlice({
             })
             .addCase(addFavorite.fulfilled, (state, action) => {
                 state.statusFavorite = "succeeded";
+                setTimeout(() => {
+                    toast.success("Add favorite successfully");
+                }, 500);
             })
             .addCase(addFavorite.rejected, (state) => {
                 state.statusFavorite = "failed";
@@ -30,6 +35,9 @@ export const favoriteSlice = createSlice({
             })
             .addCase(removeFavorite.fulfilled, (state, action) => {
                 state.statusRemove = "succeeded";
+                setTimeout(() => {
+                    toast.success("Remove favorite successfully");
+                }, 500);
             })
             .addCase(removeFavorite.rejected, (state) => {
                 state.statusRemove = "failed";

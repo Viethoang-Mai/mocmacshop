@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
-import StepMap from "./components/Step";
+import { Outlet, useNavigate } from "react-router-dom";
 import HorizontalLinearStepper from "./components/Step";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 export default function Checkout() {
+    const navigate = useNavigate();
     const location = useLocation();
     const pathStep = location.pathname.split("/").pop();
 
+    useEffect(() => {
+        if (!pathStep) return navigate(`/checkout/shipping`);
+    }, [pathStep]);
     return (
         <>
             <Helmet>

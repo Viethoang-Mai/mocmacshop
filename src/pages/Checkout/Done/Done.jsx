@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 export default function Done() {
+    useEffect(() => {
+        localStorage.removeItem("current");
+        sessionStorage.removeItem("shipping");
+        sessionStorage.removeItem("checkout");
+        localStorage.removeItem("cart");
+    }, []);
     return (
         <>
             <Helmet>

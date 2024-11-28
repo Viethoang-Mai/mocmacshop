@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading/Loading";
 import { removeAllCart } from "../../../stores/slices/cartSlice";
 import { Helmet } from "react-helmet-async";
+import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
 
 export default function Review() {
     const navigate = useNavigate();
@@ -30,9 +31,9 @@ export default function Review() {
             if (res) {
                 setTimeout(() => {
                     setLoading(false);
+                    dispatch(setCurrent("done"));
                     navigate("/checkout/done");
                     dispatch(removeAllCart());
-                    localStorage.removeItem("cart");
                 }, 1000);
             } else {
                 throw new Error();

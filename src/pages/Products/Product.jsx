@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../stores/slices/cartSlice";
 import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
 import Loading from "../../components/Loading/Loading";
+import { setShowForm } from "../../stores/slices/authSlice";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 export default function Product() {
     const dispatch = useDispatch();
@@ -19,6 +21,7 @@ export default function Product() {
     } = useSelector((state) => state.filters);
 
     const { status: statusCart } = useSelector((state) => state.cart);
+    const { user } = useSelector((state) => state.user);
     const handleAddToCart = ({ product_id, quantity, price }) => {
         setLoadingAction(true);
         dispatch(addToCart({ product_id, quantity, price }));
@@ -90,13 +93,19 @@ export default function Product() {
                                 </div>
                                 <div className="action px-3 flex items-center justify-between flex-wrap gap-3 ">
                                     <button
-                                        onClick={() =>
-                                            handleAddToCart({
-                                                product_id: item.id,
-                                                quantity: 1,
-                                                price: item.price,
-                                            })
-                                        }
+                                        onClick={() => {
+                                            if (
+                                                Object.keys(user).length !== 0
+                                            ) {
+                                                handleAddToCart({
+                                                    product_id: item.id,
+                                                    quantity: 1,
+                                                    price: item.price,
+                                                });
+                                            } else {
+                                                dispatch(setShowForm(true));
+                                            }
+                                        }}
                                         className="btn py-1 text-xs px-3 border-2 rounded-full border-gray-800 font-medium hover:bg-gray-800 hover:text-white transition-all duration-150"
                                     >
                                         <i className="fa-solid fa-plus text-xs"></i>{" "}

@@ -15,11 +15,10 @@ export default function LogoutBtn() {
             setLoading(true);
             const result = await dispatch(logout()).unwrap();
             if (result) {
-                toast.success("Logout successfully");
                 setTimeout(() => {
                     setLoading(false);
                     window.location.href = "/";
-                }, 500);
+                }, 1000);
             }
         } catch (error) {
             setLoading(false);

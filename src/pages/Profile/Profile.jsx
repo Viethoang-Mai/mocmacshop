@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, login } from "../../stores/slices/authSlice";
-// import Loading from "../../components/Loading/Loading";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import styles from "./Profile.module.css";
 import clsx from "clsx";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const options = [
     "Account",
     "Security",

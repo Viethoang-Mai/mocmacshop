@@ -5,7 +5,7 @@ import ListFavorites from "./ListFavorites";
 import { useEffect, useState } from "react";
 import { getFavorite } from "../../stores/slices/favoriteSlice";
 import Loading from "../../components/Loading/Loading";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Favorite() {
     const dispatch = useDispatch();
@@ -29,6 +29,7 @@ export default function Favorite() {
             <Helmet>
                 <title>{user?.name}'s favorites items - Mocmacshop</title>
             </Helmet>
+
             <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 relative ">
                 {loading && <Loading />}
                 <div className="header flex items-center gap-x-4 xs:justify-center">

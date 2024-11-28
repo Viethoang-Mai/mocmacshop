@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import StepMap from "./components/Step";
 import HorizontalLinearStepper from "./components/Step";
 import { useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Checkout() {
     const location = useLocation();

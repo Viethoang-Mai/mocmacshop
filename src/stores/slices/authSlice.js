@@ -172,7 +172,7 @@ export const logout = createAsyncThunk(
 );
 export const loginGoogle = createAsyncThunk(
     "loginGoogle",
-    async (formData, { rejectWithValue }) => {
+    async (formData, { rejectWithValue, dispatch }) => {
         const response = await fetch(`${SERVER_URL}/api/auth/google-login`, {
             method: "POST",
             headers: {
@@ -181,7 +181,10 @@ export const loginGoogle = createAsyncThunk(
             body: JSON.stringify({ ...formData }),
             credentials: "include",
         });
+
         const data = await response.json();
+        httpClient.token = data.data.accessToken;
+        await dispatch(getListCart());
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }

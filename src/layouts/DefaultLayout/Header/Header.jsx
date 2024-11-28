@@ -69,7 +69,7 @@ function Header() {
                             <i className="fa-solid fa-caret-down text-xs"></i>
                         </button>
                     </div>
-                    <button className="user flex flex-col items-center border-2 border-transparent hover:border-[#f9d08a] transition-all duration-150">
+                    <div className="user flex flex-col items-center border-2 border-transparent hover:border-[#f9d08a] transition-all duration-150">
                         {!Object.keys(user).length ? (
                             <span
                                 onClick={() => dispatch(setShowForm(true))}
@@ -80,7 +80,7 @@ function Header() {
                         ) : (
                             <MenuUser />
                         )}
-                    </button>
+                    </div>
                     <Link
                         to={"/favorite"}
                         className={clsx("favorites ", styles["link"])}

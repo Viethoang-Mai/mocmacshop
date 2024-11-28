@@ -16,11 +16,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import FavoriteBtn from "../../components/FavoriteBtn";
 import Loading from "../../components/Loading/Loading";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function ProductDetail() {
     const [loading, setLoading] = useState(true);
-    // const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const dispatch = useDispatch();
     const [image, setImage] = useState(0);
     const data = useSelector((state) => state.product.ProductDetail);
@@ -40,13 +39,15 @@ export default function ProductDetail() {
 
     return (
         <>
-            <Helmet>
-                <title>
-                    {data?.name
-                        ? `${data.name} - Mocmacshop`
-                        : "Product Detail - Mocmacshop"}
-                </title>
-            </Helmet>
+            <HelmetProvider>
+                <Helmet>
+                    <title>
+                        {data?.name
+                            ? `${data.name} - Mocmacshop`
+                            : "Product Detail - Mocmacshop"}
+                    </title>
+                </Helmet>
+            </HelmetProvider>
             <section className="product-detail p-10 px-16 xl:px-10 xxs:px-5 ">
                 {loading && <Loading />}
                 <div className="content flex gap-x-5 flex-wrap  ">
@@ -124,7 +125,7 @@ export default function ProductDetail() {
                     </div>
                     {data.reviews && (
                         <div className="review mt-10 w-8/12 md:w-full md:order-4">
-                            <p className="leading-[0]  flex items-center gap-x-3 pb-5 border-b-2 border-gray-300 ">
+                            <div className="leading-[0]  flex items-center gap-x-3 pb-5 border-b-2 border-gray-300 ">
                                 <span className="text-2xl">
                                     {data.totalReviews}{" "}
                                     <span className="text-lg">reviews</span>
@@ -136,7 +137,7 @@ export default function ProductDetail() {
                                     color="#222222"
                                     dimension="17px"
                                 />
-                            </p>
+                            </div>
                             <ul className="list-reviewer">
                                 {data?.reviews?.map((item) => (
                                     <li

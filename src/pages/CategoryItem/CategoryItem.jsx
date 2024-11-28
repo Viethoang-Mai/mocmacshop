@@ -5,7 +5,7 @@ import "swiper/css";
 import StarRating from "../../components/RatingStart";
 import Filter from "../../components/Filter";
 import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function CategoryItem() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);

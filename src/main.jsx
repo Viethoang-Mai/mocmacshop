@@ -7,20 +7,22 @@ import { store } from "./stores/store.js";
 import { Provider } from "react-redux";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { HelmetProvider } from "react-helmet-async";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_PUBLIC_CLIENT_ID_GG;
-console.log(GOOGLE_CLIENT_ID);
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
-        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <StyledEngineProvider injectFirst>
-                <BrowserRouter>
+        <StyledEngineProvider injectFirst>
+            <BrowserRouter>
+                <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
                     <Provider store={store}>
-                        <App />
+                        <HelmetProvider>
+                            <App />
+                        </HelmetProvider>
                     </Provider>
-                </BrowserRouter>
-            </StyledEngineProvider>
-        </GoogleOAuthProvider>
+                </GoogleOAuthProvider>
+            </BrowserRouter>
+        </StyledEngineProvider>
     </StrictMode>
 );

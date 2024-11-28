@@ -5,7 +5,7 @@ import FormChangePassword from "./FormChangePassword";
 import FormChangeEmail from "./FormChangeEmail";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName } from "../../../stores/slices/userSlice";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function Account() {
     const dispatch = useDispatch();
     const inputNameRef = useRef();
@@ -89,7 +89,12 @@ export default function Account() {
                     )}
                     <FormChangePassword />
                     <FormChangeEmail />
-                    <span className="absolute inset-0 z-1 bg-white/50"></span>
+                    <span
+                        className={clsx(
+                            "absolute inset-0 z-1 bg-white/50",
+                            !user.bio && "hidden"
+                        )}
+                    ></span>
                 </div>
                 <button className="w-fit text-red-400 font-semibold text-sm text-left hover:underline hover:text-red-600 transition-all duration-200">
                     Delete Account

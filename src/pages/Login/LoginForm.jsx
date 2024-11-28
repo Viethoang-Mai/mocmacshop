@@ -8,7 +8,7 @@ import { login } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
 import { toast } from "react-toastify";
-import { GoogleLogin } from "@react-oauth/google";
+import { Helmet } from "react-helmet-async";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
@@ -54,86 +54,93 @@ export default function LoginForm() {
     };
 
     return (
-        <form action="" onSubmit={handleSubmit(onSubmit)} className="mb-1">
-            {message && (
-                <p
-                    className={clsx(
-                        styles["message"],
-                        status === "success" ? "" : styles["error-m"]
-                    )}
-                >
-                    {message}
-                </p>
-            )}
+        <>
+            <Helmet>
+                <title>Login || Mocmacshop</title>
+            </Helmet>
+            <form action="" onSubmit={handleSubmit(onSubmit)} className="mb-1">
+                {message && (
+                    <p
+                        className={clsx(
+                            styles["message"],
+                            status === "success" ? "" : styles["error-m"]
+                        )}
+                    >
+                        {message}
+                    </p>
+                )}
 
-            <div className={clsx(styles["form-content"])}>
-                <div className={clsx(styles["group-input"])}>
-                    <label>
-                        <span>Email address</span>
-                        <input type="email" {...register("email")} />
-                    </label>
-                    {errors.email && (
-                        <p className={clsx(styles["error"])}>
-                            {errors.email.message}
-                        </p>
-                    )}
+                <div className={clsx(styles["form-content"])}>
+                    <div className={clsx(styles["group-input"])}>
+                        <label>
+                            <span>Email address</span>
+                            <input type="email" {...register("email")} />
+                        </label>
+                        {errors.email && (
+                            <p className={clsx(styles["error"])}>
+                                {errors.email.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className={clsx(styles["group-input"])}>
+                        <label>
+                            <span>Password</span>
+                            <div className={clsx(styles["input-password"])}>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    {...register("password")}
+                                />
+                                <span
+                                    className={clsx(styles["eye"])}
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                >
+                                    {showPassword ? (
+                                        <i className="fa-regular fa-eye-slash"></i>
+                                    ) : (
+                                        <i className="fa-regular fa-eye"></i>
+                                    )}
+                                </span>
+                            </div>
+                        </label>
+                        {errors.password && (
+                            <p className={clsx(styles["error"])}>
+                                {errors.password.message}
+                            </p>
+                        )}
+                    </div>
                 </div>
-                <div className={clsx(styles["group-input"])}>
-                    <label>
-                        <span>Password</span>
-                        <div className={clsx(styles["input-password"])}>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                {...register("password")}
-                            />
-                            <span
-                                className={clsx(styles["eye"])}
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? (
-                                    <i className="fa-regular fa-eye-slash"></i>
-                                ) : (
-                                    <i className="fa-regular fa-eye"></i>
-                                )}
-                            </span>
-                        </div>
-                    </label>
-                    {errors.password && (
-                        <p className={clsx(styles["error"])}>
-                            {errors.password.message}
-                        </p>
-                    )}
+                <div className="text-right mb-4">
+                    <a
+                        href="#!"
+                        className="text-gray-700 underline text-xs hover:text-amber-500"
+                    >
+                        Forgot your password?
+                    </a>
                 </div>
-            </div>
-            <div className="text-right mb-4">
-                <a
-                    href="#!"
-                    className="text-gray-700 underline text-xs hover:text-amber-500"
+                <button
+                    disabled={loading}
+                    className={clsx(
+                        styles["btn-form"],
+                        loading ? "bg-gray-400" : ""
+                    )}
                 >
-                    Forgot your password?
-                </a>
-            </div>
-            <button
-                disabled={loading}
-                className={clsx(
-                    styles["btn-form"],
-                    loading ? "bg-gray-400" : ""
-                )}
-            >
-                {loading ? (
-                    <i className="fa-solid fa-spinner animate-spin"></i>
-                ) : (
-                    "Login"
-                )}
-            </button>
-            <div className="text-center mt-2">
-                <a
-                    href="#!"
-                    className="text-gray-700 underline text-xs hover:text-amber-500"
-                >
-                    Trouble signing in?
-                </a>
-            </div>
-        </form>
+                    {loading ? (
+                        <i className="fa-solid fa-spinner animate-spin"></i>
+                    ) : (
+                        "Login"
+                    )}
+                </button>
+                <div className="text-center mt-2">
+                    <a
+                        href="#!"
+                        className="text-gray-700 underline text-xs hover:text-amber-500"
+                    >
+                        Trouble signing in?
+                    </a>
+                </div>
+            </form>
+        </>
     );
 }

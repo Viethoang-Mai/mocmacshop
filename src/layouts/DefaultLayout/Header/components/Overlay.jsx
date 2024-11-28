@@ -12,8 +12,6 @@ export default function Overlay() {
     };
     useEffect(() => {
         if (overlay === true) {
-            console.log(overlay);
-
             document.addEventListener("keydown", handleClose);
             document.addEventListener("click", handleClose);
         }

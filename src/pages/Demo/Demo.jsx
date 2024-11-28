@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FeatureCategories from "../Home/FeatureCategories";
 import { fetchProducts } from "../../stores/slices/productSlice";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function Demo() {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.product.categories);

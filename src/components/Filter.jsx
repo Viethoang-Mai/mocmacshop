@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import validFilters from "../utils/validFilters";
 import FilterFormNav from "./FilterFormNav";
 import { useCallback } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Filter() {
     const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getOrders } from "../../stores/slices/orderSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Order() {
     const dispatch = useDispatch();

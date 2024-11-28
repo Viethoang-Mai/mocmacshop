@@ -4,7 +4,7 @@ import styles from "../../Cart/Cart.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function Payment() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -21,8 +21,9 @@ export default function Payment() {
 
     return (
         <>
+            {" "}
             <Helmet>
-                <title>Mocmacshop - Checkout- Payment</title>
+                <title>Mocmacshop - Checkout - Payment</title>
             </Helmet>
             <section className="py-10 w-2/3 sm:w-10/12 xxs:w-full mx-auto">
                 <div className="header">

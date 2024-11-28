@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ListCart from "./ListCart";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Cart() {
     const {

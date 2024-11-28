@@ -17,6 +17,8 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
     const materials = ["plastic", "wood", "metal", "glass"];
     const handleReset = () => {
         dispatch(resetFilters());
+        setMaxP("");
+        setMinP("");
         navigate("/product/search?");
     };
 
@@ -60,6 +62,7 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
                                                         filters._category ==
                                                         category.id
                                                     }
+                                                    readOnly
                                                     className="peer h-4 w-4 cursor-pointer appearance-none rounded-full border-2 border-slate-300 checked:border-slate-400 transition-all"
                                                     id={
                                                         "category_" +
@@ -97,6 +100,7 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
                                                 onChange={() =>
                                                     setCheckedPrice(false)
                                                 }
+                                                value={""}
                                                 className="peer h-4 w-4 cursor-pointer appearance-none rounded-full border-2 border-slate-300 checked:border-slate-400 transition-all"
                                                 id={"price_any"}
                                             />
@@ -122,6 +126,7 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
                                                 onChange={() =>
                                                     setCheckedPrice(true)
                                                 }
+                                                value={""}
                                             />
                                             <span className="absolute bg-slate-800 w-2 h-2 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                         </label>
@@ -138,7 +143,7 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
                                             className="w-20 h-8 p-2 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 bg-gray-100 placeholder:text-xs font-medium"
                                             placeholder="Min"
                                             type="text"
-                                            value={minP}
+                                            value={minP || ""}
                                             onChange={(e) => {
                                                 validMinMax(e.target.value) &&
                                                     setMinP(e.target.value);
@@ -155,7 +160,7 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
                                             className="w-20 h-8 p-2 border-2 border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 bg-gray-100 placeholder:text-xs font-medium"
                                             placeholder="Max"
                                             type="text"
-                                            value={maxP}
+                                            value={maxP || ""}
                                             onChange={(e) => {
                                                 validMinMax(e.target.value) &&
                                                     setMaxP(e.target.value);
@@ -265,7 +270,12 @@ function FilterFormNav({ onclick, filters, data, handleChangeFilter }) {
 FilterFormNav.propTypes = {
     onclick: PropTypes.func,
     filters: PropTypes.object,
-    data: PropTypes.object,
+    // data: PropTypes.shape({
+    //     total: PropTypes.number,
+    //     data: PropTypes.arrayOf(PropTypes.object),
+    //     message: PropTypes.string,
+    //     success: PropTypes.bool,
+    // }),
     handleChangeFilter: PropTypes.func,
 };
 export default memo(FilterFormNav);

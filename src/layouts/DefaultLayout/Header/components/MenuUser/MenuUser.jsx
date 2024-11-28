@@ -12,8 +12,6 @@ export default function MenuUser() {
     const user = useSelector((state) => state.user.user);
     const { dropUser } = useSelector((state) => state.effect);
     const handleDropdown = (e) => {
-        console.log(123);
-
         e.stopPropagation();
         dispatch(setDropUser());
     };

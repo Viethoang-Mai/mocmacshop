@@ -6,9 +6,8 @@ import FavoriteBtn from "../../components/FavoriteBtn";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../stores/slices/cartSlice";
 import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
-import { set } from "react-hook-form";
 import Loading from "../../components/Loading/Loading";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Product() {
     const dispatch = useDispatch();

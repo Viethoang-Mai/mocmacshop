@@ -10,7 +10,6 @@ export default function CheckoutGuard() {
     }
     const stepIndex = stepsOrder.indexOf(pathStep);
     const prevStepIndex = stepsOrder.indexOf(current);
-    console.log(prevStepIndex, stepIndex, pathStep, current);
 
     if (stepIndex > prevStepIndex) {
         return <Navigate to={`/checkout/${stepsOrder[prevStepIndex]}`} />;

@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import { setCurrent } from "../../../stores/slices/checkoutStepSlice";
 import { useDispatch } from "react-redux";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 export default function Shipping() {
     const shipping = JSON.parse(sessionStorage.getItem("shipping"));
     const navigate = useNavigate();
@@ -66,8 +66,9 @@ export default function Shipping() {
     };
     return (
         <>
+            {" "}
             <Helmet>
-                <title>Mocmacshop - Checkout- Shipping</title>
+                <title>Mocmacshop - Checkout - Shipping</title>
             </Helmet>
             <section className="shipping py-10 w-1/2 md:w-7/12 sm:w-full mx-auto ">
                 <h1 className="text-3xl font-medium">

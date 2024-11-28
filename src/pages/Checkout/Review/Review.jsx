@@ -5,7 +5,7 @@ import { createOrder } from "../../../stores/slices/orderSlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/Loading/Loading";
 import { removeAllCart } from "../../../stores/slices/cartSlice";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Review() {
     const navigate = useNavigate();
@@ -44,8 +44,9 @@ export default function Review() {
     return (
         <>
             <Helmet>
-                <title>Mocmacshop - Checkout- Review</title>
+                <title>Mocmacshop - Checkout - Review</title>
             </Helmet>
+
             <div className="w-10/12 sm:w-11/12 xs:w-full mx-auto">
                 {loading && <Loading />}
                 <h1 className="text-3xl py-5 font-medium">Review your order</h1>

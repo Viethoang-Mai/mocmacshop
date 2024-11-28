@@ -27,7 +27,12 @@ export default function Favorite() {
     return (
         <>
             <Helmet>
-                <title>{user?.name}'s favorites items - Mocmacshop</title>
+                <title>
+                    {user
+                        ? `${user?.name}'s favorites items`
+                        : "Favorite items"}{" "}
+                    - Mocmacshop:
+                </title>
             </Helmet>
 
             <section className="py-10 px-16 xl:px-10 xxs:px-5 text-gray-800 relative ">

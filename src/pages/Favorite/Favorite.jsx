@@ -14,7 +14,6 @@ export default function Favorite() {
     const { accessToken } = useSelector((state) => state.auth);
     const { favorite, status } = useSelector((state) => state.favorite);
     const { user } = useSelector((state) => state.user);
-    console.log(status);
 
     useEffect(() => {
         if (accessToken) {
@@ -68,7 +67,8 @@ export default function Favorite() {
                     )}{" "}
                 </div>
 
-                {!favorite.length && status === "succeeded" ? (
+                {(status === "idle" && favorite.length === 0) ||
+                (status === "succeeded" && favorite.length === 0) ? (
                     <div className="text-center py-10">
                         <div className="icon w-[150px] h-[150px] mx-auto bg-gray-100 rounded-full flex items-center justify-center">
                             <i className="text-[90px] text-gray-600 fa-solid fa-cat"></i>

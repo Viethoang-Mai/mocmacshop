@@ -22,7 +22,7 @@ const ListFavorites = memo(function ListFavorites({ listProduct: data }) {
         if (status === "succeeded") {
             setTimeout(() => {
                 setLoading(false);
-            }, 600);
+            }, 500);
         }
         if (statusCart === "succeeded") {
             setLoading(false);

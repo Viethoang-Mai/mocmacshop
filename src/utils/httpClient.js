@@ -1,5 +1,4 @@
 // const overLoad = document.querySelector(".over-loading");
-import { toast } from "react-toastify";
 const getTokenStorage = (name) => {
     const tokens = JSON.parse(localStorage.getItem(name));
     return tokens;
@@ -58,7 +57,8 @@ export const httpClient = {
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
                 localStorage.removeItem("cart");
-                window.location.href = "/";
+                window.location.reload();
+
                 return { response };
             } else {
                 //Lưu vào Storage

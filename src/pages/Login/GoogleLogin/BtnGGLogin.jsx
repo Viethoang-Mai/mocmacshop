@@ -22,19 +22,15 @@ export default function BtnGGLogin() {
                 ).unwrap();
                 if (res) {
                     setTimeout(() => {
-                        setLoading(false);
                         window.location.reload();
                     }, 400);
                 }
-            } catch (error) {
-                setLoading(false);
-            }
+            } catch (error) {}
         },
         onError: (error) => console.log("Login Failed:", error),
     });
     return (
         <>
-            {loading && <Loading />}
             <button
                 disabled={loading}
                 onClick={() => login()}

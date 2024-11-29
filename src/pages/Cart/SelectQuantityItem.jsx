@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { updateCart } from "../../stores/slices/cartSlice";
 import { removeFromCart } from "../../stores/slices/cartSlice";
 import debounce from "../../utils/debounce";
 import { toast } from "react-toastify";
+import Loading from "../../components/Loading/Loading";
 export default function SelectQuantityItem({ item }) {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(null);
     const [quantityIp, setQuantityIp] = useState(item.quantity);
+    const { status } = useSelector((state) => state.cart);
 
     const handleUpdateQuantity = (e) => {
+        setLoading(true);
         setQuantity(e.target.value),
             setQuantityIp(e.target.value),
             dispatch(
@@ -21,7 +25,7 @@ export default function SelectQuantityItem({ item }) {
             );
     };
     const onBlur = (e) => {
-        setQuantityIp(e.target.value);
+        setLoading(true), setQuantityIp(e.target.value);
         const stock = item.products.stock;
         if (e.target.value > stock) {
             return toast.error("Some thing went wrong");
@@ -34,8 +38,15 @@ export default function SelectQuantityItem({ item }) {
         );
     };
 
+    useEffect(() => {
+        if (status === "success") {
+            setLoading(false);
+        }
+    }, [status]);
+
     return (
         <>
+            {loading && <Loading />}
             <select
                 name="quantity"
                 id=""

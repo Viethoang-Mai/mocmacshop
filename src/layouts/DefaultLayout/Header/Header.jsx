@@ -73,7 +73,7 @@ function Header() {
                         {!Object.keys(user).length ? (
                             <span
                                 onClick={() => dispatch(setShowForm(true))}
-                                className="font-semibold text-sm xxs:text-xs"
+                                className="font-semibold text-sm xxs:text-xs cursor-pointer "
                             >
                                 Sign in
                             </span>

@@ -46,7 +46,8 @@ export default function RegisterForm() {
         setTimeout(() => {
             dispatch(postRegister({ email, name, password, repeat_password }));
             setLoading(false);
-        }, 1000);
+            reset();
+        }, 400);
     };
 
     return (

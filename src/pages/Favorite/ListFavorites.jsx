@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "../../components/RatingStart";
@@ -8,10 +8,12 @@ import ImgSkeleton from "../../components/Skeleton/ImgSkeleton";
 
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../stores/slices/cartSlice";
-export default function ListFavorites({ listProduct: data }) {
+import Loading from "../../components/Loading/Loading";
+const ListFavorites = memo(function ListFavorites({ listProduct: data }) {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const { status } = useSelector((state) => state.favorite);
+    const { status: statusCart } = useSelector((state) => state.cart);
     const handleAddToCart = ({ product_id, quantity, price }) => {
         dispatch(addToCart({ product_id, quantity, price }));
     };
@@ -20,12 +22,17 @@ export default function ListFavorites({ listProduct: data }) {
         if (status === "succeeded") {
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 600);
         }
-    }, [status]);
+        if (statusCart === "succeeded") {
+            setLoading(false);
+        }
+    }, [status, statusCart]);
 
     return (
         <section className="product py-10">
+            {statusCart === "loading" && <Loading />}
+
             <div className="flex flex-wrap gap-3 items-center justify-between pb-5">
                 <h4 className="text-lg font-semibold mb-5">All Items</h4>
                 <div className="filter ">
@@ -110,7 +117,9 @@ export default function ListFavorites({ listProduct: data }) {
             </ul>
         </section>
     );
-}
+});
+
+export default ListFavorites;
 
 ListFavorites.propTypes = {
     listProduct: PropTypes.array,

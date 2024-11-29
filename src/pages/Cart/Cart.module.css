@@ -34,3 +34,11 @@
         transform: scale(1.03);
     }
 }
+.btn-item {
+    padding: 5px 10px;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    &:hover {
+        background: #e7e0e0;
+    }
+}

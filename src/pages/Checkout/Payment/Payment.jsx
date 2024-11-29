@@ -16,7 +16,7 @@ export default function Payment() {
             dispatch(setCurrent("review"));
             navigate("/checkout/review");
             setLoading(false);
-        }, 1000);
+        }, 600);
     };
 
     return (

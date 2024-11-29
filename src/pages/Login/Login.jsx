@@ -5,8 +5,8 @@ import styles from "./form.module.css";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowForm } from "../../stores/slices/authSlice";
-import { GoogleLogin } from "@react-oauth/google";
 import BtnGGLogin from "./GoogleLogin/BtnGGLogin";
+import Loading from "../../components/Loading/Loading";
 
 export default function Login() {
     const { showForm, status } = useSelector((state) => state.auth);
@@ -15,6 +15,7 @@ export default function Login() {
     const [isVisible, setIsVisible] = useState(false);
 
     const [isLogin, setIsLogin] = useState(true);
+    const { status: statusAuth } = useSelector((state) => state.auth);
 
     useEffect(() => {
         if (showForm) {
@@ -30,6 +31,7 @@ export default function Login() {
 
     return (
         <>
+            {statusAuth === "loading" && <Loading />}
             <section
                 className="fixed z-[1000] w-full h-full pt-20 pb-10 top-0 left-0 right-0 bottom-0   rounded-3xl  overflow-y-auto [&::-webkit-scrollbar]:w-1 
                     [&::-webkit-scrollbar-track]:rounded-full 
@@ -53,12 +55,7 @@ export default function Login() {
                         isVisible ? styles["visible"] : ""
                     )}
                 >
-                    <i
-                        onClick={() => dispatch(setShowForm(false))}
-                        className="fa-solid fa-xmark text-white w-8 h-8 flex items-center justify-center  absolute rounded-full top-0 -right-10 text-lg cursor-pointer hover:bg-gray-400/50 transition-all duration-200 xs:right-5 xs:-top-10 xs:text-2xl"
-                    ></i>
-
-                    <div className="form-inner p-6 py-5 ">
+                    <div className="form-inner p-6 py-5 relative ">
                         <header className="flex justify-between">
                             <h1 className="font-semibold">
                                 {isLogin ? "Login" : "Register"}
@@ -72,6 +69,10 @@ export default function Login() {
                         </header>
                         {isLogin ? <LoginForm /> : <RegisterForm />}
                     </div>
+                    <i
+                        onClick={() => dispatch(setShowForm(false))}
+                        className="fa-solid fa-xmark text-white w-8 h-8 flex items-center justify-center absolute rounded-full top-0 -right-10 text-lg cursor-pointer hover:bg-gray-400/50 transition-all duration-200 xs:right-5 xs:-top-10 xs:text-2xl "
+                    ></i>
                     <div className="relative w-[]  h-[0.2px] bg-gray-300  ">
                         <span className=" absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] px-2 py-1 bg-gray-50 rounded text-xs font-medium text-gray-800">
                             OR

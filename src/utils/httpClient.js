@@ -58,6 +58,7 @@ export const httpClient = {
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
                 localStorage.removeItem("cart");
+                window.location.href = "/";
                 return { response };
             } else {
                 //Lưu vào Storage

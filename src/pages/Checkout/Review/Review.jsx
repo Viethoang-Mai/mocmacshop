@@ -34,7 +34,7 @@ export default function Review() {
                     dispatch(setCurrent("done"));
                     navigate("/checkout/done");
                     dispatch(removeAllCart());
-                }, 1000);
+                }, 700);
             } else {
                 throw new Error();
             }

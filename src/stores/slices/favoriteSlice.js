@@ -10,37 +10,32 @@ export const favoriteSlice = createSlice({
     initialState: {
         favorite: [],
         status: "idle",
-        statusFavorite: "idle",
-        statusRemove: "idle",
+        statusAction: "idle",
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(addFavorite.pending, (state) => {
-                state.statusFavorite = "loading";
+                state.statusAction = "loading";
             })
             .addCase(addFavorite.fulfilled, (state, action) => {
-                state.statusFavorite = "succeeded";
-                setTimeout(() => {
-                    toast.success("Add favorite successfully");
-                }, 500);
+                state.statusAction = "succeeded";
+                toast.success("Add favorite successfully");
             })
             .addCase(addFavorite.rejected, (state) => {
-                state.statusFavorite = "failed";
+                state.statusAction = "failed";
             });
 
         builder
             .addCase(removeFavorite.pending, (state) => {
-                state.statusRemove = "loading";
+                state.statusAction = "loading";
             })
             .addCase(removeFavorite.fulfilled, (state, action) => {
-                state.statusRemove = "succeeded";
-                setTimeout(() => {
-                    toast.success("Remove favorite successfully");
-                }, 500);
+                state.statusAction = "succeeded";
+                toast.success("Remove favorite successfully");
             })
             .addCase(removeFavorite.rejected, (state) => {
-                state.statusRemove = "failed";
+                state.statusAction = "failed";
             });
 
         builder

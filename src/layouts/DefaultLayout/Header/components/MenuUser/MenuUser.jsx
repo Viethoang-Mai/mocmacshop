@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import clsx from "clsx";
 import LogoutBtn from "../../../../../components/LogoutBtn";
 import { setDropUser } from "../../../../../stores/slices/effectSlice";
+import Loading from "../../../../../components/Loading/Loading";
 
 export default function MenuUser() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
+    const status = useSelector((state) => state.auth.status);
     const { dropUser } = useSelector((state) => state.effect);
     const handleDropdown = (e) => {
         e.stopPropagation();
@@ -18,6 +20,8 @@ export default function MenuUser() {
 
     return (
         <div className="font-semibold text-sm xxs:text-xs">
+            {status === "loading" && <Loading />}
+
             <div className="relative ">
                 <button
                     onClick={handleDropdown}

@@ -4,7 +4,6 @@ import { httpClient } from "../../utils/httpClient";
 
 httpClient.baseUrl = SERVER_URL;
 import { getListCart } from "./cartSlice";
-import { set } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export const authSlice = createSlice({
@@ -12,7 +11,6 @@ export const authSlice = createSlice({
     initialState: {
         showForm: false,
         accessToken: JSON.parse(localStorage.getItem("access_token")) || null,
-        // user: JSON.parse(localStorage.getItem("user")) || {},
         status: "idle",
         message: "",
         messageRegister: "",
@@ -31,6 +29,7 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.status = "success";
                 state.message = action.payload.message;
+
                 localStorage.setItem(
                     "access_token",
                     JSON.stringify(action.payload.data.accessToken)
@@ -87,7 +86,7 @@ export const authSlice = createSlice({
                 localStorage.removeItem("cart");
                 setTimeout(() => {
                     toast.success("Logout successfully");
-                }, 1000);
+                }, 100);
             })
             .addCase(logout.rejected, (state, action) => {
                 state.status = "failed";

@@ -111,10 +111,7 @@ function SearchHeader() {
                     }`}
                 ></i>
             </div>
-            <button
-                // type="submit"
-                className="nav-search-btn px-3 py-1 text-xl bg-amber-500 rounded-e-md"
-            >
+            <button className="nav-search-btn px-3 py-1 text-xl bg-amber-500 rounded-e-md">
                 <i className="fa-solid fa-magnifying-glass"></i>
             </button>
             <div

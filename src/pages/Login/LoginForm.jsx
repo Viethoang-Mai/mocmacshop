@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import Loading from "../../components/Loading/Loading";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
@@ -45,7 +46,7 @@ export default function LoginForm() {
                 setTimeout(() => {
                     setLoading(false);
                     window.location.reload();
-                }, 1500);
+                }, 400);
             }
         } catch (error) {
             setLoading(false);

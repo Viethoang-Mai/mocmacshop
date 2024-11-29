@@ -5,8 +5,11 @@ import { removeFromCart } from "../../stores/slices/cartSlice";
 import Checkout from "./Checkout";
 import Loading from "../../components/Loading/Loading";
 import ItemSkeleton from "../../components/Skeleton/ItemSkeleton";
+import style from "./Cart.module.css";
+import clsx from "clsx";
 export default function ListCart() {
     const [loading, setLoading] = useState(true);
+    const [loadingBtn, setLoadingBtn] = useState(false);
     const {
         cart: { listCart: cart },
         status,
@@ -14,16 +17,22 @@ export default function ListCart() {
     const dispatch = useDispatch();
 
     const handleRemove = ({ product_id }) => {
+        setLoadingBtn(true);
         dispatch(removeFromCart({ product_id }));
     };
+
     useEffect(() => {
-        if (status === "loading") setLoading(true);
+        if (status !== loading) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 700);
+        }
+    }, [loading, status]);
+    useEffect(() => {
+        if (status === "success") {
+            setLoadingBtn(false);
+        }
     }, [status]);
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-    }, [loading]);
 
     return (
         <section className="my-10">
@@ -35,7 +44,7 @@ export default function ListCart() {
                     [&::-webkit-scrollbar-thumb]:rounded-full
                     [&::-webkit-scrollbar-thumb]:bg-gray-500"
                 >
-                    {loading && <Loading />}
+                    {loading || (loadingBtn && <Loading />)}
                     <div className="flex flex-col gap-5 pb-5 border-b border-gray-300 xs:gap-y-8  ">
                         {cart?.map((item) =>
                             status === "idle" && loading ? (
@@ -77,9 +86,24 @@ export default function ListCart() {
                                             </span>
                                             <SelectQuantityItem item={item} />
                                             <div className="action flex gap-5 text-xs font-medium w-fit xs:hidden">
-                                                <button>Edit</button>
-                                                <button>Save for later</button>
                                                 <button
+                                                    className={clsx(
+                                                        style["btn-item"]
+                                                    )}
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    className={clsx(
+                                                        style["btn-item"]
+                                                    )}
+                                                >
+                                                    Save for later
+                                                </button>
+                                                <button
+                                                    className={clsx(
+                                                        style["btn-item"]
+                                                    )}
                                                     onClick={() =>
                                                         handleRemove({
                                                             product_id:

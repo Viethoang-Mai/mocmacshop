@@ -36,7 +36,7 @@ export default function FormAction({ product_id, price }) {
         } else {
             setTimeout(() => {
                 setLoading(false);
-            }, 500);
+            }, 300);
         }
     }, [status]);
     return (

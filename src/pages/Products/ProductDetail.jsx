@@ -33,7 +33,7 @@ export default function ProductDetail() {
         if (data) {
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 600);
         }
     }, [data]);
 

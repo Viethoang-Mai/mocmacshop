@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ListCart from "./ListCart";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 export default function Cart() {
+    const [loading, setLoading] = useState(true);
     const {
         cart: { listCart: cart },
     } = useSelector((state) => state.cart);
-
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 600);
+    }, []);
     return (
         <>
             <Helmet>

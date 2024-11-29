@@ -5,6 +5,7 @@ import styles from "../form.module.css";
 import { loginGoogle } from "../../../stores/slices/authSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import Loading from "../../../components/Loading/Loading";
 export default function BtnGGLogin() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function BtnGGLogin() {
                     setTimeout(() => {
                         setLoading(false);
                         window.location.reload();
-                    }, 1500);
+                    }, 400);
                 }
             } catch (error) {
                 setLoading(false);
@@ -32,18 +33,22 @@ export default function BtnGGLogin() {
         onError: (error) => console.log("Login Failed:", error),
     });
     return (
-        <button
-            disabled={loading}
-            onClick={() => login()}
-            className={clsx(styles["btn-social"])}
-        >
-            {loading ? (
-                <i className="fa fa-spinner fa-spin animate-spin"></i>
-            ) : (
-                <>
-                    <i className="fa-brands fa-google"></i>Continue with Google
-                </>
-            )}
-        </button>
+        <>
+            {loading && <Loading />}
+            <button
+                disabled={loading}
+                onClick={() => login()}
+                className={clsx(styles["btn-social"])}
+            >
+                {loading ? (
+                    <i className="fa fa-spinner fa-spin animate-spin"></i>
+                ) : (
+                    <>
+                        <i className="fa-brands fa-google"></i>Continue with
+                        Google
+                    </>
+                )}
+            </button>
+        </>
     );
 }

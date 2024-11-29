@@ -31,7 +31,7 @@ export default function Product() {
         if (status === "succeeded") {
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 600);
         }
     }, [status]);
 
@@ -39,7 +39,7 @@ export default function Product() {
         if (statusCart === "success") {
             setTimeout(() => {
                 setLoadingAction(false);
-            }, 1000);
+            }, 100);
         }
     }, [statusCart]);
 

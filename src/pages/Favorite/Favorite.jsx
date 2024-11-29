@@ -14,14 +14,16 @@ export default function Favorite() {
     const { accessToken } = useSelector((state) => state.auth);
     const { favorite, status } = useSelector((state) => state.favorite);
     const { user } = useSelector((state) => state.user);
+    console.log(status);
 
     useEffect(() => {
         if (accessToken) {
+            setLoading(true);
             dispatch(getFavorite());
         }
         setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 500);
     }, [accessToken]);
 
     return (
@@ -66,7 +68,7 @@ export default function Favorite() {
                     )}{" "}
                 </div>
 
-                {!favorite.length && !loading ? (
+                {!favorite.length && status === "succeeded" ? (
                     <div className="text-center py-10">
                         <div className="icon w-[150px] h-[150px] mx-auto bg-gray-100 rounded-full flex items-center justify-center">
                             <i className="text-[90px] text-gray-600 fa-solid fa-cat"></i>

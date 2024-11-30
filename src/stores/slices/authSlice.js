@@ -124,9 +124,11 @@ export const login = createAsyncThunk(
         const { response, data } = await httpClient.post("/api/auth/login", {
             ...formData,
         });
+        console.log(data, response);
         if (!response.ok) {
             return rejectWithValue(data.errors);
         }
+
         httpClient.token = data.data.accessToken;
         await dispatch(getListCart());
 

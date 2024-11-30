@@ -56,7 +56,7 @@ function Header() {
                     </div>
                 </div>
 
-                <div className="nav-search-bar w-1/2 xl:w-5/12 sm:hidden ">
+                <div className="nav-search-bar  w-1/2 xl:w-5/12 sm:hidden ">
                     <SearchHeader />
                 </div>
 

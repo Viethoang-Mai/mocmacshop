@@ -7,9 +7,7 @@ import clsx from "clsx";
 import { login } from "../../stores/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import emailRegEx from "../../utils/regexEmail";
-import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import Loading from "../../components/Loading/Loading";
 export default function LoginForm() {
     const dispatch = useDispatch();
     const { message, status } = useSelector((state) => state.auth);
@@ -45,7 +43,7 @@ export default function LoginForm() {
             if (res) {
                 setTimeout(() => {
                     setLoading(false);
-                    window.location.reload();
+                    // window.location.reload();
                 }, 400);
             }
         } catch (error) {

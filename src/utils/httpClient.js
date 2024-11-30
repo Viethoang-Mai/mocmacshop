@@ -57,7 +57,8 @@ export const httpClient = {
                 localStorage.removeItem("access_token");
                 localStorage.removeItem("user");
                 localStorage.removeItem("cart");
-                window.location.reload();
+                // window.location.reload();
+                console.log(response);
 
                 return { response };
             } else {

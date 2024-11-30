@@ -111,7 +111,7 @@ export default function Filter() {
                 </title>
             </Helmet>
 
-            <div className="filter border-t-2 border-gray-200 py-7 px-10 sm:px-5">
+            <div className="filter border-t-2 border-gray-200 py-7 px-10 sm:px-5 xs:px-1">
                 <div className="flex gap-x-4 justify-between">
                     <button
                         onClick={handleClick}

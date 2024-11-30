@@ -12,7 +12,7 @@ export default function FeatureCategories() {
         if (status === "success") {
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 100);
         }
     }, [status]);
 

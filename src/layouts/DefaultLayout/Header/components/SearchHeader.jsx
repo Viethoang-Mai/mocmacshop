@@ -58,7 +58,10 @@ function SearchHeader() {
     //     dispatch(fetchFilterProducts());
     // }, [dispatch, filters]);
     return (
-        <form onSubmit={handleSubmit} className=" relative flex w-full  ">
+        <form
+            onSubmit={handleSubmit}
+            className=" relative flex w-full bg-white rounded-md   "
+        >
             <div className="nav-left relative w-fit  ">
                 <div className="btn-filter  text-xs py-1 px-3 md:px-2 bg-gray-300 h-full text-sm text-black flex items-center cursor-pointer rounded-s-md">
                     {categories?.find((item) => item.id == searchText)

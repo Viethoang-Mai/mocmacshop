@@ -285,10 +285,14 @@ export default function Filter() {
                         "pagination flex justify-center items-center mt-4"
                     }
                     pageClassName={"mx-1"}
-                    pageLinkClassName={"px-3 py-1 border rounded"}
-                    previousClassName={"px-3 py-1 border rounded mr-2"}
+                    pageLinkClassName={
+                        "px-3 py-1 border border-gray-300 rounded"
+                    }
+                    previousClassName={
+                        "px-3 py-1 border border-gray-300 rounded mr-2"
+                    }
                     nextClassName={"px-3 py-1 border rounded ml-2"}
-                    activeClassName={"bg-gray-800 text-white"}
+                    activeLinkClassName={"bg-gray-700 text-white"}
                     forcePage={currentPage - 1}
                 />
             </div>

@@ -39,6 +39,7 @@ export default function Shipping() {
             )
             .required("Please enter your phone number"),
         postalCode: Yup.string()
+            .min(6, "Postal code must be at least 6 characters")
             .matches(/^[0-9]{6}$/, "Please enter a valid postal code")
             .required("Please enter your postal code"),
         city: Yup.string().required("Please enter your city"),

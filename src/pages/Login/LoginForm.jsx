@@ -43,7 +43,7 @@ export default function LoginForm() {
             if (res) {
                 setTimeout(() => {
                     setLoading(false);
-                    // window.location.reload();
+                    window.location.reload();
                 }, 400);
             }
         } catch (error) {

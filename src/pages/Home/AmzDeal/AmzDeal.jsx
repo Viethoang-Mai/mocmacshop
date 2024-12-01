@@ -86,6 +86,7 @@ export default function AmzDeal() {
                                     <>
                                         <Link to="/demo">
                                             <img
+                                                loading="lazy"
                                                 src={item.img_url}
                                                 alt="trend"
                                                 className="rounded-2xl object-cover object-center "

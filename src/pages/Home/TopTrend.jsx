@@ -19,6 +19,7 @@ export default function TopTrend() {
                            "
                         >
                             <img
+                                loading="lazy"
                                 src={item.img_src}
                                 alt="trend"
                                 className=" w-11/12 mx-auto rounded-full p-3"

@@ -63,6 +63,7 @@ export default function Product() {
                                     className="overflow-hidden block"
                                 >
                                     <img
+                                        loading="lazy"
                                         src={item.image_url}
                                         alt=""
                                         className="h-[300px] lg:h-[250px]  xs:h-[150px]  w-full object-cover oject-fit rounded shadow-lg hover:scale-110 transition-all duration-300"

@@ -30,6 +30,7 @@ export default function FeatureCategories() {
                             <div key={item.id}>
                                 <Link to={`/category/${item.id}`}>
                                     <img
+                                        loading="lazy"
                                         src={item.image_url}
                                         alt={item.name}
                                         className=" h-3/4 w-full object-cover rounded-2xl hover:shadow-trendItem transition-all duration-100"

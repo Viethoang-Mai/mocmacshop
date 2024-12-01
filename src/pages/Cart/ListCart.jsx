@@ -56,6 +56,7 @@ export default function ListCart() {
                                 >
                                     <div className="cart-item__img rounded-md  ">
                                         <img
+                                            loading="lazy"
                                             src={item.products.image_url}
                                             alt=""
                                             className="rounded-md max-w-none w-[189px] h-[150px] sm:w-[150px] sm:h-[110px] xxs:w-[100px] xxs:h-[80px]  object-cover"

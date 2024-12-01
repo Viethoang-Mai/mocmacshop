@@ -65,6 +65,7 @@ export default function CategoryItem() {
                                         className="block h-full "
                                     >
                                         <img
+                                            loading="lazy"
                                             src={item.image_url}
                                             alt={item.name}
                                             className="object-cover object-center rounded  transition-all h-[200px] w-full "

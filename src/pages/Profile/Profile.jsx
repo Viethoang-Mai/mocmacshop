@@ -20,11 +20,9 @@ export default function Profile() {
     const { pathname } = useLocation();
 
     const dispatch = useDispatch();
-    // const [loading, setLoading] = useState(true);
     useEffect(() => {
         navigate("/profile/account");
         dispatch(getProfile());
-        // setLoading(false);
     }, []);
     const handleActive = (path) => {
         return `/${path}` === pathname ? "active" : "";

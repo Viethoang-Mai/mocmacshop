@@ -13,6 +13,7 @@ export default function Footer() {
                                 className=" text-lg font-bold  text-center text-black rounded-lg px-1 pb-[3px] hover:text-amber-500  transition-all duration-200 xs:text-lg "
                             >
                                 <img
+                                    loading="lazy"
                                     className=" h-12 bg-white/80 rounded-xl mx-auto"
                                     src={logo}
                                     alt="mocmacshop"

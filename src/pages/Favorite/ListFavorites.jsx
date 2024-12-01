@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo, lazy } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "../../components/RatingStart";
@@ -61,6 +61,7 @@ const ListFavorites = memo(function ListFavorites({ listProduct: data }) {
                                 className="overflow-hidden block"
                             >
                                 <img
+                                    loading="lazy"
                                     src={product.image_url}
                                     alt=""
                                     className="h-[300px] lg:h-[250px]  xs:h-[150px]  w-full object-cover oject-fit rounded shadow-lg hover:scale-110 transition-all duration-300"

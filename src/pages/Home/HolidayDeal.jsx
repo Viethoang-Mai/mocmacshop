@@ -29,6 +29,7 @@ export default function HolidayDeal() {
                 >
                     <Link to="/demo">
                         <img
+                            loading="lazy"
                             src={image}
                             alt="holiday-deal"
                             className="  w-full h-full object-cover object-center group-hover:scale-110 transition-all duration-300"

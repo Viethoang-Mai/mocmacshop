@@ -9,6 +9,7 @@ export default function SearchResult({ data }) {
                 {data?.map((item) => (
                     <li className="flex items-center h-10" key={item.id}>
                         <img
+                            loading="lazy"
                             className="object-cover rounded w-10 h-10 "
                             src={item.image_url}
                             alt={item.name}

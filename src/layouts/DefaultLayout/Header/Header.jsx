@@ -39,6 +39,7 @@ function Header() {
                         className=" text-lg font-bold mr-5 leading-none bg-[#fff8ed] text-center text-black rounded-lg px-1 pb-[3px] hover:text-amber-500 hover:bg-[#fff8edf0] transition-all duration-200 md:text-xs "
                     >
                         <img
+                            loading="lazy"
                             className=" h-8 bg-white/80 rounded-xl mx-auto"
                             src={logo}
                             alt="mocmacshop"

@@ -13,6 +13,7 @@ export default function TopSearch() {
                 {topSearchData.map((item, index) => (
                     <li className="flex items-center h-10" key={index}>
                         <img
+                            loading="lazy"
                             className="object-cover rounded w-10 h-10 "
                             src="https://res.cloudinary.com/dszxqzf9t/image/upload/v1729789623/Book-Nooks_pi5nyl.webp"
                             alt=""
